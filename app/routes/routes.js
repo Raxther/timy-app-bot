@@ -9,7 +9,8 @@ module.exports = function (app) {
     res.render('home')
   })
 
-  app.get('/webhook', function (req, res) if (req.query['hub.verify_token'] === process.env.FACEBOOK_VERIFY_TOKEN) {
+  app.get('/webhook', function (req, res) {
+    if (req.query['hub.verify_token'] === process.env.FACEBOOK_VERIFY_TOKEN) {
       res.send(req.query['hub.challenge']);
     } else {
       res.send('Error, wrong validation token');    
