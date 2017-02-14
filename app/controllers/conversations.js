@@ -9,6 +9,7 @@ module.exports = function (controller) {
 
   // user said hello
   controller.hears(['hello'], 'message_received', function (bot, message) {
+    console.log("message");
     bot.reply(message, 'Hey there.')
   })
 
