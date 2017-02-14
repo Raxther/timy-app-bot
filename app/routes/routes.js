@@ -9,13 +9,10 @@ module.exports = function (app) {
     res.render('home')
   })
 
-  app.get('/webhook', function (req, res) {
-    // This enables subscription to the webhooks
-    if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === process.env.FACEBOOK_VERIFY_TOKEN) {
-      res.send(req.query['hub.challenge'])
-    }
-    else {
-      res.send('Incorrect verify token')
+  app.get('/webhook', function (req, res) if (req.query['hub.verify_token'] === process.env.FACEBOOK_VERIFY_TOKEN) {
+      res.send(req.query['hub.challenge']);
+    } else {
+      res.send('Error, wrong validation token');    
     }
   })
 
