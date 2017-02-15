@@ -23,7 +23,7 @@ module.exports = function (controller) {
             "payload":"order"
           },
           {
-            "type":"url",
+            "type":"web_url",
             "url":"https://www.oculus.com/en-us/rift/",
             "title":"Je veux plus d'information"
           }
@@ -44,7 +44,7 @@ controller.hears(['order'], 'facebook_postback', function(bot, message) {
             bot.reply(message, 'Hello.');
         }
     });
-});
+})
 
 
 
