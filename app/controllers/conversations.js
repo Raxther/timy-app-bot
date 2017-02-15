@@ -8,30 +8,51 @@ module.exports = function (controller) {
   })
 
   // user said hello
-  controller.hears(['hello'], 'message_received', function (bot, message) {
+  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou'], 'message_received', function (bot, message) {
     console.log("message");
         var test = {
     "attachment":{
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text":"What do you want to do next?",
+        "text":"Bonjour, tu es ici pour commander quelque chose ou tu veux des informations sur Timy ?",
         "buttons":[
           {
-            "type":"web_url",
-            "url":"https://petersapparel.parseapp.com",
-            "title":"Show Website"
+            "type":"postback",
+            "title":"Je suis la pour passer commande",
+            "payload":"order"
           },
           {
-            "type":"postback",
-            "title":"Start Chatting",
-            "payload":"USER_DEFINED_PAYLOAD"
+            "type":"url",
+            "url":"https://www.oculus.com/en-us/rift/",
+            "title":"Je veux plus d'information"
           }
         ]
       }
     }
   }
     bot.reply(message, test)
+  })
+
+// user 
+
+controller.hears(['order'], 'facebook_postback', function(bot, message) {
+    controller.storage.users.get(message.user, function(err, user) {
+        if (user && user.name) {
+            bot.reply(message, 'Hello ' + user.name + '!!');
+        } else {
+            bot.reply(message, 'Hello.');
+        }
+    });
+});
+
+
+
+
+
+// user pass an order
+  controller.hears(['Ma commande'], 'message_received', function (bot, message) {
+    bot.reply(message, 'Votre commande : ' + message.match[1])
   })
 
   // user says anything else

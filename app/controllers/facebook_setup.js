@@ -47,13 +47,18 @@ module.exports = function (controller) {
     'call_to_actions': [
       {
         'type': 'postback',
-        'title': 'Item 1',
-        'payload': 'Item 1'
+        'title': "Demander l'intervention d'un humain",
+        'payload': 'humain'
       },
       {
         'type': 'postback',
-        'title': 'Item 2',
-        'payload': 'Item 2'
+        'title': 'Redémarrer le bot',
+        'payload': 'reboot'
+      },
+      {
+        'type': 'postback',
+        'title': 'Annuler',
+        'payload': 'cancel'
       }
     ]
   }
@@ -71,7 +76,7 @@ module.exports = function (controller) {
   var form3 = {
     'setting_type': 'greeting',
     'greeting': {
-      'text': 'Your greetings message'
+      'text': 'Bienvenue sur le chatbot de timy :) Dites bonjour pour commencer à discuter !'
     }
   }
 

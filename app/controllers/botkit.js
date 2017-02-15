@@ -7,7 +7,7 @@ var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/botkit-demo'
 var db = require('../../config/db')({mongoUri: mongoUri})
 
 var controller = Botkit.facebookbot({
-  debug: true,
+  debug: false,
   access_token: "EAAKN23HlGKYBAFjRsiyn6DVqj40GnXpIAvXN1BYWZCyAgRgJyaM5IRusf8gCbYGJZApToTZBq3xuWJ1HveZAfNb410KamhWh3mbNCrujJXMTlZAP5K8zvhDUeTcwAdpiRSTTi4RoDAQVSaV7woT0CZBrtJyDEHujEy9p7QxhMjYwZDZD",
   verify_token: "my_voice_is_my_password_verify_me",
   storage: db
