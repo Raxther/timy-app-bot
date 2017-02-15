@@ -66,7 +66,15 @@ module.exports = function (controller) {
 
         }, function(response, convo) {
           console.log("--------------------------------réponse " + response.text);
-            convo.next();
+          if(response.text == 'White T-Shirt'){
+              convo.next();
+          }
+          else{
+            bot.reply(message,'jai pas compris enculé')
+              convo.repeat();
+              convo.next();
+
+          }
         });
     });
   })
