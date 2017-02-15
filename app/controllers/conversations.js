@@ -65,7 +65,7 @@ module.exports = function (controller) {
             }
 
         }, function(response, convo) {
-          console.log("--------------------------------réponse " + response.type);
+          console.log("--------------------------------réponse " + response.text);
             convo.next();
         });
     });
