@@ -47,7 +47,7 @@ module.exports = function (controller) {
     'call_to_actions': [
       {
         'type': 'postback',
-        'title': "Demander l'intervention d'un humain",
+        'title': "Demander l'aide d'un humain",
         'payload': 'humain'
       },
       {
