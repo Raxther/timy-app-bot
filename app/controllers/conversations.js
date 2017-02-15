@@ -8,7 +8,7 @@ module.exports = function (controller) {
   })
 
   // user said hello
-  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou'], 'message_received', function (bot, message) {
+  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo'], 'message_received', function (bot, message) {
     console.log("message");
         var test = {
     "attachment":{
@@ -34,8 +34,7 @@ module.exports = function (controller) {
     bot.reply(message, test)
   })
 
-// user 
-
+// user click on button
 
 controller.on('facebook_postback', function(bot, message) {
     // console.log(bot, message);
@@ -54,6 +53,7 @@ controller.on('facebook_postback', function(bot, message) {
 
   // user says anything else
   controller.hears('(.*)', 'message_received', function (bot, message) {
+    console.log("-----------------------anything--------------------")
     bot.reply(message, 'you said ' + message.match[1])
   })
 }
