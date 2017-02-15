@@ -17,9 +17,9 @@ module.exports = function (controller) {
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Classic White T-Shirt',
+                            'title': 'Passer commande generale',
                             'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
-                            'subtitle': 'Soft white cotton t-shirt is back in style',
+                            'subtitle': 'Mac donald, cigarette',
                             'buttons': [
                                 {
                                     'type': 'web_url',
@@ -39,9 +39,9 @@ module.exports = function (controller) {
                             ]
                         },
                         {
-                            'title': 'Classic Grey T-Shirt',
+                            'title': 'Profiter de nos offres',
                             'image_url': 'http://petersapparel.parseapp.com/img/item101-thumb.png',
-                            'subtitle': 'Soft gray cotton t-shirt is back in style',
+                            'subtitle': 'A découvrir sur notre page',
                             'buttons': [
                                 {
                                     'type': 'web_url',
@@ -63,8 +63,9 @@ module.exports = function (controller) {
                     ]
                 }
             }
+
         }, function(response, convo) {
-            // whoa, I got the postback payload as a response to my convo.ask!
+          console.log(response);
             convo.next();
         });
     });
