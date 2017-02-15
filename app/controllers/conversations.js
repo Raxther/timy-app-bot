@@ -36,14 +36,11 @@ module.exports = function (controller) {
 
 // user 
 
-controller.hears(['^order'], 'facebook_postback', function(bot, message) {
-    controller.storage.users.get(message.user, function(err, user) {
-        if (user && user.name) {
-            bot.reply(message, 'Hello ' + user.name + '!!');
-        } else {
-            bot.reply(message, 'Hello.');
-        }
-    });
+
+controller.on('facebook_postback', function(bot, message) {
+    // console.log(bot, message);
+   bot.reply(message, 'Great Choice!!!! (' + message.payload + ')');
+
 })
 
 
