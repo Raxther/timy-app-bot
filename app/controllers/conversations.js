@@ -4,7 +4,7 @@
 module.exports = function (controller) {
   // this is triggered when a user clicks the send-to-messenger plugin
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, 'Welcome, friend')
+    bot.reply(message, 'Bonjour :)')
   })
 
   // user said hello
@@ -66,16 +66,37 @@ module.exports = function (controller) {
 
         }, function(response, convo) {
           console.log("--------------------------------réponse " + response.text);
-          if(response.text == 'White T-Shirt'){
-              convo.next();
-          }
-          else{
-            bot.reply(message,'jai pas compris enculé')
-              convo.repeat();
-              convo.next();
-
-          }
+            switch(response.text) {
+                case "Grey T-Shirt":
+                  convo.next();
+                    break;
+                case 'White T-Shirt':
+                  convo.next();
+                    break;
+                default:
+                  bot.reply(message,'jai pas compris enculé');
+                  convo.repeat();
+                  convo.next();
+            }
         });
+      convo.say('Nos taskers sont disponibles de 16h à 23h');
+
+      convo.ask({'votre commande?'
+
+      },function(response, convo){
+        switch(response.text) {
+                case "Grey T-Shirt":
+                  convo.next();
+                    break;
+                case 'White T-Shirt':
+                  convo.next();
+                    break;
+                default:
+                  bot.reply(message,'vous avez commandé ' + response.text);
+                  convo.next();
+            }
+      });
+      
     });
   })
 
