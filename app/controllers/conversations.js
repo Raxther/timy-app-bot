@@ -81,9 +81,7 @@ module.exports = function (controller) {
         });
       convo.say('Nos taskers sont disponibles de 16h à 23h');
 
-      convo.ask({'votre commande?'
-
-      },function(response, convo){
+      convo.ask('votre commande?', function(response, convo){
         switch(response.text) {
                 case "Grey T-Shirt":
                   convo.next();
