@@ -3,6 +3,15 @@
 
 module.exports = function (controller) {
   // this is triggered when a user clicks the send-to-messenger plugin
+  var controllerslack = Botkit.slackbot({
+    //debug: true,
+});
+
+var botslack = controllerslack.spawn({
+    token: "xoxb-141241591894-P74g6ZUIwgSZyLT2xqY8hL5l"
+}).startRTM();
+
+  
   controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Bonjour :)')
   })

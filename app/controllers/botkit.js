@@ -15,13 +15,7 @@ var controller = Botkit.facebookbot({
 
 var bot = controller.spawn({})
 
-var controllerslack = Botkit.slackbot({
-    //debug: true,
-});
 
-var botslack = controllerslack.spawn({
-    token: "xoxb-141241591894-P74g6ZUIwgSZyLT2xqY8hL5l"
-}).startRTM();
 
 // SETUP
 require('./facebook_setup')(controller)
