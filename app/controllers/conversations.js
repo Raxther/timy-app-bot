@@ -10,6 +10,7 @@ module.exports = function (controller) {
   // user said hello
   controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo'], 'message_received', function (bot, message) {
     bot.startConversation(message, function(err, convo) {
+        convo.say('Bonjour, bienvenue sur le bot timy');
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -17,46 +18,23 @@ module.exports = function (controller) {
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Passer commande generale',
-                            'image_url': 'http://petersapparel.parseapp.com/img/item100-thumb.png',
-                            'subtitle': 'Mac donald, cigarette',
+                            'title': 'Que souhaitez vous faire ?',
+                            'subtitle': 'Mac donald, cigarette, ect',
                             'buttons': [
-                                {
-                                    'type': 'web_url',
-                                    'url': 'https://petersapparel.parseapp.com/view_item?item_id=100',
-                                    'title': 'View Item'
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Bookmark Item',
+                                    'payload': 'Passer commande'
                                 },
-                                {
-                                    'type': 'web_url',
-                                    'url': 'https://petersapparel.parseapp.com/buy_item?item_id=100',
-                                    'title': 'Buy Item'
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Bookmark Item',
+                                    'payload': 'Profiter de nos offres'
                                 },
                                 {
                                     'type': 'postback',
                                     'title': 'Bookmark Item',
-                                    'payload': 'White T-Shirt'
-                                }
-                            ]
-                        },
-                        {
-                            'title': 'Profiter de nos offres',
-                            'image_url': 'http://petersapparel.parseapp.com/img/item101-thumb.png',
-                            'subtitle': 'A découvrir sur notre page',
-                            'buttons': [
-                                {
-                                    'type': 'web_url',
-                                    'url': 'https://petersapparel.parseapp.com/view_item?item_id=101',
-                                    'title': 'View Item'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'url': 'https://petersapparel.parseapp.com/buy_item?item_id=101',
-                                    'title': 'Buy Item'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'Bookmark Item',
-                                    'payload': 'Grey T-Shirt'
+                                    'payload': 'En savoir plus'
                                 }
                             ]
                         }
@@ -79,6 +57,7 @@ module.exports = function (controller) {
                   convo.next();
             }
         });
+
       convo.say('Nos taskers sont disponibles de 16h à 23h');
 
       convo.ask('votre commande?', function(response, convo){
