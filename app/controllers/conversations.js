@@ -81,7 +81,7 @@ module.exports = function (controller) {
                   convo.next();
                     break;
                 default:
-                  recap += "lieu :" +response.text+"\n";
+                  recap += "lieu : " +response.text+"\n";
                   //bot.reply(message,'vous avez commandé ' + response.text);
                   convo.next();
             }
@@ -93,8 +93,58 @@ module.exports = function (controller) {
                   convo.next();
                     break;
                 default:
-                  recap += "date :" +response.text+ "\n";
-                  bot.reply(message,'votre commande :' + recap);
+                  recap += "date : " +response.text+ "\n";
+                  bot.reply(message,'votre commande : ' + recap);
+                  convo.next();
+            }
+      });
+
+      convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': "C'est bien ça ?",
+                            'buttons': [
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Oui',
+                                    'payload': 'oui'
+                                },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Non',
+                                    'payload': 'non'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+
+        }, function(response, convo){
+        switch(response.text) {
+                case 'oui':
+                  botslack.say(
+                    {
+                      text: 'my message text '+senderID,
+                      channel: 'G3ZTJCDA4',
+                      FBid : senderID
+                       // a valid slack channel, group, mpim, or im ID
+                    }
+                  );
+                  convo.next();
+                    break;
+
+                    case 'non':
+                  
+                  convo.next();
+                    break;
+
+                default:
+                  bot.reply(message,'vous aviez commandé ' + response.text);
                   convo.next();
             }
       });
