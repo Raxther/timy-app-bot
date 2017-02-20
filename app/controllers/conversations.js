@@ -9,6 +9,8 @@ module.exports = function (controller) {
 
   // user said hello
   controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo'], 'message_received', function (bot, message) {
+    var recap = "";
+
     bot.startConversation(message, function(err, convo) {
         convo.say('Bonjour, bienvenue sur le bot timy');
         convo.ask({
@@ -45,14 +47,14 @@ module.exports = function (controller) {
         }, function(response, convo) {
           console.log("--------------------------------réponse " + response.text);
             switch(response.text) {
-                case "Grey T-Shirt":
+                case 'commande':
                   convo.next();
                     break;
-                case 'White T-Shirt':
+                case 'offres':
                   convo.next();
                     break;
                 default:
-                  bot.reply(message,'jai pas compris enculé');
+                  bot.reply(message,"je n'ai pas compris");
                   convo.repeat();
                   convo.next();
             }
@@ -62,14 +64,37 @@ module.exports = function (controller) {
 
       convo.ask('votre commande?', function(response, convo){
         switch(response.text) {
-                case "Grey T-Shirt":
-                  convo.next();
-                    break;
                 case 'White T-Shirt':
                   convo.next();
                     break;
                 default:
-                  bot.reply(message,'vous avez commandé ' + response.text);
+                recap += response.text+"\n";
+                  //bot.reply(message,'vous avez commandé ' + response.text);
+                  convo.next();
+            }
+      });
+
+
+      convo.ask('ou ?', function(response, convo){
+        switch(response.text) {
+                case 'White T-Shirt':
+                  convo.next();
+                    break;
+                default:
+                  recap += "lieu :" +response.text+"\n";
+                  //bot.reply(message,'vous avez commandé ' + response.text);
+                  convo.next();
+            }
+      });
+
+      convo.ask('quand ?', function(response, convo){
+        switch(response.text) {
+                case 'White T-Shirt':
+                  convo.next();
+                    break;
+                default:
+                  recap += "date :" +response.text+ "\n";
+                  bot.reply(message,'votre commande :' + recap);
                   convo.next();
             }
       });
@@ -77,11 +102,15 @@ module.exports = function (controller) {
     });
   })
 
+
+
+
+
 // user click on button
 
 controller.on('facebook_postback', function(bot, message) {
     // console.log(bot, message);
-   bot.reply(message, 'Great Choice!!!! (' + message.payload + ')');
+   // bot.reply(message, 'Great Choice!!!! (' + message.payload + ')');
 
 })
 
