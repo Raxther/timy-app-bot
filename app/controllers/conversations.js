@@ -171,7 +171,7 @@ controller.on('facebook_postback', function(bot, message) {
 
 })
 
-controllerslack.hears('hello', ['ambient'], function(botslack, msg) {
+controllerslack.hears('je prend', ['ambient'], function(botslack, msg) {
   // send a message back: "hellp"
     controllerslack.storage.users.get(msg.user, function(err, user) {
         if (user && user.name) {
@@ -182,7 +182,7 @@ controllerslack.hears('hello', ['ambient'], function(botslack, msg) {
 botslack.say(
   {
     text: 'my message text ',
-    channel: msg.user,
+    channel: 'rama',
     FBid : 'ok'
      // a valid slack channel, group, mpim, or im ID
   }
