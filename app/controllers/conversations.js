@@ -178,12 +178,11 @@ controllerslack.hears('je prend', ['ambient'], function(botslack, msg) {
             botslack.reply(msg, 'Hello ' + user.name + '!!');
         } else {
             //sendGenericMessage(1583114185037047);
-        botslack.reply(msg,'Hello');
+        //botslack.reply(msg,'Hello');
 botslack.say(
   {
     text: 'my message text ',
-    channel: 'rama',
-    FBid : 'ok'
+    channel: msg.user
      // a valid slack channel, group, mpim, or im ID
   }
 );
