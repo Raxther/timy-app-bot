@@ -171,11 +171,25 @@ controller.on('facebook_postback', function(bot, message) {
 
 })
 
-controllerslack.hears(['je prend'], 'message_received', function (botslack, message) {
-    botslack.reply(message, 'Votre commande : ' + message.match[1])
-  })
-
-
+controllerslack.hears('hello', ['ambient'], function(botslack, msg) {
+  // send a message back: "hellp"
+    controllerslack.storage.users.get(msg.user, function(err, user) {
+        if (user && user.name) {
+            botslack.reply(msg, 'Hello ' + user.name + '!!');
+        } else {
+            //sendGenericMessage(1583114185037047);
+        botslack.reply(msg,'Hello');
+botslack.say(
+  {
+    text: 'my message text ',
+    channel: msg.user,
+    FBid : 'ok'
+     // a valid slack channel, group, mpim, or im ID
+  }
+);
+        }
+    });
+});
 
 
 
