@@ -169,6 +169,9 @@ controller.on('facebook_postback', function(bot, message) {
 
 })
 
+ controllerslack.hears(['Ma commande'], ['ambient'], function (bot, message) {
+    bot.reply(message, 'Votre commande : ' + message.match[1])
+  })
 
 
 
