@@ -23,18 +23,18 @@ module.exports = function (controller) {
                             'buttons': [
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Bookmark Item',
-                                    'payload': 'Passer commande'
+                                    'title': 'Passer commande',
+                                    'payload': 'commande'
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Bookmark Item',
-                                    'payload': 'Profiter de nos offres'
+                                    'title': 'Profiter de nos offres',
+                                    'payload': 'offres'
                                 },
                                 {
-                                    'type': 'postback',
-                                    'title': 'Bookmark Item',
-                                    'payload': 'En savoir plus'
+                                    'type': 'url',
+                                    'title': 'En savoir plus',
+                                    'payload': 'www.timy-app.fr'
                                 }
                             ]
                         }
