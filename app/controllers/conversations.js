@@ -137,8 +137,6 @@ var botslack = controllerslack.spawn({
                     {
                       text: recap,
                       channel: 'G3ZTJCDA4',
-                      ID : message.user,
-                      test : message
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
@@ -146,7 +144,7 @@ var botslack = controllerslack.spawn({
                     break;
 
                     case 'non':
-                  console.log("///////////////////////////////" + message.user + "///////////////////////////////");
+                  
                   convo.next();
                     break;
 
@@ -171,24 +169,7 @@ controller.on('facebook_postback', function(bot, message) {
 
 })
 
-controllerslack.hears('je prend', ['ambient'], function(botslack, msg) {
-  // send a message back: "hellp"
-    controllerslack.storage.users.get(msg.user, function(err, user) {
-        if (user && user.name) {
-            botslack.reply(msg, 'Hello ' + user.name + '!!');
-        } else {
-            //sendGenericMessage(1583114185037047);
-        //botslack.reply(msg,'Hello');
-botslack.say(
-  {
-    text: 'my message text ',
-    channel: msg.user
-     // a valid slack channel, group, mpim, or im ID
-  }
-);
-        }
-    });
-});
+
 
 
 
