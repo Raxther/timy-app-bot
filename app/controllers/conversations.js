@@ -135,9 +135,8 @@ var botslack = controllerslack.spawn({
                 case 'oui':
                   botslack.say(
                     {
-                      text: 'my message text '+senderID,
+                      text: recap,
                       channel: 'G3ZTJCDA4',
-                      FBid : senderID
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
