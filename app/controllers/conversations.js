@@ -137,6 +137,7 @@ var botslack = controllerslack.spawn({
                     {
                       text: recap,
                       channel: 'G3ZTJCDA4',
+                      //ID : message.id
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
@@ -144,7 +145,7 @@ var botslack = controllerslack.spawn({
                     break;
 
                     case 'non':
-                  
+                  console.log(message.id);
                   convo.next();
                     break;
 
