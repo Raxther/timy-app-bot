@@ -32,9 +32,9 @@ module.exports = function (controller) {
                                     'payload': 'offres'
                                 },
                                 {
-                                    'type': 'url',
+                                    'type': 'web_url',
                                     'title': 'En savoir plus',
-                                    'payload': 'www.timy-app.fr'
+                                    'url': 'www.timy-app.fr'
                                 }
                             ]
                         }
