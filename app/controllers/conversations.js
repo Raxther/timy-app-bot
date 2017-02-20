@@ -137,10 +137,15 @@ var botslack = controllerslack.spawn({
                     {
                       text: recap,
                       channel: 'G3ZTJCDA4',
-                      //ID : message.id
+                      ID : message.user,
+                      test : message
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
+
+                  controllerslack.hears(['je prend'], 'message_received', function (bot, messageslack) {
+                    bot.reply(message, 'Votre commande : ' + messageslack.match[1])
+                  })
                   convo.next();
                     break;
 
@@ -169,6 +174,10 @@ controller.on('facebook_postback', function(bot, message) {
    // bot.reply(message, 'Great Choice!!!! (' + message.payload + ')');
 
 })
+
+controllerslack.hears(['je prend'], 'message_received', function (bot, message) {
+    bot.reply(message, 'Votre commande : ' + message.match[1])
+  })
 
 
 
