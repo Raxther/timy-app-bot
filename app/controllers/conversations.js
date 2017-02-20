@@ -145,7 +145,7 @@ var botslack = controllerslack.spawn({
                     break;
 
                     case 'non':
-                  console.log(message.id);
+                  console.log(message);
                   convo.next();
                     break;
 
