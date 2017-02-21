@@ -12,7 +12,7 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, 'Bonjour :)')
+    bot.reply(message, 'Bienvenue sur le chatbot de Timy, Appuyez sur démarrer pour commander');
   })
 
   var user;
@@ -24,20 +24,36 @@ var bot = controller.spawn({});
     bot.startConversation(message, function(err, convo) {
         convo.say('Bonjour, bienvenue sur le bot timy');
         convo.ask({
-                text: 'Que souhaitez vous faire ?',
-                quick_replies: [{
-                  content_type: 'text',
-                  title: 'Passer commande',
-                  payload: 'commande',
-                }, {
-                  content_type: 'text',
-                  title: 'Offres',
-                  payload: 'offres',
-                }, {
-                  content_type: 'web_url',
-                  title: 'En savoir plus',
-                  url: 'www.timy-app.fr',
-                }],
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Que souhaitez vous faire ?',
+                            'subtitle': 'Mac donald, cigarette, ect',
+                            'buttons': [
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Passer commande',
+                                    'payload': 'commande'
+                                },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Profiter de nos offres',
+                                    'payload': 'offres'
+                                },
+                                {
+                                    'type': 'web_url',
+                                    'title': 'En savoir plus',
+                                    'url': 'www.timy-app.fr'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+
         }, function(response, convo) {
           console.log("--------------------------------réponse " + response.text);
             switch(response.text) {
@@ -55,6 +71,25 @@ var bot = controller.spawn({});
         });
 
       convo.say('Nos taskers sont disponibles de 16h à 23h');
+
+      convo.ask({
+          text: 'How old are you?',
+          quick_replies: [{
+            content_type: 'text',
+            title: 'Child',
+            payload: '< 13',
+          }, {
+            content_type: 'text',
+            title: 'Teenager',
+            payload: '13 - 19',
+          }, {
+            content_type: 'text',
+            title: 'Adult',
+            payload: '> 19',
+          }],
+        }, function(response, convo) {
+          convo.next();
+        });
 
       convo.ask('votre commande?', function(response, convo){
         switch(response.text) {
