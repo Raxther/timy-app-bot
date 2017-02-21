@@ -72,22 +72,14 @@ var bot = controller.spawn({});
 
       convo.say('Nos taskers sont disponibles de 16h à 23h');
 
-      convo.ask({
-          text: 'How old are you?',
-          quick_replies: [{
-            content_type: 'text',
-            title: 'Child',
-            payload: '< 13',
-          }, {
-            content_type: 'text',
-            title: 'Teenager',
-            payload: '13 - 19',
-          }, {
-            content_type: 'text',
-            title: 'Adult',
-            payload: '> 19',
-          }],
-        }, function(response, convo) {
+      convo.ask({"message":{
+    "text":"Please share your location:",
+    "quick_replies":[
+      {
+        "content_type":"location",
+      }
+    ]
+  }}, function(response, convo) {
           convo.next();
         });
 
