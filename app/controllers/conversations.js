@@ -13,6 +13,8 @@ var botslack = controllerslack.spawn({
     bot.reply(message, 'Bonjour :)')
   })
 
+  var user;
+
   // user said hello
   controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo'], 'message_received', function (bot, message) {
     var recap = "";
@@ -133,6 +135,7 @@ var botslack = controllerslack.spawn({
         }, function(response, convo){
         switch(response.text) {
                 case 'oui':
+                user = message.user;
                   botslack.say(
                     {
                       text: recap,
@@ -169,8 +172,14 @@ controller.on('facebook_postback', function(bot, message) {
 
 })
 
- controllerslack.hears(['Ma commande'], ['ambient'], function (bot, message) {
-    bot.reply(message, 'Votre commande : ' + message.match[1])
+ controllerslack.hears(['Ma commande'], ['ambient'], function (botslack, message) {
+    botslack.reply(message, 'Votre commande : ' + message.match[1])
+    bot.say(
+    {
+        text: 'votre commande à été prise en compte',
+        channel: user // a valid facebook user id or phone number
+    }
+);
   })
 
 
