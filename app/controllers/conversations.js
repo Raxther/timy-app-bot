@@ -178,7 +178,7 @@ controller.on('facebook_postback', function(bot, message) {
       botslack.say(
           {
             text: 'vous avez pris la commande',
-            channel: message.user,
+            channel: '@rama',
              // a valid slack channel, group, mpim, or im ID
           }
         );
