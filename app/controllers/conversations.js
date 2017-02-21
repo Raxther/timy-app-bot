@@ -177,7 +177,7 @@ controller.on('facebook_postback', function(bot, message) {
  controllerslack.hears(['Je prends'], ['ambient'], function (botslack, message) {
       botslack.say(
           {
-            text: recap,
+            text: 'vous avez pris la commande',
             channel: message.user,
              // a valid slack channel, group, mpim, or im ID
           }
