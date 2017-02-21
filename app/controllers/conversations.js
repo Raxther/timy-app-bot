@@ -32,7 +32,7 @@ var bot = controller.spawn({});
                         {
                             'title': 'Que souhaitez vous faire ?',
                             'subtitle': 'Mac donald, cigarette, ect',
-                            'buttons': [
+                            'quick_replies': [
                                                                 {
                                     'type': 'postback',
                                     'title': 'Passer commande',
@@ -175,11 +175,11 @@ controller.on('facebook_postback', function(bot, message) {
 })
 
  controllerslack.hears(['Je prends'], ['ambient'], function (botslack, message) {
-      console.log(message.user)
+      console.log(message.user);
       botslack.say(
           {
             text: 'vous avez pris la commande',
-            channel: 'message.user',
+            channel: message.user,
              // a valid slack channel, group, mpim, or im ID
           }
         );
