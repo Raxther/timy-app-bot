@@ -8,6 +8,8 @@ var botslack = controllerslack.spawn({
     token: "xoxb-141241591894-P74g6ZUIwgSZyLT2xqY8hL5l"
 }).startRTM();
 
+var bot = controller.spawn({});
+
 
   controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Bonjour :)')
@@ -173,13 +175,16 @@ controller.on('facebook_postback', function(bot, message) {
 })
 
  controllerslack.hears(['Ma commande'], ['ambient'], function (botslack, message) {
-    botslack.reply(message, 'Votre commande : ' + message.match[1])
+    botslack.reply(message, 'Votre commande : ' + message.match[1]);
+
     bot.say(
     {
         text: 'votre commande à été prise en compte',
         channel: user // a valid facebook user id or phone number
     }
 );
+
+
   })
 
 
