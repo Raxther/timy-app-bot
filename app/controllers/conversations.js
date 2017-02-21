@@ -24,36 +24,20 @@ var bot = controller.spawn({});
     bot.startConversation(message, function(err, convo) {
         convo.say('Bonjour, bienvenue sur le bot timy');
         convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': 'Que souhaitez vous faire ?',
-                            'subtitle': 'Mac donald, cigarette, ect',
-                            'quick_replies': [
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Passer commande',
-                                    'payload': 'commande'
-                                },
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Profiter de nos offres',
-                                    'payload': 'offres'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'title': 'En savoir plus',
-                                    'url': 'www.timy-app.fr'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-
+                text: 'Que souhaitez vous faire ?',
+                quick_replies: [{
+                  content_type: 'text',
+                  title: 'Passer commande',
+                  payload: 'commande',
+                }, {
+                  content_type: 'text',
+                  title: 'Offres',
+                  payload: 'offres',
+                }, {
+                  content_type: 'web_url',
+                  title: 'En savoir plus',
+                  url: 'www.timy-app.fr',
+                }]
         }, function(response, convo) {
           console.log("--------------------------------réponse " + response.text);
             switch(response.text) {
