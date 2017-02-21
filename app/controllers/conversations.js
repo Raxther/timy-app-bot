@@ -174,15 +174,21 @@ controller.on('facebook_postback', function(bot, message) {
 
 })
 
- controllerslack.hears(['Ma commande'], ['ambient'], function (botslack, message) {
-    botslack.reply(message, 'Votre commande : ' + message.match[1]);
+ controllerslack.hears(['Je prends'], ['ambient'], function (botslack, message) {
+      botslack.say(
+          {
+            text: recap,
+            channel: message.user,
+             // a valid slack channel, group, mpim, or im ID
+          }
+        );
 
-    bot.say(
-    {
-        text: 'votre commande à été prise en compte',
-        channel: user // a valid facebook user id or phone number
-    }
-);
+      bot.say(
+      {
+          text: 'votre commande à été prise en compte',
+          channel: user // a valid facebook user id or phone number
+      }
+      );
 
 
   })
