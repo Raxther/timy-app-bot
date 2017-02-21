@@ -37,7 +37,7 @@ var bot = controller.spawn({});
                   content_type: 'web_url',
                   title: 'En savoir plus',
                   url: 'www.timy-app.fr',
-                }]
+                }],
         }, function(response, convo) {
           console.log("--------------------------------réponse " + response.text);
             switch(response.text) {
