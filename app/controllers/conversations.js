@@ -84,7 +84,6 @@ var bot = controller.spawn({});
     //commander
     var livraison = function(response, convo) {
       convo.ask({
-        attachment: {
         "text":"Pick a color:",
         "quick_replies":[
           {
@@ -98,7 +97,6 @@ var bot = controller.spawn({});
             "payload":"green"
           }
         ]
-      }
     }, function(response, convo) {
 
         convo.next();
