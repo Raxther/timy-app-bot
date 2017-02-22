@@ -28,7 +28,6 @@ var bot = controller.spawn({});
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
-      convo.say('Bonjour, bienvenue sur le bot timy');
       convo.ask({
             attachment: {
                 'type': 'template',
@@ -36,7 +35,7 @@ var bot = controller.spawn({});
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Que souhaitez vous faire ?',
+                            'title': 'Que puis-je faire pour toi ?',
                             'subtitle': 'Mac donald, cigarette, ect',
                             'buttons': [
                                                                 {
