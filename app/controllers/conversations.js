@@ -255,7 +255,7 @@ var bot = controller.spawn({});
 
     var quoi = function(response, convo) {
       convo.ask("Que souhaite tu te faire livrer ? essaye d'etre le plus precis possible", function(response, convo) {
-         panier += "Quoi : " +response.text;
+         panier += "Quoi : " +response.text +"\n";
         telephone(response, convo);
         convo.next();
       });
@@ -271,14 +271,62 @@ var bot = controller.spawn({});
 
     var recapitulatif = function(response, convo) {
       recap = adresse + heure_livraison + panier + phone;
-      convo.say('Récapitulatif :\n' + recap);
-      convo.ask("c'est bien ça ?", function(response, convo) {
-         //panier += "Quoi : " +response.text+"\n";
-        recapitulatif(response, convo);
-        convo.next();
+      convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Votre commande :\n' + recap,
+                            'buttons': [
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'modifier',
+                                    'payload': 'modifier'
+                                },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'annuler',
+                                    'payload': 'annuler'
+                                },
+                                {
+                                    'type': 'postback',
+                                    'title': 'confirmer',
+                                    'payload': 'confirmer'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+
+        }, function(response, convo) {
+              switch(response.text) {
+                case 'modifier':
+                  start_livraison(response, convo);
+                  convo.next();
+                    break;
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'confirmer':
+                  confirmer(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("je n'ai pas compris");
+                  recapitulatif(response, convo);
+                  convo.next();
+            }
       });
     };
 
+    var confirmer = function(response, convo) {
+      convo.say("Votre commande a été envoyé à nos taskers :)")     
+      convo.next();
+    };
 
 
 
