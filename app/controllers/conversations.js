@@ -11,11 +11,82 @@ var botslack = controllerslack.spawn({
 var bot = controller.spawn({});
 
 
+
   controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Bienvenue sur le chatbot de Timy, Appuyez sur démarrer pour commander');
   })
 
   var user;
+
+//demarrage conversation
+  controller.hears(['pizza'], 'message_received', function(bot,message) {
+
+
+    // 1/ bonjour, que voulez vous ?
+    var begin = function(err, convo) {
+      convo.say('Bonjour, bienvenue sur le bot timy');
+      convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Que souhaitez vous faire ?',
+                            'subtitle': 'Mac donald, cigarette, ect',
+                            'buttons': [
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Passer commande',
+                                    'payload': 'commande'
+                                },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Profiter de nos offres',
+                                    'payload': 'offres'
+                                },
+                                {
+                                    'type': 'web_url',
+                                    'title': 'En savoir plus',
+                                    'url': 'www.timy-app.fr'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+
+        }, function(response, convo) {
+            switch(response.text) {
+                case 'commande':
+                  convo.next();
+                    break;
+                case 'offres':
+                  convo.next();
+                    break;
+                default:
+                  bot.reply(message,"je n'ai pas compris");
+                  convo.repeat();
+                  convo.next();
+            }
+      });
+    };
+    var annuler = function(response, convo) {
+      convo.ask('What size do you want?', function(response, convo) {
+        convo.say('Ok.')
+        begin(response, convo);
+        convo.next();
+      });
+    };
+    var askWhereDeliver = function(response, convo) {
+      convo.ask('So where do you want it delivered?', function(response, convo) {
+        convo.say('Ok! Good bye.');
+        convo.next();
+      });
+    };
+
+    bot.startConversation(message, begin);
+});
 
   // user said hello
   controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo'], 'message_received', function (bot, message) {
