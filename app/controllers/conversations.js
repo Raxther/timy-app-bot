@@ -130,6 +130,7 @@ var bot = controller.spawn({});
     var now = function(response, convo) {
         var date = new Date();
         heure = 1 + date.getHours();
+        console.log(heure);
         if (heure > 16 && heure < 22){
           convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
             convo.say('Ok! Good bye.');
