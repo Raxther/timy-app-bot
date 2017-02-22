@@ -41,17 +41,17 @@ var bot = controller.spawn({});
                             'buttons': [
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Passer commande',
+                                    'title': 'Commander',
                                     'payload': 'commande'
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Profiter de nos offres',
+                                    'title': 'Reserver un service',
                                     'payload': 'offres'
                                 },
                                 {
                                     'type': 'web_url',
-                                    'title': 'En savoir plus',
+                                    'title': 'Découvrir Timy',
                                     'url': 'www.timy-app.fr'
                                 }
                             ]
