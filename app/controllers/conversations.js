@@ -65,7 +65,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  bot.reply(message,"je n'ai pas compris");
+                  annuler(response, convo);
                   convo.repeat();
                   convo.next();
             }
