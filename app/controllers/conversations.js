@@ -20,7 +20,9 @@ var bot = controller.spawn({});
 
 //demarrage conversation
   controller.hears(['pizza'], 'message_received', function(bot,message) {
-
+    var recap = "";
+    var adresse = "";
+    var heure_livraison ="";
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
@@ -132,7 +134,7 @@ var bot = controller.spawn({});
         heure = 1 + date.getHours();
         console.log(heure);
         if (heure >= 16 && heure < 22){
-
+            heure_livraison = "Quand : Maintenant\n"
             convo.say('Très bien!');
             start_livraison(response, convo);
             convo.next();
@@ -186,12 +188,8 @@ var bot = controller.spawn({});
 
     //plus tard (à finir)
     var later = function(response, convo) {
-      convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
-        var now = new Date();
-        heure = 1 + now.getHours();
-        convo.say('Ok! Good bye.');
+        convo.say('Ok! Good bye. (plus tard)');
         convo.next();
-      });
     };
 
     // 
@@ -241,18 +239,21 @@ var bot = controller.spawn({});
 
 
     var in_grenoble = function(response, convo) {
-      convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
-        var now = new Date();
-        heure = 1 + now.getHours();
-        convo.say('Ok! Good bye.');
+      convo.ask("Merci de nous indiquer l'adresse précise (n°, digicode, étage)", function(response, convo) {
+        adresse = "Adresse : " +response.text+"\n";
+        quoi(response, convo);
         convo.next();
       });
     };
 
     var out_grenoble = function(response, convo) {
-      convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
-        var now = new Date();
-        heure = 1 + now.getHours();
+        convo.say('Ok! Good bye. (out_grenoble)');
+        convo.next();
+    };
+
+    var quoi = function(response, convo) {
+      convo.ask('Que souhaite tu te faire livrer ?', function(response, convo) {
+        recap += "Adresse" +response.text+"\n";
         convo.say('Ok! Good bye.');
         convo.next();
       });
@@ -272,7 +273,7 @@ var bot = controller.spawn({});
 
   // user said hello
   controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo'], 'message_received', function (bot, message) {
-    var recap = "";
+
 
     bot.startConversation(message, function(err, convo) {
         convo.say('Bonjour, bienvenue sur le bot timy');
