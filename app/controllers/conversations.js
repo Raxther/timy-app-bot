@@ -85,7 +85,7 @@ var bot = controller.spawn({});
     var livraison = function(response, convo) {
       convo.ask({
         "text":"Pick a color:",
-        "quick_replies":[
+        "quick_reply":[
           {
             "content_type":"text",
             "title":"Red",
