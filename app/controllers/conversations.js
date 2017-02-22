@@ -84,19 +84,14 @@ var bot = controller.spawn({});
     //commander
     var livraison = function(response, convo) {
       convo.ask({
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Red",
-            "payload":"red"
-          },
-          {
-            "content_type":"text",
-            "title":"Green",
-            "payload":"green"
-          }
-        ],
-        "text":"Pick a color:",
+        text: 'Hello, human!',
+      quick_replies: [
+        {
+          content_type: 'text',
+          title: 'Hello, bot!',
+          payload: 'HELLO_BOT'
+        }
+      ]
     }, function(response, convo) {
 
         convo.next();
@@ -172,7 +167,7 @@ var bot = controller.spawn({});
             }
 
         }, function(response, convo) {
-          console.log("--------------------------------réponse " + response.text);
+          //console.log("--------------------------------réponse " + response.text);
             switch(response.text) {
                 case 'commande':
                   convo.next();
