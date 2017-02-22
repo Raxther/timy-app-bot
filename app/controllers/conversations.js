@@ -128,12 +128,46 @@ var bot = controller.spawn({});
 
     //maintenant
     var now = function(response, convo) {
-      convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
         var date = new Date();
         heure = 1 + date.getHours();
-        convo.say('Ok! Good bye.');
-        convo.next();
-      });
+        if (heure > 16 && heure < 22){
+          convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
+            convo.say('Ok! Good bye.');
+            convo.next();
+          });
+        }else{
+          convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': "Oups, nous sommes en dehors des horaires mais une réponse n'est pas garantie",
+                            'buttons': [
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Annuler',
+                                    'payload': 'annuler'
+                                },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Continuer quand meme',
+                                    'payload': 'start_livraison'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+
+        }, function(response, convo) {
+          convo.say('Ok! Good bye.');
+          convo.next();
+        });
+
+        }
+
     };
 
     //plus tard
