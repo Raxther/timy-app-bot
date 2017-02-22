@@ -116,7 +116,7 @@ var bot = controller.spawn({});
     };
 
     //plus tard
-    var livraison = function(response, convo) {
+    var later = function(response, convo) {
       convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
         var now = new Date();
         heure = 1 + now.getHours();
