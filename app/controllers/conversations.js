@@ -59,31 +59,48 @@ var bot = controller.spawn({});
         }, function(response, convo) {
             switch(response.text) {
                 case 'commande':
+                  livraison(response, convo);
                   convo.next();
                     break;
                 case 'offres':
                   convo.next();
                     break;
                 default:
+                  convo.say("je n'ai pas compris");
                   annuler(response, convo);
                   convo.repeat();
                   convo.next();
             }
       });
     };
+
+    //retour au menu
     var annuler = function(response, convo) {
-      convo.ask('What size do you want?', function(response, convo) {
-        convo.say('Ok.')
         begin(response, convo);
         convo.next();
-      });
     };
-    var askWhereDeliver = function(response, convo) {
-      convo.ask('So where do you want it delivered?', function(response, convo) {
+
+
+    //commander
+    var livraison = function(response, convo) {
+      convo.ask('A quelle heure souhaite tu etre livré', function(response, convo) {
+        var now = new Date();
+        console.log("heureeeeeeeeeeeeee:" +now.getHours());
         convo.say('Ok! Good bye.');
         convo.next();
       });
     };
+
+    
+
+
+
+
+
+
+
+
+
 
     bot.startConversation(message, begin);
 });
