@@ -131,11 +131,12 @@ var bot = controller.spawn({});
         var date = new Date();
         heure = 1 + date.getHours();
         console.log(heure);
-        if (heure > 16 && heure < 22){
-          convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
-            convo.say('Ok! Good bye.');
+        if (heure >= 16 && heure < 22){
+
+            convo.say('Très bien!');
+            start_livraison(response, convo);
             convo.next();
-          });
+
         }else{
           convo.ask({
             attachment: {
@@ -163,15 +164,27 @@ var bot = controller.spawn({});
             }
 
         }, function(response, convo) {
-          convo.say('Ok! Good bye.');
-          convo.next();
+          switch(response.text) {
+                case 'start_livraison':
+                  start_livraison(response, convo);
+                  convo.next();
+                    break;
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("je n'ai pas compris");
+                  now(response, convo);
+                  convo.next();
+            }
         });
 
         }
 
     };
 
-    //plus tard
+    //plus tard (à finir)
     var later = function(response, convo) {
       convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
         var now = new Date();
@@ -180,6 +193,71 @@ var bot = controller.spawn({});
         convo.next();
       });
     };
+
+    // 
+    var start_livraison = function(response, convo) {
+      convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': "Quel est l'adresse de livraison ?",
+                            'buttons': [
+                                                                {
+                                    'type': 'postback',
+                                    'title': '38000',
+                                    'payload': 'in_grenoble'
+                                },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Autre',
+                                    'payload': 'out_grenoble'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+
+        }, function(response, convo) {
+              switch(response.text) {
+                case 'in_grenoble':
+                  in_grenoble(response, convo);
+                  convo.next();
+                    break;
+                case 'out_grenoble':
+                  out_grenoble(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("je n'ai pas compris");
+                  start_livraison(response, convo);
+                  convo.next();
+            }
+      });
+    };
+
+
+    var in_grenoble = function(response, convo) {
+      convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
+        var now = new Date();
+        heure = 1 + now.getHours();
+        convo.say('Ok! Good bye.');
+        convo.next();
+      });
+    };
+
+    var out_grenoble = function(response, convo) {
+      convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
+        var now = new Date();
+        heure = 1 + now.getHours();
+        convo.say('Ok! Good bye.');
+        convo.next();
+      });
+    };
+
 
 
 
