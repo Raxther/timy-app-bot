@@ -83,19 +83,19 @@ var bot = controller.spawn({});
 
     //commander
     var livraison = function(response, convo) {
-      convo.ask(
-        {message: {
+      convo.ask({
+        message: {
         "text":"Pick a color:",
         "quick_replies":[
           {
             "content_type":"text",
             "title":"Red",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+            "payload":"red"
           },
           {
             "content_type":"text",
             "title":"Green",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+            "payload":"green"
           }
         ]
       }
