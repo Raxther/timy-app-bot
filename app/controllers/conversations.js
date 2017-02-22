@@ -293,7 +293,7 @@ var bot = controller.spawn({});
   // user said hello
   controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo'], 'message_received', function (bot, message) {
 
-
+    var recap = "";
     bot.startConversation(message, function(err, convo) {
         convo.say('Bonjour, bienvenue sur le bot timy');
         convo.ask({
