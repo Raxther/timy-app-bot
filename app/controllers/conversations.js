@@ -83,16 +83,47 @@ var bot = controller.spawn({});
 
     //commander
     var livraison = function(response, convo) {
-      convo.ask('A quelle heure souhaite tu etre livré', function(response, convo) {
-        var now = new Date();
-        console.log("heureeeeeeeeeeeeee:" +now.getHours());
+      convo.ask(
+        {message: {
+        "text":"Pick a color:",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Red",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+          },
+          {
+            "content_type":"text",
+            "title":"Green",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+          }
+        ]
+      }
+    }, function(response, convo) {
+
+        convo.next();
+      });
+    };
+
+    //maintenant
+    var now = function(response, convo) {
+      convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
+        var date = new Date();
+        heure = 1 + date.getHours();
         convo.say('Ok! Good bye.');
         convo.next();
       });
     };
 
-    
-
+    //plus tard
+    var livraison = function(response, convo) {
+      convo.ask('A quelle heure souhaites tu etre livré', function(response, convo) {
+        var now = new Date();
+        heure = 1 + now.getHours();
+        convo.say('Ok! Good bye.');
+        convo.next();
+      });
+    };
 
 
 
