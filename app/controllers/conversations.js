@@ -84,17 +84,45 @@ var bot = controller.spawn({});
     //commander
     var livraison = function(response, convo) {
       convo.ask({
-        text: 'Hello, human!',
-      quick_replies: [
-        {
-          content_type: 'text',
-          title: 'Hello, bot!',
-          payload: 'HELLO_BOT'
-        }
-      ]
-    }, function(response, convo) {
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': "A quelle heure souhaite tu etre livré ?",
+                            'buttons': [
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Maintenant',
+                                    'payload': 'now'
+                                },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Plus Tard',
+                                    'payload': 'later'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
 
-        convo.next();
+        }, function(response, convo) {
+            switch(response.text) {
+                case 'now':
+                  now(response, convo);
+                  convo.next();
+                    break;
+                case 'later':
+                  later(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("je n'ai pas compris");
+                  livraison(response, convo);
+                  convo.next();
+            }
       });
     };
 
@@ -167,7 +195,7 @@ var bot = controller.spawn({});
             }
 
         }, function(response, convo) {
-          //console.log("--------------------------------réponse " + response.text);
+          console.log("--------------------------------réponse " + response.text);
             switch(response.text) {
                 case 'commande':
                   convo.next();
