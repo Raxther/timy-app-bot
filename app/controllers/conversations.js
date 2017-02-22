@@ -23,6 +23,8 @@ var bot = controller.spawn({});
     var recap = "";
     var adresse = "";
     var heure_livraison ="";
+    var panier="";
+    var phone="";
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
@@ -252,13 +254,30 @@ var bot = controller.spawn({});
     };
 
     var quoi = function(response, convo) {
-      convo.ask('Que souhaite tu te faire livrer ?', function(response, convo) {
-        recap += "Adresse" +response.text+"\n";
-        convo.say('Ok! Good bye.');
+      convo.ask("Que souhaite tu te faire livrer ? essaye d'etre le plus precis possible", function(response, convo) {
+         panier += "Quoi : " +response.text;
+        telephone(response, convo);
         convo.next();
       });
     };
 
+    var telephone = function(response, convo) {
+      convo.ask("Peux tu me donner ton numero de téléphone", function(response, convo) {
+         phone += "telephone : " +response.text;
+        recapitulatif(response, convo);
+        convo.next();
+      });
+    };
+
+    var recapitulatif = function(response, convo) {
+      recap = adresse + heure_livraison + panier + phone;
+      convo.say('Récapitulatif :\n' + recap);
+      convo.ask("c'est bien ça ?", function(response, convo) {
+         //panier += "Quoi : " +response.text+"\n";
+        recapitulatif(response, convo);
+        convo.next();
+      });
+    };
 
 
 
