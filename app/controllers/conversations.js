@@ -67,12 +67,12 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'offres':
+                  offres(response,convo);
                   convo.next();
                     break;
                 default:
                   convo.say("je n'ai pas compris");
                   annuler(response, convo);
-                  convo.repeat();
                   convo.next();
             }
       });
@@ -81,6 +81,11 @@ var bot = controller.spawn({});
     //retour au menu
     var annuler = function(response, convo) {
         begin(response, convo);
+        convo.next();
+    };
+
+    var offres = function(response, convo) {
+        convo.say('Ok! Good bye. (offres)');
         convo.next();
     };
 
@@ -271,6 +276,7 @@ var bot = controller.spawn({});
 
     var recapitulatif = function(response, convo) {
       recap = adresse + heure_livraison + panier + phone;
+      convo.say('Votre commande :\n' + recap);
       convo.ask({
             attachment: {
                 'type': 'template',
@@ -278,7 +284,7 @@ var bot = controller.spawn({});
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Votre commande :\n' + recap,
+                            'title': "C'est bien ça ?",
                             'buttons': [
                                                                 {
                                     'type': 'postback',
