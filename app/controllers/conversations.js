@@ -70,8 +70,20 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
-                  annuler(response, convo);
+                  convo.reply(quick_replies: [{
+                content_type:"text",
+                title:"Red",
+                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
+                image_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/300px-Button_Icon_Red.svg.png"
+            },            
+            {
+                content_type:"text",
+                title:"Blue",
+                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BLUE",
+                image_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
+            }]);
+                  //annuler(response, convo);
+
                   convo.next();
             }
       });
@@ -390,20 +402,18 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  bot.reply(message,          {text: 'How old are you?',
-          quick_replies: [{
-            content_type: 'text',
-            title: 'Child',
-            payload: '< 13',
-          }, {
-            content_type: 'text',
-            title: 'Teenager',
-            payload: '13 - 19',
-          }, {
-            content_type: 'text',
-            title: 'Adult',
-            payload: '> 19',
-          }]});
+                  bot.reply(message,          {quick_replies: [{
+                content_type:"text",
+                title:"Red",
+                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
+                image_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/300px-Button_Icon_Red.svg.png"
+            },            
+            {
+                content_type:"text",
+                title:"Blue",
+                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BLUE",
+                image_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
+            }]});
                   convo.repeat();
                   convo.next();
             }
