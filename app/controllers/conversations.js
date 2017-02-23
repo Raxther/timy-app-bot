@@ -70,7 +70,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.reply({quick_replies: [{
+                  convo.say({quick_replies: [{
                 content_type:"text",
                 title:"Red",
                 payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
