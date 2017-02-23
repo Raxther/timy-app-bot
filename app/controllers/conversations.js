@@ -127,7 +127,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
+                  convo.reply("je n'ai pas compris");
                   livraison(response, convo);
                   convo.next();
             }
@@ -207,7 +207,7 @@ var bot = controller.spawn({});
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': "Quel est l'adresse de livraison ?",
+                            'title': "Quelle est l'adresse de livraison ?",
                             'buttons': [
                                                                 {
                                     'type': 'postback',
@@ -390,7 +390,20 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  bot.reply(message,"je n'ai pas compris");
+                  bot.reply(message,          {text: 'How old are you?',
+          quick_replies: [{
+            content_type: 'text',
+            title: 'Child',
+            payload: '< 13',
+          }, {
+            content_type: 'text',
+            title: 'Teenager',
+            payload: '13 - 19',
+          }, {
+            content_type: 'text',
+            title: 'Adult',
+            payload: '> 19',
+          }]});
                   convo.repeat();
                   convo.next();
             }
