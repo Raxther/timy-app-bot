@@ -28,38 +28,27 @@ var bot = controller.spawn({});
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
-      convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': 'Que puis-je faire pour toi ?',
-                            'subtitle': 'Mac donald, cigarette, ect',
-                            'quick_replies': [
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Commander',
-                                    'payload': 'commande'
-                                },
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Reserver un service',
-                                    'payload': 'offres'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'title': 'Découvrir Timy',
-                                    'url': 'www.timy-app.fr'
-                                }
-                            ]
-                        }
-                    ]
-                }
+      convo.ask(
+{
+        text: 'Que puis-je faire pour toi ?',
+        quick_replies: [
+            {
+                "content_type": "text",
+                'title': 'Commander',
+                'payload': 'commande'
+            },
+            {
+                "content_type": "text",
+                'title': 'Reserver un service',
+                'payload': 'offres'
+            },
+            {
+              'content_type': 'web_url',
+              'title': 'Découvrir Timy',
+              'url': 'www.timy-app.fr'
             }
-
-        }, function(response, convo) {
+        ]
+    }, function(response, convo) {
             switch(response.text) {
                 case 'commande':
                   livraison(response, convo);
