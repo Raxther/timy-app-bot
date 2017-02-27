@@ -28,27 +28,24 @@ var bot = controller.spawn({});
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
-      convo.ask(
-{
-        text: 'Que puis-je faire pour toi ?',
-        quick_replies: [
-            {
-                "content_type": "text",
-                'title': 'Commander',
-                'payload': 'commande'
-            },
-            {
-                "content_type": "text",
-                'title': 'Reserver un service',
-                'payload': 'offres'
-            },
-            {
-              'content_type': 'web_url',
-              'title': 'Découvrir Timy',
-              'url': 'www.timy-app.fr'
-            }
-        ]
-    }, function(response, convo) {
+      convo.ask({
+          "message":{
+    "text":"Pick a color:",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Red",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
+        "image_url":"http://petersfantastichats.com/img/red.png"
+      },
+      {
+        "content_type":"text",
+        "title":"Green",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN",
+        "image_url":"http://petersfantastichats.com/img/green.png"
+      }
+    ]}
+  }, function(response, convo) {
             switch(response.text) {
                 case 'commande':
                   livraison(response, convo);
