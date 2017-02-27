@@ -51,11 +51,6 @@ var bot = controller.spawn({});
                                     'type': 'postback',
                                     'title': 'Crossover',
                                     'payload': 'crossover'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'title': 'Découvrir Timy',
-                                    'url': 'www.timy-app.fr'
                                 }
                             ]
                         }
