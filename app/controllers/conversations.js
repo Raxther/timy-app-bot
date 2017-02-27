@@ -47,6 +47,11 @@ var bot = controller.spawn({});
                                     'title': 'Reserver un service',
                                     'payload': 'offres'
                                 },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Crossover',
+                                    'payload': 'crossover'
+                                },
                                 {
                                     'type': 'web_url',
                                     'title': 'Découvrir Timy',
@@ -69,20 +74,8 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say({quick_replies: [{
-                content_type:"text",
-                title:"Red",
-                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
-                image_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/300px-Button_Icon_Red.svg.png"
-            },            
-            {
-                content_type:"text",
-                title:"Blue",
-                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BLUE",
-                image_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
-            }]});
-                  //annuler(response, convo);
-
+                  convo.say("je n'ai pas compris");
+                  begin(response, convo);
                   convo.next();
             }
       });
@@ -103,20 +96,17 @@ var bot = controller.spawn({});
     //commander
     var livraison = function(response, convo) {
       convo.ask({
-  text: 'How old are you?',
+ text: 'A quelle heure souhaite tu etre livré ?',
   quick_replies: [{
     content_type: 'text',
-    title: 'Child',
-    payload: '< 13',
+    title: 'Maintenant',
+    payload: 'now',
   }, {
     content_type: 'text',
-    title: 'Teenager',
-    payload: '13 - 19',
-  }, {
-    content_type: 'text',
-    title: 'Adult',
-    payload: '> 19',
+    title: 'Plus tard',
+    payload: 'later',
   }],
+
 }, function(response, convo) {
             switch(response.text) {
                 case 'now':
@@ -128,7 +118,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.reply("je n'ai pas compris");
+                  convo.say("je n'ai pas compris");
                   livraison(response, convo);
                   convo.next();
             }
@@ -148,14 +138,8 @@ var bot = controller.spawn({});
 
         }else{
           convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': "Oups, nous sommes en dehors des horaires mais une réponse n'est pas garantie",
-                            'buttons': [
+                            'text': "Oups, nous sommes en dehors des horaires mais une réponse n'est pas garantie",
+                            'quick_replies': [
                                                                 {
                                     'type': 'postback',
                                     'title': 'Annuler',
@@ -163,14 +147,14 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Continuer quand meme',
+                                    'title': 'Continuer',
                                     'payload': 'start_livraison'
                                 }
                             ]
-                        }
-                    ]
-                }
-            }
+                        
+                    
+                
+            
 
         }, function(response, convo) {
           switch(response.text) {
@@ -216,30 +200,20 @@ var bot = controller.spawn({});
     // 
     var start_livraison = function(response, convo) {
       convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': "Quelle est l'adresse de livraison ?",
-                            'buttons': [
-                                                                {
-                                    'type': 'postback',
-                                    'title': '38000',
-                                    'payload': 'in_grenoble'
-                                },
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Autre',
-                                    'payload': 'out_grenoble'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-
+                  'text': "Quelle est l'adresse de livraison ?",
+                  'quick_replies': [
+                                                      {
+                          'type': 'postback',
+                          'title': '38000',
+                          'payload': 'in_grenoble'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'Autre',
+                          'payload': 'out_grenoble'
+                      }
+                  ]
+              
         }, function(response, convo) {
               switch(response.text) {
                 case 'in_grenoble':
@@ -292,34 +266,24 @@ var bot = controller.spawn({});
       recap = adresse + heure_livraison + panier + phone;
       convo.say('Votre commande :\n' + recap);
       convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': "C'est bien ça ?",
-                            'buttons': [
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'modifier',
-                                    'payload': 'modifier'
-                                },
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'annuler',
-                                    'payload': 'annuler'
-                                },
-                                {
-                                    'type': 'postback',
-                                    'title': 'confirmer',
-                                    'payload': 'confirmer'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
+                  'text': "C'est bien ça ?",
+                  'quick_replies': [
+                                                      {
+                          'type': 'postback',
+                          'title': 'modifier',
+                          'payload': 'modifier'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'annuler',
+                          'payload': 'annuler'
+                      },
+                      {
+                          'type': 'postback',
+                          'title': 'confirmer',
+                          'payload': 'confirmer'
+                      }
+                  ]
 
         }, function(response, convo) {
               switch(response.text) {
