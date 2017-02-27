@@ -93,7 +93,7 @@ var bot = controller.spawn({});
       convo.ask({
  text: 'A quelle heure souhaite tu etre livré ?',
   quick_replies: [{
-    content_type: 'postback',
+    content_type: 'text',
     title: 'Maintenant',
     payload: 'now',
   }, {
@@ -103,6 +103,11 @@ var bot = controller.spawn({});
   }],
 
 }, function(response, convo) {
+  console.log(".");
+  console.log(response);
+  console.log(response.payload);
+  console.log(response.message);
+    console.log(".");
             switch(response.payload) {
                 case 'now':
                   now(response, convo);
