@@ -28,7 +28,7 @@ var bot = controller.spawn({});
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
-      convo.ask({
+      convo.say({
           "message":{
     "text":"Pick a color:",
     "quick_replies":[
