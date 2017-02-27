@@ -28,24 +28,37 @@ var bot = controller.spawn({});
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
-      convo.say({
-          "message":{
-    "text":"Pick a color:",
-    "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
-        "image_url":"http://petersfantastichats.com/img/red.png"
-      },
-      {
-        "content_type":"text",
-        "title":"Green",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN",
-        "image_url":"http://petersfantastichats.com/img/green.png"
-      }
-    ]}
-  }, function(response, convo) {
+      convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [
+                        {
+                            'title': 'Que puis-je faire pour toi ?',
+                            'buttons': [
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Commander',
+                                    'payload': 'commande'
+                                },
+                                                                {
+                                    'type': 'postback',
+                                    'title': 'Reserver un service',
+                                    'payload': 'offres'
+                                },
+                                {
+                                    'type': 'web_url',
+                                    'title': 'Découvrir Timy',
+                                    'url': 'www.timy-app.fr'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+
+        }, function(response, convo) {
             switch(response.text) {
                 case 'commande':
                   livraison(response, convo);
@@ -90,31 +103,21 @@ var bot = controller.spawn({});
     //commander
     var livraison = function(response, convo) {
       convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': "A quelle heure souhaite tu etre livré ?",
-                            'buttons': [
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Maintenant',
-                                    'payload': 'now'
-                                },
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Plus Tard',
-                                    'payload': 'later'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-
-        }, function(response, convo) {
+  text: 'How old are you?',
+  quick_replies: [{
+    content_type: 'text',
+    title: 'Child',
+    payload: '< 13',
+  }, {
+    content_type: 'text',
+    title: 'Teenager',
+    payload: '13 - 19',
+  }, {
+    content_type: 'text',
+    title: 'Adult',
+    payload: '> 19',
+  }],
+}, function(response, convo) {
             switch(response.text) {
                 case 'now':
                   now(response, convo);
