@@ -65,7 +65,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'crossover':
-                  offres(response,convo);
+                  crossover(response,convo);
                   convo.next();
                     break;
                 case 'cancel':
@@ -91,8 +91,8 @@ var bot = controller.spawn({});
         convo.next();
     };
 
-    var offres = function(response, convo) {
-        convo.say('Ok! Good bye. (offres)');
+    var crossover = function(response, convo) {
+        convo.say('texte crossover');
         convo.next();
     };
 
@@ -582,5 +582,9 @@ controller.on('facebook_postback', function(bot, message) {
   controller.hears('(.*)', 'message_received', function (bot, message) {
     console.log("-----------------------anything--------------------")
     bot.reply(message, 'you said ' + message.match[1])
+  })
+
+  controller.hears('Merci', 'message_received', function (bot, message) {
+    bot.reply(message, 'De rien ;)')
   })
 }
