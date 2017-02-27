@@ -37,7 +37,7 @@ var bot = controller.spawn({});
                         {
                             'title': 'Que puis-je faire pour toi ?',
                             'subtitle': 'Mac donald, cigarette, ect',
-                            'buttons': [
+                            'quick_replies': [
                                                                 {
                                     'type': 'postback',
                                     'title': 'Commander',
