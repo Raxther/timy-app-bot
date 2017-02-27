@@ -53,7 +53,7 @@ module.exports = function (controller) {
       {
         'type': 'postback',
         'title': 'Redémarrer le bot',
-        'payload': 'salut'
+        'payload': 'reboot'
       },
       {
         'type': 'postback',

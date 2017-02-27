@@ -19,7 +19,7 @@ var bot = controller.spawn({});
   var user;
 
 //demarrage conversation
-  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt'], 'message_received', function(bot,message) {
+  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt','reboot'], 'message_received', function(bot,message) {
     var recap = "";
     var adresse = "";
     var heure_livraison ="";
@@ -68,6 +68,15 @@ var bot = controller.spawn({});
                   offres(response,convo);
                   convo.next();
                     break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
                 default:
                   convo.say("je n'ai pas compris");
                   begin(response, convo);
@@ -78,7 +87,7 @@ var bot = controller.spawn({});
 
     //retour au menu
     var annuler = function(response, convo) {
-        begin(response, convo);
+        convo.say('Ok! tant pis :(');
         convo.next();
     };
 
@@ -110,6 +119,15 @@ var bot = controller.spawn({});
                     break;
                 case 'Plus tard':
                   later(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
                   convo.next();
                     break;
                 default:
@@ -159,6 +177,15 @@ var bot = controller.spawn({});
                     break;
                 case 'annuler':
                   annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
                   convo.next();
                     break;
                 default:
@@ -217,6 +244,15 @@ var bot = controller.spawn({});
                     break;
                 case 'Autre':
                   out_grenoble(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
                   convo.next();
                     break;
                 default:
@@ -294,6 +330,15 @@ var bot = controller.spawn({});
                   confirmer(response, convo);
                   convo.next();
                     break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
                 default:
                   convo.say("je n'ai pas compris");
                   recapitulatif(response, convo);
@@ -318,7 +363,7 @@ var bot = controller.spawn({});
 });
 
   // user said hello
-  controller.hears(['pizza'], 'message_received', function (bot, message) {
+  controller.hears(['nfbdskjfhdsjkfhdskj'], 'message_received', function (bot, message) {
 
     var recap = "";
     bot.startConversation(message, function(err, convo) {
