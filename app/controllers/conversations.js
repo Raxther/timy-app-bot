@@ -107,6 +107,7 @@ var bot = controller.spawn({});
   console.log(response);
   console.log(response.payload);
   console.log(response.message);
+  console.log(message);
     console.log(".");
             switch(response.payload) {
                 case 'now':
