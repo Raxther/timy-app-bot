@@ -44,13 +44,13 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Reserver un service',
-                                    'payload': 'offres'
-                                },
-                                                                {
-                                    'type': 'postback',
                                     'title': 'Crossover',
                                     'payload': 'crossover'
+                                },
+                                                                {
+                                    'type': 'web_url',
+                                    'title': 'Découvrir Timy',
+                                    'url': 'www.timy-app.fr'
                                 }
                             ]
                         }
@@ -64,7 +64,7 @@ var bot = controller.spawn({});
                   livraison(response, convo);
                   convo.next();
                     break;
-                case 'offres':
+                case 'crossover':
                   offres(response,convo);
                   convo.next();
                     break;
@@ -103,18 +103,12 @@ var bot = controller.spawn({});
   }],
 
 }, function(response, convo) {
-  console.log(".");
-  console.log(response);
-  console.log(response.payload);
-  console.log(response.message);
-  console.log(message);
-    console.log(".");
-            switch(response.payload) {
-                case 'now':
+            switch(response.text) {
+                case 'Maintenant':
                   now(response, convo);
                   convo.next();
                     break;
-                case 'later':
+                case 'Plus tard':
                   later(response, convo);
                   convo.next();
                     break;
@@ -159,7 +153,7 @@ var bot = controller.spawn({});
 
         }, function(response, convo) {
           switch(response.text) {
-                case 'start_livraison':
+                case 'Continuer':
                   start_livraison(response, convo);
                   convo.next();
                     break;
