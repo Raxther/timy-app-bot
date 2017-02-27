@@ -578,13 +578,14 @@ controller.on('facebook_postback', function(bot, message) {
     bot.reply(message, 'Votre commande : ' + message.match[1])
   })
 
+  controller.hears('Merci', 'message_received', function (bot, message) {
+    bot.reply(message, 'De rien ;)')
+  })
+
   // user says anything else
   controller.hears('(.*)', 'message_received', function (bot, message) {
     console.log("-----------------------anything--------------------")
     bot.reply(message, 'you said ' + message.match[1])
   })
 
-  controller.hears('Merci', 'message_received', function (bot, message) {
-    bot.reply(message, 'De rien ;)')
-  })
 }
