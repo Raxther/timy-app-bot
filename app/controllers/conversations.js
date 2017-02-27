@@ -206,8 +206,7 @@ var bot = controller.spawn({});
 
     //plus tard (à finir)
     var later = function(response, convo) {
-        convo.say('Ok! Good bye. (plus tard)');
-        bot.reply(response, {
+        convo.say({
         text: 'Hey! This message has some quick replies attached.',
         quick_replies: [
             {
