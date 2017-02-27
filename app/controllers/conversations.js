@@ -103,7 +103,7 @@ var bot = controller.spawn({});
   }],
 
 }, function(response, convo) {
-            switch(response.text) {
+            switch(response.payload) {
                 case 'now':
                   now(response, convo);
                   convo.next();
