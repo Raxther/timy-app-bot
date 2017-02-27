@@ -19,7 +19,7 @@ var bot = controller.spawn({});
   var user;
 
 //demarrage conversation
-  controller.hears(['pizza'], 'message_received', function(bot,message) {
+  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt'], 'message_received', function(bot,message) {
     var recap = "";
     var adresse = "";
     var heure_livraison ="";
@@ -133,7 +133,7 @@ var bot = controller.spawn({});
 
         }else{
           convo.ask({
-                            'text': "Oups, nous sommes en dehors des horaires mais une réponse n'est pas garantie",
+                            'text': "Oups, nous sommes en dehors des horaires. Tu peux quand meme passer commande mais une réponse n'est pas garantie",
                             'quick_replies': [
                                                                 {
                                     'type': 'postback',
@@ -211,11 +211,11 @@ var bot = controller.spawn({});
               
         }, function(response, convo) {
               switch(response.text) {
-                case 'in_grenoble':
+                case '38000':
                   in_grenoble(response, convo);
                   convo.next();
                     break;
-                case 'out_grenoble':
+                case 'Autre':
                   out_grenoble(response, convo);
                   convo.next();
                     break;
@@ -318,7 +318,7 @@ var bot = controller.spawn({});
 });
 
   // user said hello
-  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo'], 'message_received', function (bot, message) {
+  controller.hears(['pizza'], 'message_received', function (bot, message) {
 
     var recap = "";
     bot.startConversation(message, function(err, convo) {
