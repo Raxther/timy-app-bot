@@ -465,7 +465,7 @@ var bot = controller.spawn({});
     };
 
     var recapitulatif = function(response, convo) {
-      recap = adresse + heure_livraison + panier + phone;
+      recap = adresse + heure_livraison + panier + promo + phone;
       convo.say('Votre commande :\n' + recap);
       convo.ask({
                   'text': "C'est bien ça ?",
