@@ -731,7 +731,7 @@ controller.on('facebook_postback', function(bot, message) {
   // user says anything else
   controller.hears('(.*)', 'message_received', function (bot, message) {
     console.log("-----------------------anything--------------------")
-    bot.reply(message, "Désolé, mais il faut me dire boujour avant que pour que je puisse t'aider")
+    bot.reply(message, "Désolé, mais il faut me dire bonjour avant que je puisse t'aider")
   })
 
 }
