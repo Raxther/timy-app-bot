@@ -219,7 +219,7 @@ var bot = controller.spawn({});
         }, function(response, convo) {
           switch(response.text) {
                 case 'Continuer':
-                  start_livraison(response, convo);
+                  later(response, convo);
                   convo.next();
                     break;
                 case 'Annuler':
@@ -431,6 +431,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
+         phone="";
          phone += "Téléphone : " +response.text;
         recapitulatif(response, convo);
         convo.next();
