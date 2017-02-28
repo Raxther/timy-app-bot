@@ -445,6 +445,11 @@ var bot = controller.spawn({});
       convo.ask({
                   'text': "C'est bien ça ?",
                   'quick_replies': [
+                                        {
+                          'type': 'postback',
+                          'title': 'confirmer',
+                          'payload': 'confirmer'
+                      },
                                                       {
                           'type': 'postback',
                           'title': 'modifier',
@@ -454,11 +459,6 @@ var bot = controller.spawn({});
                           'type': 'postback',
                           'title': 'annuler',
                           'payload': 'annuler'
-                      },
-                      {
-                          'type': 'postback',
-                          'title': 'confirmer',
-                          'payload': 'confirmer'
                       }
                   ]
 
