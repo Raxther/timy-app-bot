@@ -92,7 +92,54 @@ var bot = controller.spawn({});
     };
 
     var crossover = function(response, convo) {
-        convo.say('texte crossover');
+              convo.ask({
+ text: "Moi c'est Timy, je te livre tout ce dont tu as besoin sur Grenoble (boissons, fast food, cigarettes, etc.). Livraison garantie dans l'heure et à partir de 2,50€ ! On propose aussi d'autres services comme la laverie, les visites d'appartements. En bref, si t'as pas envie, appelle Timy !
+ Pour notre partenariat avec le Crossover, on offre à 80 personnes leur première livraison Timy",
+  quick_replies: [{
+    content_type: 'text',
+    title: 'Trop cool !',
+    payload: 'cool',
+  }, {
+    content_type: 'text',
+    title: 'Non merci',
+    payload: 'no_thanks',
+  }],
+
+}, function(response, convo) {
+            switch(response.text) {
+                case 'Trop cool !':
+                  cool(response, convo);
+                  convo.next();
+                    break;
+                case 'Non merci':
+                  no_thanks(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("je n'ai pas compris");
+                  livraison(response, convo);
+                  convo.next();
+            }
+      });
+        convo.next();
+    };
+
+    var cool = function(response, convo) {
+        convo.say("C'est noté. Bonne chance ! Passe nous voir sur le stand samedi au Crossover :) A samedi");
+        convo.next();
+    };
+
+    var no_thanks = function(response, convo) {
+        convo.say("Dommage :( N'hésite pas à passer nous voir sur le stand samedi au Crossover :) A samedi.");
         convo.next();
     };
 
@@ -218,7 +265,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  heure_livraison = "quand : " +response.text+"\n";
+                  heure_livraison = "Quand : " +response.text+"\n";
                   start_livraison(response, convo);
                   convo.next();
           }
@@ -384,7 +431,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-         phone += "telephone : " +response.text;
+         phone += "Téléphone : " +response.text;
         recapitulatif(response, convo);
         convo.next();
         }
