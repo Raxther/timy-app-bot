@@ -100,7 +100,7 @@ var bot = controller.spawn({});
     //commander
     var livraison = function(response, convo) {
       convo.ask({
- text: 'A quelle heure souhaite tu etre livré ?',
+ text: 'À quelle heure souhaites tu être livré ?',
   quick_replies: [{
     content_type: 'text',
     title: 'Maintenant',
@@ -151,7 +151,7 @@ var bot = controller.spawn({});
 
         }else{
           convo.ask({
-                            'text': "Oups, nous sommes en dehors des horaires. Tu peux quand meme passer commande mais une réponse n'est pas garantie",
+                            'text': "Oups, nous sommes en dehors des horaires. Tu peux quand même passer commande mais une réponse n'est pas garantie",
                             'quick_replies': [
                                                                 {
                                     'type': 'postback',
@@ -175,7 +175,7 @@ var bot = controller.spawn({});
                   start_livraison(response, convo);
                   convo.next();
                     break;
-                case 'annuler':
+                case 'Annuler':
                   annuler(response, convo);
                   convo.next();
                     break;
@@ -201,22 +201,28 @@ var bot = controller.spawn({});
 
     //plus tard (à finir)
     var later = function(response, convo) {
-        convo.say({
-        text: 'Hey! This message has some quick replies attached.',
-        quick_replies: [
-            {
-                "content_type": "text",
-                "title": "Yes",
-                "payload": "yes",
-            },
-            {
-                "content_type": "text",
-                "title": "No",
-                "payload": "no",
-            }
-        ]
-    });
-        convo.next();
+      convo.ask("Quand souhaites tu être livré ? Nous sommes ouvert du lundi au samedi de 16h à 22h et le dimanche de 10h à 14h", 
+        function(response, convo) {
+          switch(response.text) {
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  heure_livraison = "quand : " +response.text+"\n";
+                  start_livraison(response, convo);
+                  convo.next();
+          }
+      });
     };
 
     // 
@@ -265,31 +271,123 @@ var bot = controller.spawn({});
 
 
     var in_grenoble = function(response, convo) {
-      convo.ask("Merci de nous indiquer l'adresse précise (n°, digicode, étage)", function(response, convo) {
+      convo.ask("Merci de nous indiquer l'adresse précise dans Grenoble 38000 (n°, digicode, étage)", function(response, convo) {
+        switch(response.text) {
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                default:
         adresse = "Adresse : " +response.text+"\n";
         quoi(response, convo);
         convo.next();
+        }
       });
     };
 
     var out_grenoble = function(response, convo) {
-        convo.say('Ok! Good bye. (out_grenoble)');
+        convo.say("Oups, nous ne livrons pas en dehors de grenoble 38000, mais nous arrivons prochainement sur Saint Martin d'Hères");
+        convo.ask({
+                  'text': "Es tu sur de ne pas habiter Grenoble 38000 ? ;)",
+                  'quick_replies': [
+                                                      {
+                          'type': 'postback',
+                          'title': 'oui',
+                          'payload': 'oui'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'non',
+                          'payload': 'non'
+                      }
+                  ]
+              
+        }, function(response, convo) {
+        switch(response.text) {
+                case 'oui':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'non':
+                  in_grenoble(response, convo);
+                  convo.next();
+                    break;
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                default:
+        panier += "Quoi : " +response.text +"\n";
+        telephone(response, convo);
+        convo.next();
+      }
+      });
         convo.next();
     };
 
     var quoi = function(response, convo) {
       convo.ask("Que souhaite tu te faire livrer ? essaye d'etre le plus precis possible", function(response, convo) {
-         panier += "Quoi : " +response.text +"\n";
+        switch(response.text) {
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                default:
+        panier += "Quoi : " +response.text +"\n";
         telephone(response, convo);
         convo.next();
+      }
       });
     };
 
     var telephone = function(response, convo) {
       convo.ask("Peux tu me donner ton numero de téléphone", function(response, convo) {
+        switch(response.text) {
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                default:
          phone += "telephone : " +response.text;
         recapitulatif(response, convo);
         convo.next();
+        }
       });
     };
 
@@ -585,7 +683,7 @@ controller.on('facebook_postback', function(bot, message) {
   // user says anything else
   controller.hears('(.*)', 'message_received', function (bot, message) {
     console.log("-----------------------anything--------------------")
-    bot.reply(message, 'you said ' + message.match[1])
+    bot.reply(message, "Désolé, mais il faut me dire boujour avant que pour que je puisse t'aider")
   })
 
 }
