@@ -87,25 +87,25 @@ var bot = controller.spawn({});
 
     //retour au menu
     var annuler = function(response, convo) {
-        convo.say('Ok! tant pis :(');
+        convo.say("Ok! tant pis :(");
         convo.next();
     };
 
     var crossover = function(response, convo) {
-              convo.ask({
- text: "Moi c'est Timy, je te livre tout ce dont tu as besoin sur Grenoble (boissons, fast food, cigarettes, etc.). Livraison garantie dans l'heure et à partir de 2,50€ ! On propose aussi d'autres services comme la laverie, les visites d'appartements. En bref, si t'as pas envie, appelle Timy !
- Pour notre partenariat avec le Crossover, on offre à 80 personnes leur première livraison Timy",
-  quick_replies: [{
-    content_type: 'text',
-    title: 'Trop cool !',
-    payload: 'cool',
-  }, {
-    content_type: 'text',
-    title: 'Non merci',
-    payload: 'no_thanks',
-  }],
+      convo.say("Moi c'est Timy, je te livre tout ce dont tu as besoin sur Grenoble (boissons, fast food, cigarettes, etc.). Livraison garantie dans l'heure et à partir de 2,50€ ! On propose aussi d'autres services comme la laverie, les visites d'appartements. En bref, si t'as pas envie, appelle Timy !");
+        convo.ask({
+       text: "Pour notre partenariat avec le Crossover, on offre à 80 personnes leur première livraison Timy",
+        quick_replies: [{
+          content_type: 'text',
+          title: 'Trop cool !',
+          payload: 'cool',
+        }, {
+          content_type: 'text',
+          title: 'Non merci',
+          payload: 'no_thanks',
+        }],
 
-}, function(response, convo) {
+      }, function(response, convo) {
             switch(response.text) {
                 case 'Trop cool !':
                   cool(response, convo);
