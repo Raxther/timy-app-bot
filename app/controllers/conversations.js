@@ -25,6 +25,7 @@ var bot = controller.spawn({});
     var heure_livraison ="";
     var panier="";
     var phone="";
+    var promo="";
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
@@ -408,6 +409,30 @@ var bot = controller.spawn({});
                     break;
                 default:
         panier += "Quoi : " +response.text +"\n";
+        promo(response, convo);
+        convo.next();
+      }
+      });
+    };
+
+    var promo = function(response, convo) {
+      convo.ask("As-tu un code promo ?", function(response, convo) {
+        switch(response.text) {
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("redemarrage en cours");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                default:
+        promo += "Code promo : " +response.text +"\n";
         telephone(response, convo);
         convo.next();
       }
@@ -415,7 +440,7 @@ var bot = controller.spawn({});
     };
 
     var telephone = function(response, convo) {
-      convo.ask("Peux tu me donner ton numero de téléphone", function(response, convo) {
+      convo.ask("Peux tu me donner ton numero de téléphone ?", function(response, convo) {
         switch(response.text) {
                 case 'annuler':
                   annuler(response, convo);
