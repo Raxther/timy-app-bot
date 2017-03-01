@@ -71,12 +71,11 @@ module.exports = function (controller) {
       console.log('permanent menu added', body)
     }
   })
-
   // set up greetings
   var form3 = {
     'setting_type': 'greeting',
     'greeting': {
-      'text': 'Bienvenue sur le chatbot de timy :) Appuyer sur démarrer pour passer commande !'
+      'text': 'Bienvenue sur le chatbot de timy :) Appuye sur démarrer pour passer commande !'
     }
   }
 
