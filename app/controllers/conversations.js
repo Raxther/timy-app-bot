@@ -13,7 +13,7 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, "Hello moi c'est Timy ! Je te livre tout Grenoble dans l'heure pour 2,5€";
+    bot.reply(message, "Hello moi c'est Timy ! Je te livre tout Grenoble dans l'heure pour 2,5€");
   })
 
   var user;
