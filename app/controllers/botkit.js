@@ -8,12 +8,12 @@ var db = require('../../config/db')({mongoUri: mongoUri})
 
 var controller = Botkit.facebookbot({
   debug: false,
-  access_token: "EAAKN23HlGKYBAFjRsiyn6DVqj40GnXpIAvXN1BYWZCyAgRgJyaM5IRusf8gCbYGJZApToTZBq3xuWJ1HveZAfNb410KamhWh3mbNCrujJXMTlZAP5K8zvhDUeTcwAdpiRSTTi4RoDAQVSaV7woT0CZBrtJyDEHujEy9p7QxhMjYwZDZD",
+  access_token: "EAAKN23HlGKYBAHMVsu8TZCfNEIiSCYuK6Tsa8wkwBG3KZBbygJLsnFkHakqsiwRrZCsoULPyKhDZCnSUFZC0tYuJAdndalIjrL0CVwgWjQs0MhboFGlGFjmuDQrz9IxgCDlcbnsLgth9TVWX8AxTsw3ZABIANDYojN5NvR0yhebAZDZD",
   verify_token: "my_voice_is_my_password_verify_me",
   storage: db
 })
 
-var bot = controller.spawn({})
+ var bot = controller.spawn({})
 
 var controllerslack = Botkit.slackbot({
     //debug: true,
