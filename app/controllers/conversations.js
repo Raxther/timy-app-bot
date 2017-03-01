@@ -32,6 +32,7 @@ var bot = controller.spawn({});
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
+      bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,50€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
       convo.ask({
             attachment: {
                 'type': 'template',
