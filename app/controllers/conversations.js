@@ -597,7 +597,18 @@ var bot = controller.spawn({});
           text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3)",
           channel: '1616938198321584' // a valid facebook user id or phone number
       })
-      convo.stop();
+
+
+var url = "https://graph.facebook.com/v2.6/"+message.user+"?fields=first_name,last_name&access_token=EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD"
+    Request.get("https://graph.facebook.com/v2.6/1616938198321584?fields=first_name,last_name&access_token=EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD", function (err, response, body) {
+        if (err) {
+          console.log(err)
+        }
+        else {
+          console.log(response)
+        }
+      })
+      convo.next();
     }
 
 
