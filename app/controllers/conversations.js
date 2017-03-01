@@ -21,7 +21,7 @@ var bot = controller.spawn({});
   var user;
 
 //demarrage conversation
-  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt','reboot'], 'message_received', function(bot,message) {
+  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt','reboot','hello'], 'message_received', function(bot,message) {
     var recap = "";
     var adresse = "";
     var heure_livraison ="";
@@ -81,7 +81,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
