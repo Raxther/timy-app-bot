@@ -519,7 +519,15 @@ var bot = controller.spawn({});
     };
 
     var confirmer = function(response, convo) {
-      convo.say("Votre commande a été envoyé à nos taskers :)")     
+      botslack.say(
+                    {
+                      text: recap,
+                      channel: 'G3ZTJCDA4',
+                       // a valid slack channel, group, mpim, or im ID
+                    }
+                  );
+                  convo.next();
+      convo.say("Votre commande a été envoyé à nos taskers :)");     
       convo.next();
     };
 
