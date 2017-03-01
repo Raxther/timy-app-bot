@@ -599,6 +599,7 @@ var bot = controller.spawn({});
 var url = "https://graph.facebook.com/v2.6/"+message.user+"?fields=first_name,last_name&access_token=EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD"
     var moi = "";
     Request.get(url, function (err, response, body) {
+      console.log(response);
         if (err) {
           console.log(err)
         }
