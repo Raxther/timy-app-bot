@@ -81,7 +81,7 @@ var human = false;
                     break;
                 case 'humain':
                 convo.say("humain demandé");
-                  humain(response, convo);
+                  help(response, convo);
                   convo.next();
                     break;
                 default:
