@@ -76,7 +76,7 @@ module.exports = function (controller) {
   var form3 = {
     'setting_type': 'greeting',
     'greeting': {
-      'text': 'Bienvenue sur le chatbot de timy :) Dites bonjour pour commencer à discuter !'
+      'text': 'Bienvenue sur le chatbot de timy :) Appuyer sur démarrer pour passer commande !'
     }
   }
 
