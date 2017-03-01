@@ -15,7 +15,7 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,5€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
+    bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,50€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
     bot.reply(message, "Dis moi hello pour commencer !");
   })
 
@@ -39,7 +39,7 @@ var bot = controller.spawn({});
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Que puis-je faire pour toi ? 🙂',
+                            'title': 'Que puis-je faire pour toi ?',
                             'buttons': [
                                                                 {
                                     'type': 'postback',
@@ -77,7 +77,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -106,9 +106,8 @@ var bot = controller.spawn({});
     };
 
     var crossover = function(response, convo) {
-      convo.say("Moi c'est Timy, je te livre tout ce dont tu as besoin sur Grenoble (boissons, fast food, cigarettes, etc.). Livraison garantie dans l'heure et à partir de 2,50€ ! On propose aussi d'autres services comme la laverie, les visites d'appartements. En bref, si t'as pas envie, appelle Timy !");
         convo.ask({
-       text: "Pour notre partenariat avec le Crossover, on offre à 80 personnes leur première livraison Timy",
+       text: "Pour notre partenariat avec le Crossover, Timy offre à 40 personnes leur première livraison ! 🚴",
         quick_replies: [{
           content_type: 'text',
           title: 'Trop cool !',
@@ -134,7 +133,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -145,7 +144,7 @@ var bot = controller.spawn({});
                     break;
                 default:
                   convo.say("Je n'ai pas compris.. 🤔");
-                  livraison(response, convo);
+                  crossover(response, convo);
                   convo.next();
             }
       });
@@ -153,12 +152,12 @@ var bot = controller.spawn({});
     };
 
     var cool = function(response, convo) {
-        convo.say("C'est noté. Bonne chance ! Passe nous voir sur le stand samedi au Crossover :) A samedi");
+        convo.say("C'est noté ! Bonne chance 🍀 Passe nous voir sur le stand Timy samedi soir, on aura des goodies ! A très vite ✨");
         convo.next();
     };
 
     var no_thanks = function(response, convo) {
-        convo.say("Dommage :( N'hésite pas à passer nous voir sur le stand samedi au Crossover :) A samedi.");
+        convo.say("Tant piiiiiiiiis ! Passe nous voir sur le stand Timy samedi soir 👋");
         convo.next();
     };
 
@@ -192,7 +191,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -255,7 +254,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -277,7 +276,7 @@ var bot = controller.spawn({});
 
     //plus tard (à finir)
     var later = function(response, convo) {
-      convo.ask("Quand souhaites tu être livré ? Nous sommes ouvert du lundi au samedi de 16h à 22h et le dimanche de 10h à 14h", 
+      convo.ask("Quand souhaites tu être livré ? Nous sommes ouvert du Lundi au Samedi de 16h à 22h et le Dimanche de 10h à 14h. 📅", 
         function(response, convo) {
           switch(response.text) {
                 case 'annuler':
@@ -289,7 +288,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -338,7 +337,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -368,7 +367,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -388,27 +387,27 @@ var bot = controller.spawn({});
     var out_grenoble = function(response, convo) {
         convo.say("Oups, nous ne livrons pas en dehors de grenoble 38000, mais nous arrivons prochainement sur Saint Martin d'Hères");
         convo.ask({
-                  'text': "Es tu sur de ne pas habiter Grenoble 38000 ? ;)",
+                  'text': "Es-tu sûr de ne pas habiter Grenoble 38000 ? ;)",
                   'quick_replies': [
                                                       {
                           'type': 'postback',
-                          'title': 'oui',
+                          'title': 'Oui !',
                           'payload': 'oui'
                       },
                                                       {
                           'type': 'postback',
-                          'title': 'non',
+                          'title': 'Non..',
                           'payload': 'non'
                       }
                   ]
               
         }, function(response, convo) {
         switch(response.text) {
-                case 'oui':
+                case 'Oui !':
                   annuler(response, convo);
                   convo.next();
                     break;
-                case 'non':
+                case 'Non..':
                   in_grenoble(response, convo);
                   convo.next();
                     break;
@@ -421,7 +420,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -441,7 +440,7 @@ var bot = controller.spawn({});
 
     var quoi = function(response, convo) {
       convo.say("Que souhaites-tu te faire livrer ? 🍻 🌂 📱 🚬 🍕 🔑 📦 (Sois le plus précis possible)");
-      convo.ask("PS: Si ta demande dépasse les 9kg et/ou ne rentre pas dans un sac à dos de 30x40x40cm, le prix et le délai de livraison peuvent varier* 🐫 🎿 🛋", function(response, convo) {
+      convo.ask("PS: Si ta demande dépasse les 9kg et/ou ne rentre pas dans un sac à dos de 30x40x40cm, le prix et le délai de livraison peuvent varier* 🐫 🎿 ✈️", function(response, convo) {
         switch(response.text) {
                 case 'annuler':
                   annuler(response, convo);
@@ -452,7 +451,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -481,7 +480,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -510,7 +509,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
@@ -570,7 +569,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redemarrage en cours");
+                convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
