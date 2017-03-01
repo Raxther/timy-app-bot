@@ -82,7 +82,7 @@ var human = false;
                 case 'humain':
                 convo.say("humain demandé");
                   human(response, convo);
-                  convo.stop();
+                  convo.next();
                     break;
                 default:
                   convo.say("je n'ai pas compris");
@@ -539,7 +539,7 @@ var human = false;
 
     var help = function(response, convo) {
       human = "true"
-
+      convo.next();
     }
 
 
