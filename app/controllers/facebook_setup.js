@@ -4,7 +4,7 @@ var Request = require('request')
 
 module.exports = function (controller) {
   // subscribe to page events
-  Request.post('https://graph.facebook.com/me/subscribed_apps?access_token=' + "EAAKN23HlGKYBAHMVsu8TZCfNEIiSCYuK6Tsa8wkwBG3KZBbygJLsnFkHakqsiwRrZCsoULPyKhDZCnSUFZC0tYuJAdndalIjrL0CVwgWjQs0MhboFGlGFjmuDQrz9IxgCDlcbnsLgth9TVWX8AxTsw3ZABIANDYojN5NvR0yhebAZDZD",
+  Request.post('https://graph.facebook.com/me/subscribed_apps?access_token=' + "EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD",
     function (err, res, body) {
       if (err) {
         controller.log('Could not subscribe to page messages')
@@ -18,7 +18,7 @@ module.exports = function (controller) {
       }
     })
 
-  var url = 'https://graph.facebook.com/v2.8/me/thread_settings?access_token=' + "EAAKN23HlGKYBAFjRsiyn6DVqj40GnXpIAvXN1BYWZCyAgRgJyaM5IRusf8gCbYGJZApToTZBq3xuWJ1HveZAfNb410KamhWh3mbNCrujJXMTlZAP5K8zvhDUeTcwAdpiRSTTi4RoDAQVSaV7woT0CZBrtJyDEHujEy9p7QxhMjYwZDZD"
+  var url = 'https://graph.facebook.com/v2.8/me/thread_settings?access_token=' + "EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD"
 
   // set up CTA for FB page
   var form1 = {
