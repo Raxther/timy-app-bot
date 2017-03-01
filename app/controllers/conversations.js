@@ -75,14 +75,14 @@ var human = false;
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("humain demandé");
-                  human(response, convo);
+                convo.say("redémarrage en cours");
+                  begin(response, convo);
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("redemarrage en cours");
-                  begin(response, convo);
-                  convo.next();
+                convo.say("humain demandé");
+                  human(response, convo);
+                  convo.stop();
                     break;
                 default:
                   convo.say("je n'ai pas compris");
