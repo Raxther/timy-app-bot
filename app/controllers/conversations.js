@@ -15,7 +15,7 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, "Hello moi c'est Timy ! Je te livre tout Grenoble dans l'heure pour 2,5€");
+    bot.reply(message, "Hello, moi c'est Timy ! Je livre tout Grenoble en moins d'une heure et à partir de 2,5€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !  Nos coursiers te livre entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
   })
 
   var user;
@@ -38,7 +38,7 @@ var bot = controller.spawn({});
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Que puis-je faire pour toi ?',
+                            'title': 'Que puis-je faire pour toi ? :)',
                             'buttons': [
                                                                 {
                                     'type': 'postback',
@@ -47,7 +47,7 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Crossover',
+                                    'title': 'Concours Crossover',
                                     'payload': 'crossover'
                                 },
                                                                 {
@@ -848,7 +848,7 @@ controller.on('facebook_postback', function(bot, message) {
     bot.reply(message, "J'ai appelé un humain pour toi, il ne devrait pas tarder :)")
                 bot.say(
       {
-          text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3)",
+          text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3 )",
           channel: '1616938198321584' // a valid facebook user id or phone number
       })
   })
