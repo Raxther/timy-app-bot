@@ -81,7 +81,7 @@ var human = false;
                     break;
                 case 'humain':
                 convo.say("humain demandé");
-                  human(response, convo);
+                  humain(response, convo);
                   convo.next();
                     break;
                 default:
@@ -538,7 +538,7 @@ var human = false;
     };
 
     var help = function(response, convo) {
-      human = "true"
+      human = true
       convo.stop();
     }
 
