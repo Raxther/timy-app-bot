@@ -9,6 +9,7 @@ var botslack = controllerslack.spawn({
 }).startRTM();
 
 var bot = controller.spawn({});
+var human = false;
 
 
 
@@ -74,6 +75,11 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'reboot':
+                convo.say("humain demandé");
+                  human(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
                 convo.say("redemarrage en cours");
                   begin(response, convo);
                   convo.next();
@@ -531,6 +537,11 @@ var bot = controller.spawn({});
       convo.next();
     };
 
+    var help = function(response, convo) {
+      human = "true"
+
+    }
+
 
 
 
@@ -764,7 +775,9 @@ controller.on('facebook_postback', function(bot, message) {
   // user says anything else
   controller.hears('(.*)', 'message_received', function (bot, message) {
     console.log("-----------------------anything--------------------")
-    bot.reply(message, "Désolé, mais il faut me dire bonjour avant que je puisse t'aider")
+    if(!human){
+      bot.reply(message, "Désolé, mais il faut me dire bonjour avant que je puisse t'aider")
+    }
   })
 
 }
