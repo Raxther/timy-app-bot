@@ -599,11 +599,13 @@ var url = "https://graph.facebook.com/v2.6/"+message.user+"?fields=first_name,la
     var moi = "";
     Request.get(url, function (err, response, body) {
       console.log(response);
+                moi = response.first_name+" "+response.last_name;
+
         if (err) {
           console.log(err)
         }
         else {
-          moi = response.first_name+" "+response.last_name;
+          //moi = response.first_name+" "+response.last_name;
         }
       })
       bot.say(
