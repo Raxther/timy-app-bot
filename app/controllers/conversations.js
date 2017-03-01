@@ -539,7 +539,7 @@ var human = false;
 
     var help = function(response, convo) {
       human = "true"
-      convo.next();
+      convo.stop();
     }
 
 
