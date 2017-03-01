@@ -5,7 +5,7 @@ module.exports = function (controller, controllerslack) {
   // this is triggered when a user clicks the send-to-messenger plugin
 
 var Request = require('request')
-
+  
 var botslack = controllerslack.spawn({
     token: "xoxb-141241591894-P74g6ZUIwgSZyLT2xqY8hL5l"
 }).startRTM();
@@ -594,24 +594,26 @@ var bot = controller.spawn({});
     };
 
     var help = function(response, convo) {
-            bot.say(
-      {
-          text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3)",
-          channel: '1322380007784360' // a valid facebook user id or phone number
-      })
 
 
 var url = "https://graph.facebook.com/v2.6/"+message.user+"?fields=first_name,last_name&access_token=EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD"
-    Request.get("https://graph.facebook.com/v2.6/1616938198321584?fields=first_name,last_name&access_token=EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD", function (err, response, body) {
+    Request.get(url, function (err, response, body) {
         if (err) {
           console.log(err)
         }
         else {
-          console.log(response)
+          var moi = response.first_name+" "+response.last_name;
         }
+      })
+      bot.say(
+      {
+          text: moi + "demande de l'aide sur le bot :) (et rama pense à toi <3)",
+          channel: '1616938198321584' // a valid facebook user id or phone number
       })
       convo.next();
     }
+
+
 
 
 
