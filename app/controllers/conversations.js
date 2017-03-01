@@ -4,6 +4,8 @@
 module.exports = function (controller, controllerslack) {
   // this is triggered when a user clicks the send-to-messenger plugin
 
+var Request = require('request')
+
 var botslack = controllerslack.spawn({
     token: "xoxb-141241591894-P74g6ZUIwgSZyLT2xqY8hL5l"
 }).startRTM();
@@ -595,7 +597,7 @@ var bot = controller.spawn({});
             bot.say(
       {
           text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3)",
-          channel: '1616938198321584' // a valid facebook user id or phone number
+          channel: '1322380007784360' // a valid facebook user id or phone number
       })
 
 
