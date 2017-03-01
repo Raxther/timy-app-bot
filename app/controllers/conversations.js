@@ -21,6 +21,7 @@ var human = false;
 
 //demarrage conversation
   controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt','reboot'], 'message_received', function(bot,message) {
+    human = false;
     var recap = "";
     var adresse = "";
     var heure_livraison ="";
