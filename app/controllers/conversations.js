@@ -15,10 +15,7 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, "Hello, moi c'est Timy ! \n
-      Je livre tout Grenoble en moins d'une heure et à partir de 2,5€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !  \n
-      Nos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
-  })
+    bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,5€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
     bot.reply(message, "Dis moi hello pour commencer !");
   })
 
