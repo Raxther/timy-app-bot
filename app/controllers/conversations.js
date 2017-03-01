@@ -15,7 +15,11 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, "Hello, moi c'est Timy ! Je livre tout Grenoble en moins d'une heure et à partir de 2,5€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !  Nos coursiers te livre entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
+    bot.reply(message, "Hello, moi c'est Timy ! \n
+      Je livre tout Grenoble en moins d'une heure et à partir de 2,5€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !  \n
+      Nos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
+  })
+    bot.reply(message, "Dis moi hello pour commencer !");
   })
 
   var user;
@@ -38,7 +42,7 @@ var bot = controller.spawn({});
                     'template_type': 'generic',
                     'elements': [
                         {
-                            'title': 'Que puis-je faire pour toi ? :)',
+                            'title': 'Que puis-je faire pour toi ? 🙂',
                             'buttons': [
                                                                 {
                                     'type': 'postback',
@@ -51,9 +55,9 @@ var bot = controller.spawn({});
                                     'payload': 'crossover'
                                 },
                                                                 {
-                                    'type': 'web_url',
-                                    'title': 'Découvrir Timy',
-                                    'url': 'www.timy-app.fr'
+                                    'type': 'postback',
+                                    'title': 'Star café',
+                                    'payload': 'starcafe'
                                 }
                             ]
                         }
@@ -80,13 +84,18 @@ var bot = controller.spawn({});
                   begin(response, convo);
                   convo.next();
                     break;
+                 case 'starcafe':
+                convo.say("Grâce à notre partenariat avec le Star Café, on te livre tous les jours de 12h à 13h30 dans GEM pour 1€ 🍔 🍟");
+                  help(response, convo);
+                  convo.next();
+                    break;
                 case 'humain':
                 convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
+                  convo.say("Je n'ai pas compris.. 🤔");
                   begin(response, convo);
                   convo.next();
             }
@@ -138,7 +147,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
+                  convo.say("Je n'ai pas compris.. 🤔");
                   livraison(response, convo);
                   convo.next();
             }
@@ -160,7 +169,7 @@ var bot = controller.spawn({});
     //commander
     var livraison = function(response, convo) {
       convo.ask({
- text: 'À quelle heure souhaites tu être livré ?',
+ text: 'À quelle heure souhaites tu être livré ? ⏰',
   quick_replies: [{
     content_type: 'text',
     title: 'Maintenant',
@@ -196,7 +205,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
+                  convo.say("Je n'ai pas compris.. 🤔");
                   livraison(response, convo);
                   convo.next();
             }
@@ -210,7 +219,7 @@ var bot = controller.spawn({});
         console.log(heure);
         if (heure >= 16 && heure < 22){
             heure_livraison = "Quand : Maintenant\n"
-            convo.say('Très bien!');
+            convo.say('Coooool !');
             start_livraison(response, convo);
             convo.next();
 
@@ -259,7 +268,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
+                  convo.say("Je n'ai pas compris.. 🤔");
                   now(response, convo);
                   convo.next();
             }
@@ -303,7 +312,7 @@ var bot = controller.spawn({});
     // 
     var start_livraison = function(response, convo) {
       convo.ask({
-                  'text': "Quelle est l'adresse de livraison ?",
+                  'text': "Quelle est la zone de livraison ? 📍",
                   'quick_replies': [
                                                       {
                           'type': 'postback',
@@ -342,7 +351,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
+                  convo.say("Je n'ai pas compris.. 🤔");
                   start_livraison(response, convo);
                   convo.next();
             }
@@ -351,7 +360,7 @@ var bot = controller.spawn({});
 
 
     var in_grenoble = function(response, convo) {
-      convo.ask("Merci de nous indiquer l'adresse précise dans Grenoble 38000 (n°, digicode, étage)", function(response, convo) {
+      convo.ask("Merci de nous indiquer l'adresse précise dans Grenoble 38000 🏡 (n°, rue, digicode, étage)", function(response, convo) {
         switch(response.text) {
                 case 'annuler':
                   annuler(response, convo);
@@ -425,7 +434,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
+                  convo.say("Je n'ai pas compris.. 🤔");
                   out_grenoble(response, convo);
                   convo.next();
       }
@@ -434,7 +443,8 @@ var bot = controller.spawn({});
     };
 
     var quoi = function(response, convo) {
-      convo.ask("Que souhaite tu te faire livrer ? essaye d'etre le plus precis possible", function(response, convo) {
+      convo.say("Que souhaites-tu te faire livrer ? 🍻 🌂 📱 🚬 🍕 🔑 📦 (Sois le plus précis possible)");
+      convo.ask("PS: Si ta demande dépasse les 9kg et/ou ne rentre pas dans un sac à dos de 30x40x40cm, le prix et le délai de livraison peuvent varier* 🐫 🎿 🛋", function(response, convo) {
         switch(response.text) {
                 case 'annuler':
                   annuler(response, convo);
@@ -455,7 +465,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-        panier = "Quoi : " +response.text +"\n";
+        panier = "Objet : " +response.text +"\n";
         promo(response, convo);
         convo.next();
       }
@@ -463,7 +473,7 @@ var bot = controller.spawn({});
     };
 
     var promo = function(response, convo) {
-      convo.ask("As-tu un code promo ?", function(response, convo) {
+      convo.ask("As-tu un code promo ? 💵", function(response, convo) {
         switch(response.text) {
                 case 'annuler':
                   annuler(response, convo);
@@ -523,23 +533,23 @@ var bot = controller.spawn({});
 
     var recapitulatif = function(response, convo) {
       recap = adresse + heure_livraison + panier + promo + phone;
-      convo.say('Votre commande :\n' + recap);
+      convo.say('Récapitulatif de ta commande : ✅\n' + recap);
       convo.ask({
                   'text': "C'est bien ça ?",
                   'quick_replies': [
                                         {
                           'type': 'postback',
-                          'title': 'confirmer',
+                          'title': 'Confirmer',
                           'payload': 'confirmer'
                       },
                                                       {
                           'type': 'postback',
-                          'title': 'modifier',
+                          'title': 'Modifier',
                           'payload': 'modifier'
                       },
                                                       {
                           'type': 'postback',
-                          'title': 'annuler',
+                          'title': 'Annuler',
                           'payload': 'annuler'
                       }
                   ]
@@ -573,7 +583,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("je n'ai pas compris");
+                  convo.say("Je n'ai pas compris.. 🤔");
                   recapitulatif(response, convo);
                   convo.next();
             }
