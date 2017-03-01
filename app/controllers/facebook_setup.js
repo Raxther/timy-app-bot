@@ -18,7 +18,7 @@ module.exports = function (controller) {
       }
     })
 
-  var url = 'https://graph.facebook.com/v2.6/me/thread_settings?access_token=' + "EAAKN23HlGKYBAFjRsiyn6DVqj40GnXpIAvXN1BYWZCyAgRgJyaM5IRusf8gCbYGJZApToTZBq3xuWJ1HveZAfNb410KamhWh3mbNCrujJXMTlZAP5K8zvhDUeTcwAdpiRSTTi4RoDAQVSaV7woT0CZBrtJyDEHujEy9p7QxhMjYwZDZD"
+  var url = 'https://graph.facebook.com/v2.8/me/thread_settings?access_token=' + "EAAKN23HlGKYBAFjRsiyn6DVqj40GnXpIAvXN1BYWZCyAgRgJyaM5IRusf8gCbYGJZApToTZBq3xuWJ1HveZAfNb410KamhWh3mbNCrujJXMTlZAP5K8zvhDUeTcwAdpiRSTTi4RoDAQVSaV7woT0CZBrtJyDEHujEy9p7QxhMjYwZDZD"
 
   // set up CTA for FB page
   var form1 = {
@@ -52,7 +52,7 @@ module.exports = function (controller) {
       },
       {
         'type': 'postback',
-        'title': 'Redémarrer le bot',
+        'title': 'Redémarer le bot',
         'payload': 'reboot'
       },
       {
