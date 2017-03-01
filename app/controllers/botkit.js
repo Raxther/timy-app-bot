@@ -9,7 +9,7 @@ var db = require('../../config/db')({mongoUri: mongoUri})
 var controller = Botkit.facebookbot({
   debug: false,
   access_token: "EAAKN23HlGKYBAHMVsu8TZCfNEIiSCYuK6Tsa8wkwBG3KZBbygJLsnFkHakqsiwRrZCsoULPyKhDZCnSUFZC0tYuJAdndalIjrL0CVwgWjQs0MhboFGlGFjmuDQrz9IxgCDlcbnsLgth9TVWX8AxTsw3ZABIANDYojN5NvR0yhebAZDZD",
-  verify_token: "my_voice_is_my_password_verify_me",
+  verify_token: "my_voice_is_my_password_verify_me", 
   storage: db
 })
 
