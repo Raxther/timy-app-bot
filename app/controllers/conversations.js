@@ -9,7 +9,6 @@ var botslack = controllerslack.spawn({
 }).startRTM();
 
 var bot = controller.spawn({});
-var human = false;
 
 
 
@@ -21,7 +20,6 @@ var human = false;
 
 //demarrage conversation
   controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt','reboot'], 'message_received', function(bot,message) {
-    human = false;
     var recap = "";
     var adresse = "";
     var heure_livraison ="";
@@ -76,12 +74,12 @@ var human = false;
                   convo.next();
                     break;
                 case 'reboot':
-                convo.say("redémarrage en cours");
+                convo.say("redemarrage en cours");
                   begin(response, convo);
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("humain demandé");
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -130,6 +128,11 @@ var human = false;
                 case 'reboot':
                 convo.say("redemarrage en cours");
                   begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
                   convo.next();
                     break;
                 default:
@@ -183,6 +186,11 @@ var human = false;
                 case 'reboot':
                 convo.say("redemarrage en cours");
                   begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
                   convo.next();
                     break;
                 default:
@@ -243,6 +251,11 @@ var human = false;
                   begin(response, convo);
                   convo.next();
                     break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
                 default:
                   convo.say("je n'ai pas compris");
                   now(response, convo);
@@ -270,6 +283,11 @@ var human = false;
                 case 'reboot':
                 convo.say("redemarrage en cours");
                   begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
                   convo.next();
                     break;
                 default:
@@ -316,6 +334,11 @@ var human = false;
                   begin(response, convo);
                   convo.next();
                     break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
                 default:
                   convo.say("je n'ai pas compris");
                   start_livraison(response, convo);
@@ -339,6 +362,11 @@ var human = false;
                 case 'reboot':
                 convo.say("redemarrage en cours");
                   begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
                   convo.next();
                     break;
                 default:
@@ -389,10 +417,15 @@ var human = false;
                   begin(response, convo);
                   convo.next();
                     break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
                 default:
-        panier += "Quoi : " +response.text +"\n";
-        telephone(response, convo);
-        convo.next();
+                  convo.say("je n'ai pas compris");
+                  out_grenoble(response, convo);
+                  convo.next();
       }
       });
         convo.next();
@@ -414,8 +447,13 @@ var human = false;
                   begin(response, convo);
                   convo.next();
                     break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
                 default:
-        panier += "Quoi : " +response.text +"\n";
+        panier = "Quoi : " +response.text +"\n";
         promo(response, convo);
         convo.next();
       }
@@ -438,8 +476,13 @@ var human = false;
                   begin(response, convo);
                   convo.next();
                     break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
                 default:
-        promo += "Code promo : " +response.text +"\n";
+        promo = "Code promo : " +response.text +"\n";
         telephone(response, convo);
         convo.next();
       }
@@ -462,9 +505,14 @@ var human = false;
                   begin(response, convo);
                   convo.next();
                     break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
                 default:
-         phone="";
-         phone += "Téléphone : " +response.text;
+
+         phone = "Téléphone : " +response.text;
         recapitulatif(response, convo);
         convo.next();
         }
@@ -517,6 +565,11 @@ var human = false;
                   begin(response, convo);
                   convo.next();
                     break;
+                case 'humain':
+                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
                 default:
                   convo.say("je n'ai pas compris");
                   recapitulatif(response, convo);
@@ -539,7 +592,11 @@ var human = false;
     };
 
     var help = function(response, convo) {
-      human = true
+            bot.say(
+      {
+          text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3)",
+          channel: '1616938198321584' // a valid facebook user id or phone number
+      })
       convo.stop();
     }
 
@@ -769,6 +826,15 @@ controller.on('facebook_postback', function(bot, message) {
     bot.reply(message, 'Votre commande : ' + message.match[1])
   })
 
+  controller.hears('humain', 'message_received', function (bot, message) {
+    bot.reply(message, "J'ai appelé un humain pour toi, il ne devrait pas tarder :)")
+                bot.say(
+      {
+          text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3)",
+          channel: '1616938198321584' // a valid facebook user id or phone number
+      })
+  })
+
   controller.hears('Merci', 'message_received', function (bot, message) {
     bot.reply(message, 'De rien ;)')
   })
@@ -776,9 +842,9 @@ controller.on('facebook_postback', function(bot, message) {
   // user says anything else
   controller.hears('(.*)', 'message_received', function (bot, message) {
     console.log("-----------------------anything--------------------")
-    if(!human){
-      bot.reply(message, "Désolé, mais il faut me dire bonjour avant que je puisse t'aider")
-    }
+    //bot.reply(message, "Désolé, mais il faut me dire bonjour avant que je puisse t'aider")
   })
+
+
 
 }
