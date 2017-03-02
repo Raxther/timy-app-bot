@@ -32,7 +32,7 @@ var bot = controller.spawn({});
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
-      bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,50€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
+      //bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,50€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
       convo.ask({
             attachment: {
                 'type': 'template',
@@ -153,7 +153,7 @@ var bot = controller.spawn({});
     };
 
     var cool = function(response, convo) {
-        convo.say("C'est noté ! Bonne chance 🍀 Passe nous voir sur le stand Timy samedi soir, on aura des goodies ! A très vite ✨");
+        convo.say("Bonne chance 🍀 Passe nous voir sur le stand Timy samedi soir, on aura des goodies ! A très vite ✨");
         convo.next();
     };
 
@@ -215,7 +215,7 @@ var bot = controller.spawn({});
         heure = 1 + date.getHours();
         console.log(heure);
         if (heure >= 16 && heure < 22){
-            heure_livraison = "Quand : Maintenant\n"
+            heure_livraison = "Quand ⏰ : Maintenant\n"
             convo.say('Coooool !');
             start_livraison(response, convo);
             convo.next();
@@ -299,7 +299,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  heure_livraison = "Quand : " +response.text+"\n";
+                  heure_livraison = "Quand ⏰ : " +response.text+"\n";
                   start_livraison(response, convo);
                   convo.next();
           }
@@ -378,7 +378,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-        adresse = "Adresse : " +response.text+"\n";
+        adresse = "Adresse 🏡 : " +response.text+"\n";
         quoi(response, convo);
         convo.next();
         }
@@ -440,7 +440,7 @@ var bot = controller.spawn({});
     };
 
     var quoi = function(response, convo) {
-      convo.say("Que souhaites-tu te faire livrer ? 🍻 🌂 📱 🚬 🍕 🔑 📦 (Sois le plus précis possible)");
+      convo.say("Que souhaites-tu te faire livrer ? (Sois le plus précis possible) 🚴");
       convo.ask("PS: Si ta demande dépasse les 9kg et/ou ne rentre pas dans un sac à dos de 30x40x40cm, le prix et le délai de livraison peuvent varier* 🐫 🎿 ✈️", function(response, convo) {
         switch(response.text) {
                 case 'annuler':
@@ -491,7 +491,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-        promo = "Code promo : " +response.text +"\n";
+        promo = "Code promo 💵 : " +response.text +"\n";
         telephone(response, convo);
         convo.next();
       }
@@ -530,7 +530,7 @@ var bot = controller.spawn({});
 
     var recapitulatif = function(response, convo) {
       recap = adresse + heure_livraison + panier + promo + phone;
-      convo.say('Récapitulatif de ta commande : ✅\n' + recap);
+      convo.say('Récapitulatif de ta commande : \n' + recap);
       convo.ask({
                   'text': "C'est bien ça ?",
                   'quick_replies': [
