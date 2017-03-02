@@ -54,7 +54,7 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Star café',
+                                    'title': 'Autre',
                                     'payload': 'starcafe'
                                 }
                             ]
@@ -83,7 +83,8 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                  case 'starcafe':
-                convo.say("Grâce à notre partenariat avec le Star Café, on te livre tous les jours de 12h à 13h30 dans GEM pour 1€ 🍔 🍟");
+                //convo.say("Grâce à notre partenariat avec le Star Café, on te livre tous les jours de 12h à 13h30 dans GEM pour 1€ 🍔 🍟");
+                  convo.say("Je t'écoute 👀");
                   help(response, convo);
                   convo.next();
                     break;
