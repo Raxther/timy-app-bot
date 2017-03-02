@@ -605,7 +605,7 @@ var bot = controller.spawn({});
 
       bot.say(
       {
-          text:"Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3)",
+          text:"Quelqu'un demande de l'aide sur le bot :) (et Rama pense à toi <3 )",
           channel: '1616938198321584' // a valid facebook user id or phone number
       })
       convo.next();
