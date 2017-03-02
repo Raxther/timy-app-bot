@@ -848,11 +848,11 @@ controller.on('facebook_postback', function(bot, message) {
 
 // user pass an order
   controller.hears(['Ma commande'], 'message_received', function (bot, message) {
-    bot.reply(message, 'Votre commande : ' + message.match[1])
+    //bot.reply(message, 'Votre commande : ' + message.match[1])
   })
 
   controller.hears('humain', 'message_received', function (bot, message) {
-    bot.reply(message, "J'ai appelé un humain pour toi, il ne devrait pas tarder :)")
+    bot.reply(message, "J'ai appelé quelqu'un pour toi, il ne devrait pas tarder :)")
                 bot.say(
       {
           text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3 )",
@@ -861,7 +861,7 @@ controller.on('facebook_postback', function(bot, message) {
   })
 
   controller.hears('Merci', 'message_received', function (bot, message) {
-    bot.reply(message, 'De rien ;)')
+    //bot.reply(message, 'De rien ;)')
   })
 
   // user says anything else
