@@ -553,15 +553,15 @@ var bot = controller.spawn({});
 
         }, function(response, convo) {
               switch(response.text) {
-                case 'modifier':
+                case 'Modifier':
                   start_livraison(response, convo);
                   convo.next();
                     break;
-                case 'annuler':
+                case 'Annuler':
                   annuler(response, convo);
                   convo.next();
                     break;
-                case 'confirmer':
+                case 'Confirmer':
                   confirmer(response, convo);
                   convo.next();
                     break;
