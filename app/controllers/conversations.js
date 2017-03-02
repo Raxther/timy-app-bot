@@ -15,7 +15,7 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,50€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
+    //bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,50€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
     bot.reply(message, "Dis moi hello pour commencer !");
   })
 
@@ -139,7 +139,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -197,7 +197,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -260,7 +260,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -294,7 +294,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -343,7 +343,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -373,7 +373,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -426,7 +426,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -457,7 +457,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -486,7 +486,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -515,7 +515,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -575,7 +575,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'humain':
-                convo.say("J'appelle un humain qui te répondra dans les plus brefs delais :)");
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -602,22 +602,9 @@ var bot = controller.spawn({});
 
     var help = function(response, convo) {
 
-var url = "https://graph.facebook.com/v2.6/"+message.user+"?fields=first_name,last_name&access_token=EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD"
-    var moi = "";
-    Request.get(url, function (err, response, body) {
-      console.log(response);
-                moi = response.first_name+" "+response.last_name;
-
-        if (err) {
-          console.log(err)
-        }
-        else {
-          //moi = response.first_name+" "+response.last_name;
-        }
-      })
       bot.say(
       {
-          text: moi + "demande de l'aide sur le bot :) (et rama pense à toi <3)",
+          text:"Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3)",
           channel: '1616938198321584' // a valid facebook user id or phone number
       })
       convo.next();
