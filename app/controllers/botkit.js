@@ -121,18 +121,13 @@ var create_user_if_new = function (id, ts) {
       console.log(err)
     }
     else if (!user) {
-      url = "https://graph.facebook.com/v2.6/"+id+"?fields=first_name,last_name&access_token=EAAKN23HlGKYBACnXUQUUATD5i5pzvJRuvxcWUzoQub9IiA7JeYV3HYEKptjd6aRrw3N4t7AtdBhXDmZB7aCjNs2YoDtrhYCkZBt7X7KjrwYitSxX6TCY35nMyWZBezUOAhThdLEmcBIx304ZCgGVcsIoXGQBZCCJZCu5vrFm25dwZDZD"
-
-      Request.get(url, function (err, response, body) {
-        if (err) {
-          console.log(err)
-        }
-        else {
-          console.log('get name', response);
-        }
-      })
+      graph.get(id, function(err, res) {
+        console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+      });
       controller.storage.users.save({id: id, created_at: ts})
     }
+
+
   })
 }
 
