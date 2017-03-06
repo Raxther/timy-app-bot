@@ -120,7 +120,7 @@ var create_user_if_new = function (id, ts) {
     if (err) {
       console.log(err)
     }
-    else if (!user) {
+    else if (!user || !user.name) {
       graph.get(id, function(err, res) {
         nom = res.first_name + " "+res.last_name; 
         date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
