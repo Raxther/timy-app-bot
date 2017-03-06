@@ -49,13 +49,13 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Concours Crossover',
-                                    'payload': 'crossover'
+                                    'title': 'Starcafe',
+                                    'payload': 'starcafe'
                                 },
                                                                 {
                                     'type': 'postback',
                                     'title': 'Autre',
-                                    'payload': 'starcafe'
+                                    'payload': 'Autre'
                                 }
                             ]
                         }
@@ -83,7 +83,11 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                  case 'starcafe':
-                //convo.say("Grâce à notre partenariat avec le Star Café, on te livre tous les jours de 12h à 13h30 dans GEM pour 1€ 🍔 🍟");
+                  convo.say("Grâce à notre partenariat avec le Star Café, on te livre tous les jours de 12h à 13h30 dans GEM pour 1€ 🍔 🍟");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                case 'Autre':
                   convo.say("Je t'écoute 👀");
                   help(response, convo);
                   convo.next();
@@ -611,203 +615,14 @@ var bot = controller.spawn({});
       convo.next();
     }
 
-
-
-
-
-
-
-
-
-
     bot.startConversation(message, begin);
 });
-
-  // user said hello
-  controller.hears(['nfbdskjfhdsjkfhdskj'], 'message_received', function (bot, message) {
-
-    var recap = "";
-    bot.startConversation(message, function(err, convo) {
-        convo.say('Bonjour, bienvenue sur le bot timy');
-        convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': 'Que souhaitez vous faire ?',
-                            'subtitle': 'Mac donald, cigarette, ect',
-                            'buttons': [
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Passer commande',
-                                    'payload': 'commande'
-                                },
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Profiter de nos offres',
-                                    'payload': 'offres'
-                                },
-                                {
-                                    'type': 'web_url',
-                                    'title': 'En savoir plus',
-                                    'url': 'www.timy-app.fr'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-
-        }, function(response, convo) {
-          console.log("--------------------------------réponse " + response.text);
-            switch(response.text) {
-                case 'commande':
-                  convo.next();
-                    break;
-                case 'offres':
-                  convo.next();
-                    break;
-                default:
-                  bot.reply(message,          {quick_replies: [{
-                content_type:"text",
-                title:"Red",
-                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
-                image_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/300px-Button_Icon_Red.svg.png"
-            },            
-            {
-                content_type:"text",
-                title:"Blue",
-                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_BLUE",
-                image_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
-            }]});
-                  convo.repeat();
-                  convo.next();
-            }
-        });
-
-      convo.say('Nos taskers sont disponibles de 16h à 23h');
-
-      convo.ask({
-        "message":{
-          text: 'How old are you?',
-          quick_replies: [{
-            content_type: 'text',
-            title: 'Child',
-            payload: '< 13',
-          }, {
-            content_type: 'text',
-            title: 'Teenager',
-            payload: '13 - 19',
-          }, {
-            content_type: 'text',
-            title: 'Adult',
-            payload: '> 19',
-          }],
-        }}, function(response, convo) {
-          convo.next();
-        });
-
-      convo.ask('votre commande?', function(response, convo){
-        switch(response.text) {
-                case 'White T-Shirt':
-                  convo.next();
-                    break;
-                default:
-                recap += response.text+"\n";
-                  //bot.reply(message,'vous avez commandé ' + response.text);
-                  convo.next();
-            }
-      });
-
-
-      convo.ask('ou ?', function(response, convo){
-        switch(response.text) {
-                case 'White T-Shirt':
-                  convo.next();
-                    break;
-                default:
-                  recap += "lieu : " +response.text+"\n";
-                  //bot.reply(message,'vous avez commandé ' + response.text);
-                  convo.next();
-            }
-      });
-
-      convo.ask('quand ?', function(response, convo){
-        switch(response.text) {
-                case 'White T-Shirt':
-                  convo.next();
-                    break;
-                default:
-                  recap += "date : " +response.text+ "\n";
-                  bot.reply(message,'votre commande : ' + recap);
-                  convo.next();
-            }
-      });
-
-      convo.ask({
-            attachment: {
-                'type': 'template',
-                'payload': {
-                    'template_type': 'generic',
-                    'elements': [
-                        {
-                            'title': "C'est bien ça ?",
-                            'buttons': [
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Oui',
-                                    'payload': 'oui'
-                                },
-                                                                {
-                                    'type': 'postback',
-                                    'title': 'Non',
-                                    'payload': 'non'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-
-        }, function(response, convo){
-        switch(response.text) {
-                case 'oui':
-                user = message.user;
-                  botslack.say(
-                    {
-                      text: recap,
-                      channel: 'G3ZTJCDA4',
-                       // a valid slack channel, group, mpim, or im ID
-                    }
-                  );
-                  convo.next();
-                    break;
-
-                    case 'non':
-                  
-                  convo.next();
-                    break;
-
-                default:
-                  bot.reply(message,'vous aviez commandé ' + response.text);
-                  convo.next();
-            }
-      });
-      
-    });
-  })
-
-
-
-
 
 // user click on button
 
 controller.on('facebook_postback', function(bot, message) {
-    // console.log(bot, message);
-   // bot.reply(message, 'Great Choice!!!! (' + message.payload + ')');
+  // console.log(bot, message);
+  // bot.reply(message, 'Great Choice!!!! (' + message.payload + ')');
 
 })
 
@@ -846,10 +661,6 @@ controller.on('facebook_postback', function(bot, message) {
           text: "Quelqu'un demande de l'aide sur le bot :) (et rama pense à toi <3 )",
           channel: '1616938198321584' // a valid facebook user id or phone number
       })
-  })
-
-  controller.hears('Merci', 'message_received', function (bot, message) {
-    //bot.reply(message, 'De rien ;)')
   })
 
   // user says anything else
