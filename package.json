@@ -14,6 +14,7 @@
     "dotenv": "^2.0.0",
     "ejs": "^2.4.2",
     "express": "^4.13.4",
+    "fbgraph": "^1.4.1",
     "generate-function": "^2.0.0",
     "generate-object-property": "^1.2.0",
     "jsonpointer": "^4.0.0",
