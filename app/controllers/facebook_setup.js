@@ -75,7 +75,7 @@ module.exports = function (controller) {
   var form3 = {
     'setting_type': 'greeting',
     'greeting': {
-      'text': "Hello, moi c'est Timy ! Je livre tout Grenoble en moins d'une heure et à partir de 2,50€. Mcdo, cigarettes, bières, colis .. En bref, si t'as pas envie, appelle Timy"
+      'text': "Hello, moi c'est Timy ! Je livre tout Grenoble en moins d'une heure et à partir de 5,00€. Mcdo, cigarettes, bières, colis .. En bref, si t'as pas envie, appelle Timy"
     }
   }
 
