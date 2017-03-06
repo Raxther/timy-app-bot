@@ -126,7 +126,7 @@ var create_user_if_new = function (id, ts) {
         date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
         controller.storage.users.save({id: id, name : nom, created_at: date})// { id: '4', name: 'Mark Zuckerberg'... }
       });
-      controller.storage.users.save({id: id, created_at: ts})
+      //controller.storage.users.save({id: id, created_at: ts})
     }
 
 
