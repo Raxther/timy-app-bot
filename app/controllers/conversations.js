@@ -609,16 +609,17 @@ var bot = controller.spawn({});
     };
 
     var help = function(response, convo) {
-      var nom = "";
       graph.get(message.user, function(errr, res) {
-        nom = res.first_name + " "+res.last_name; // { id: '4', name: 'Mark Zuckerberg'... }
+        nom = res.first_name + " "+res.last_name; 
+
+        bot.say(
+        {
+            text: nom+ " demande de l'aide sur le bot :) (et Rama pense à toi <3 )",
+            channel: '1616938198321584' // a valid facebook user id or phone number
+        })
+      // { id: '4', name: 'Mark Zuckerberg'... }
       });
-      console.log(nom);
-      bot.say(
-      {
-          text: nom+ " demande de l'aide sur le bot :) (et Rama pense à toi <3 )",
-          channel: '1616938198321584' // a valid facebook user id or phone number
-      })
+
       convo.next();
     }
 
