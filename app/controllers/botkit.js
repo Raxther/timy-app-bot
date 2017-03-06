@@ -3,7 +3,7 @@
 // CONFIG===============================================
 /* Uses the slack button feature to offer a real time bot to multiple teams */
 var Botkit = require('botkit')
-var Request = require('request')
+var graph = require('fbgraph');
 var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/botkit-demo'
 var db = require('../../config/db')({mongoUri: mongoUri})
 
@@ -23,6 +23,9 @@ var controllerslack = Botkit.slackbot({
 
 // SETUP
 require('./facebook_setup')(controller)
+var fb_token = "EAAKN23HlGKYBACnXUQUUATD5i5pzvJRuvxcWUzoQub9IiA7JeYV3HYEKptjd6aRrw3N4t7AtdBhXDmZB7aCjNs2YoDtrhYCkZBt7X7KjrwYitSxX6TCY35nMyWZBezUOAhThdLEmcBIx304ZCgGVcsIoXGQBZCCJZCu5vrFm25dwZDZD"
+graph.setAccessToken(fb_token);
+
 
 // Conversation logic
 require('./conversations')(controller, controllerslack)

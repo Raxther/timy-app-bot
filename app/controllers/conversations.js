@@ -49,8 +49,8 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Starcafe',
-                                    'payload': 'starcafe'
+                                    'title': 'Concours Crossover',
+                                    'payload': 'crossover'
                                 },
                                                                 {
                                     'type': 'postback',
