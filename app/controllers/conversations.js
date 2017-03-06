@@ -609,7 +609,7 @@ var bot = controller.spawn({});
     };
 
     var help = function(response, convo) {
-
+      var nom = "";
       graph.get(message.user, function(errr, res) {
         nom = res.first_name + " "+res.last_name; // { id: '4', name: 'Mark Zuckerberg'... }
       });
