@@ -4,7 +4,10 @@
 module.exports = function (controller, controllerslack) {
   // this is triggered when a user clicks the send-to-messenger plugin
 
-var Request = require('request')
+var Request = require('request');
+var graph = require('fbgraph');
+var fb_token = "EAAKN23HlGKYBACnXUQUUATD5i5pzvJRuvxcWUzoQub9IiA7JeYV3HYEKptjd6aRrw3N4t7AtdBhXDmZB7aCjNs2YoDtrhYCkZBt7X7KjrwYitSxX6TCY35nMyWZBezUOAhThdLEmcBIx304ZCgGVcsIoXGQBZCCJZCu5vrFm25dwZDZD"
+graph.setAccessToken(fb_token);
   
 var botslack = controllerslack.spawn({
     token: "xoxb-141241591894-P74g6ZUIwgSZyLT2xqY8hL5l"
@@ -607,9 +610,13 @@ var bot = controller.spawn({});
 
     var help = function(response, convo) {
 
+      graph.get(message.user, function(errr, res) {
+        nom = res.first_name + " "+res.last_name; // { id: '4', name: 'Mark Zuckerberg'... }
+      });
+      console.log(nom);
       bot.say(
       {
-          text:"Quelqu'un demande de l'aide sur le bot :) (et Rama pense à toi <3 )",
+          text: nom+ " demande de l'aide sur le bot :) (et Rama pense à toi <3 )",
           channel: '1616938198321584' // a valid facebook user id or phone number
       })
       convo.next();
