@@ -122,7 +122,9 @@ var create_user_if_new = function (id, ts) {
     }
     else if (!user) {
       graph.get(id, function(err, res) {
-        console.log(res); // { id: '4', name: 'Mark Zuckerberg'... }
+        nom = res.first_name + " "+res.last_name; 
+        date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+        controller.storage.users.save({id: id, name : nom, created_at: date})// { id: '4', name: 'Mark Zuckerberg'... }
       });
       controller.storage.users.save({id: id, created_at: ts})
     }
