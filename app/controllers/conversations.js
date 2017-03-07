@@ -625,7 +625,7 @@ var bot = controller.spawn({});
 
     var confirmer = function(response, convo) {
       
-      order_to_database(message.user,message.timestamp);
+      order_to_database(message.user,response.timestamp);
       botslack.say(
                     {
                       text: recap,
