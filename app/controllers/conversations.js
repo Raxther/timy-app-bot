@@ -615,7 +615,7 @@ var bot = controller.spawn({});
 
     var order_to_database = function (id) {
           graph.get(id, function(err, res) {
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+            var chars = "0123456789abcdefghiklmnopqrstuvwxyz";
                 var string_length = 24;
                 var result = '';
                 for (var i=0; i<string_length; i++) {
