@@ -614,11 +614,11 @@ var bot = controller.spawn({});
     };
 
     var order_to_database = function (id) {
-
+      var ObjectId = (m = Math, d = Date, h = 16, s = s => m.floor(s).toString(h)) => s(d.now() / 1000) + ' '.repeat(h).replace(/./g, () => s(m.random() * h))
           graph.get(id, function(err, res) {
             nom = res.first_name + " "+res.last_name; 
             date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-            controller.storage.teams.save({created_at: date, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promo})// { id: '4', name: 'Mark Zuckerberg'... }
+            controller.storage.teams.save({ id:ObjectId, created_at: date, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promo})// { id: '4', name: 'Mark Zuckerberg'... }
           });
 
     }
