@@ -528,9 +528,15 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
+                  tel = response.text;
+                  if(tel.match(/^(\+33|0033|0)(6|7)[0-9]{8}$/g)){
+                      phone = "Téléphone : " +response.text;
+                      recapitulatif(response, convo);
+                  }else{
+                      convo.say("Je n'ai pas compris");
+                      telephone(response, convo);
+                  }
 
-         phone = "Téléphone : " +response.text;
-        recapitulatif(response, convo);
         convo.next();
         }
       });
@@ -610,7 +616,7 @@ var bot = controller.spawn({});
 
     var help = function(response, convo) {
       graph.get(message.user, function(errr, res) {
-        nom = res.first_name + " "+res.last_name; 
+         nom = res.first_name + " "+res.last_name; 
 
         bot.say(
         {
