@@ -613,19 +613,19 @@ var bot = controller.spawn({});
       });
     };
 
-    var order_to_database = function (id,ts) {
+    var order_to_database = function (id) {
 
           graph.get(id, function(err, res) {
             nom = res.first_name + " "+res.last_name; 
             date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-            controller.storage.teams.save({_id: ts, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promo})// { id: '4', name: 'Mark Zuckerberg'... }
+            controller.storage.teams.save({created_at: date, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promo})// { id: '4', name: 'Mark Zuckerberg'... }
           });
 
     }
 
     var confirmer = function(response, convo) {
       
-      order_to_database(message.user,response.timestamp);
+      order_to_database(message.user);
       botslack.say(
                     {
                       text: recap,
