@@ -129,7 +129,7 @@ var create_user_if_new = function (id, ts) {
       //controller.storage.users.save({id: id, created_at: ts})
     }
 
-
+  controller.storage.users.update({id: id}, {$set: { some_key : new_info  }})
   })
 }
 

@@ -57,7 +57,7 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Question',
+                                    'title': 'Questions',
                                     'payload': 'Autre'
                                 }
                             ]
@@ -534,7 +534,7 @@ var bot = controller.spawn({});
                     break;
                 default:
                   tel = response.text;
-                  if(tel.match(/^(\+33|0033|0)(6|7)[0-9]{8}$/g)){
+                  if(tel.match(/^(\+33|0033|0)(4|6|7)[0-9]{8}$/g)){
                       phone = "Téléphone : " +response.text;
                       recapitulatif(response, convo);
                   }else{
