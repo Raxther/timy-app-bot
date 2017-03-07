@@ -52,12 +52,12 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Concours Crossover',
-                                    'payload': 'crossover'
+                                    'title': 'Réserver un service',
+                                    'payload': 'service'
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Autre',
+                                    'title': 'Question',
                                     'payload': 'Autre'
                                 }
                             ]
@@ -92,6 +92,11 @@ var bot = controller.spawn({});
                     break;
                 case 'Autre':
                   convo.say("Je t'écoute 👀");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                case 'service':
+                  convo.say("Quel service souhaites-tu reserver ?");
                   help(response, convo);
                   convo.next();
                     break;
