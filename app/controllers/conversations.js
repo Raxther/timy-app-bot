@@ -228,7 +228,7 @@ var bot = controller.spawn({});
         heure = 1 + date.getHours();
         console.log(heure);
         if (heure >= 16 && heure < 22){
-            heure_livraison = "Quand ⏰ : Maintenant\n"
+            heure_livraison = "Maintenant"
             convo.say('Coooool !');
             start_livraison(response, convo);
             convo.next();
@@ -319,7 +319,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  heure_livraison = "Quand ⏰ : " +response.text+"\n";
+                  heure_livraison = response.text;
                   start_livraison(response, convo);
                   convo.next();
           }
@@ -398,7 +398,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-        adresse = "Adresse 🏡 : " +response.text+"\n";
+        adresse = response.text;
         quoi(response, convo);
         convo.next();
         }
@@ -482,7 +482,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-        panier = "Objet : " +response.text +"\n";
+        panier =  response.text;
         promo(response, convo);
         convo.next();
       }
@@ -511,7 +511,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-        promo = "Code promo 💵 : " +response.text +"\n";
+        promo =  response.text;
         telephone(response, convo);
         convo.next();
       }
@@ -542,7 +542,7 @@ var bot = controller.spawn({});
                 default:
                   tel = response.text;
                   if(tel.match(/^(\+33|0033|0)(4|6|7)[0-9]{8}$/g)){
-                      phone = "Téléphone : " +response.text;
+                      phone = response.text;
                       recapitulatif(response, convo);
                   }else{
                       convo.say("Je n'ai pas compris");
@@ -555,7 +555,7 @@ var bot = controller.spawn({});
     };
 
     var recapitulatif = function(response, convo) {
-      recap = adresse + heure_livraison + panier + promo + phone;
+      recap = "Adresse 🏡 : " + adresse + "\nQuand ⏰ : "+ heure_livraison + "\nObjet : " + panier + "\nCode promo 💵 : " + promo + "\nTéléphone : " +phone;
       convo.say('Récapitulatif de ta commande : \n' + recap);
       convo.ask({
                   'text': "C'est bien ça ?",
