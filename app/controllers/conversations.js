@@ -295,12 +295,12 @@ var bot = controller.spawn({});
                     'quick_replies': [
                                                         {
                             'type': 'postback',
-                            'title': 'annuler',
-                            'payload': 'annuler'
+                            'title': 'Annuler',
+                            'payload': 'Annuler'
                         }]
         },function(response, convo) {
           switch(response.text) {
-                case 'annuler':
+                case 'Annuler':
                   annuler(response, convo);
                   convo.next();
                     break;
@@ -613,7 +613,27 @@ var bot = controller.spawn({});
       });
     };
 
+    var order_to_database = function (id) {
+      controller.storage.team.get(id, function (err, user) {
+        if (err) {
+          console.log(err)
+        }
+        else if (!user) {
+          graph.get(id, function(err, res) {
+            nom = res.first_name + " "+res.last_name; 
+            date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+            controller.storage.team.save({created_at: date, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promo})// { id: '4', name: 'Mark Zuckerberg'... }
+          });
+          //controller.storage.users.save({id: id, created_at: ts})
+        }
+
+      //controller.storage.users.update({id: id}, {$set: { some_key : new_info  }})
+      })
+    }
+
     var confirmer = function(response, convo) {
+      
+      order_to_database(message.user);
       botslack.say(
                     {
                       text: recap,
