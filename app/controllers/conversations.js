@@ -290,8 +290,15 @@ var bot = controller.spawn({});
 
     //plus tard (à finir)
     var later = function(response, convo) {
-      convo.ask("Quand souhaites tu être livré ? Nous sommes ouvert du Lundi au Samedi de 16h à 22h et le Dimanche de 10h à 14h. 📅", 
-        function(response, convo) {
+      convo.ask({
+                    'text':"Quand souhaites tu être livré ? Nous sommes ouvert du Lundi au Samedi de 16h à 22h et le Dimanche de 10h à 14h. 📅", 
+                    'quick_replies': [
+                                                        {
+                            'type': 'postback',
+                            'title': 'annuler',
+                            'payload': 'annuler'
+                        }]
+        },function(response, convo) {
           switch(response.text) {
                 case 'annuler':
                   annuler(response, convo);
