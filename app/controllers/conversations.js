@@ -629,7 +629,6 @@ var bot = controller.spawn({});
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
-                  convo.next();
       convo.say("Votre commande a été envoyé à nos taskers :)");     
       convo.next();
     };
@@ -760,11 +759,11 @@ var bot = controller.spawn({});
         }, function(response, convo) {
               switch(response.text) {
                 case '9h':
-                  telephone_laverie(response, convo , day , "9h");
+                  telephone_laverie(response, convo , day , '9h');
                   convo.next();
                     break;
                 case '9h30':
-                  telephone_laverie(response, convo , day, "9h30");
+                  telephone_laverie(response, convo , day, '9h30');
                   convo.next();
                     break;
                 case 'cancel':
@@ -828,7 +827,7 @@ var bot = controller.spawn({});
 
     var recap_laverie = function(response, convo, day, heure) {
       
-      convo.say('Récapitulatif de ta commande : Laverie à ' +heure+ ' le '+day+"\n Telephone :"+phone);
+      convo.say('Récapitulatif de ta commande : Laverie à ' +heure+ ' le '+day+"\nTéléphone :"+phone);
       convo.ask({
                   'text': "C'est bien ça ?",
                   'quick_replies': [
