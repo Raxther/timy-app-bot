@@ -684,10 +684,10 @@ var bot = controller.spawn({});
     };    
 
     var laverie = function(response, convo) {
-      convo.say("Je t'écoute 👀");
-      convo.say("Je t'écoute 👀");
+      convo.say("Tarifs *(comprenant, le coût de la machine, le sèche linge, les produits et le prix du service Timy) \n10€ = 1 sac 🎒 \n15€ =  2 sacs 🎒🎒 \n20€ = 3 sacs 🎒🎒🎒\n*1 sac : l’équivalent un sac de course de 3 à 5 kilos ");
+      convo.say("Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration. ");
       convo.ask({
-                  'text': "Quand ?",
+                  'text': "Nous proposons le service de laverie tous les mercredi sur le campus & tous les jeudis en centre ville. Quel jours souhaites tu réserver ? 📅",
                   'quick_replies': [
                                                       {
                           'type': 'postback',
@@ -704,12 +704,12 @@ var bot = controller.spawn({});
         }, function(response, convo) {
               switch(response.text) {
                 case 'Mercredi':
-                  convo.say("Mercredi devant l'IAE à 13h ?");
+                  //convo.say("Mercredi devant l'IAE à 13h ?");
                   j_laverie(response, convo, 1);
                   convo.next();
                     break;
                 case 'Jeudi':
-                  convo.say("Jeudi devant GEM à 13h ?");
+                  //convo.say("Jeudi devant GEM à 13h ?");
                   j_laverie(response, convo, 2);
                   convo.next();
                     break;
@@ -736,29 +736,34 @@ var bot = controller.spawn({});
     };
 
     var j_laverie = function(response, convo, day) {
-      
-      convo.ask({
-                  'text': "C'est bien ça ?",
+      if(day==1){
+                texte = "Option 1) Dépose à 9h arrêt Bibliothèque Université (B et C) et récupération à 13h\nOption 2) Dépose à 9h30 les Taillés Université et récupération à 13h30"
+          }else{
+                texte = "Option 1) Dépose à 9h arrêt Saint Bruno ( A et B ) et récupération à 13h\nOption 2) Dépose à 9h30 arrêt Victor Hugo ( A et B ) et récupération à 13h30"
+          }
+      convo.ask(
+      {
+                  'text': texte,
                   'quick_replies': [
                                         {
                           'type': 'postback',
-                          'title': 'Confirmer',
-                          'payload': 'confirmer'
+                          'title': '9h',
+                          'payload': '9h'
                       },
                                                       {
                           'type': 'postback',
-                          'title': 'Annuler',
-                          'payload': 'annuler'
+                          'title': '9h30',
+                          'payload': '9h30'
                       }
                   ]
 
         }, function(response, convo) {
               switch(response.text) {
-                case 'Annuler':
-                  annuler(response, convo);
+                case '9h':
+                  confirmer_laverie(response, convo , day);
                   convo.next();
                     break;
-                case 'Confirmer':
+                case '9h30':
                   confirmer_laverie(response, convo , day);
                   convo.next();
                     break;
@@ -791,7 +796,7 @@ var bot = controller.spawn({});
                   botslack.say(
                     {
                       text: "une laverie a été reservé par "+ nom +" le Mercredi",
-                      channel: 'G3ZTJCDA4',
+                      channel: 'G4EMNT8U9',
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
@@ -800,7 +805,7 @@ var bot = controller.spawn({});
                   botslack.say(
                     {
                       text: "une laverie a été reservé par "+ nom +" le Jeudi",
-                      channel: 'G3ZTJCDA4',
+                      channel: 'G4EMNT8U9',
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );                
