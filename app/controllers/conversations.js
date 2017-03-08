@@ -97,7 +97,7 @@ var bot = controller.spawn({});
                     break;
                 case 'service':
                   convo.say("Quel service souhaites-tu reserver ?");
-                  help(response, convo);
+                  ask_service(response, convo);
                   convo.next();
                     break;
                 case 'humain':
