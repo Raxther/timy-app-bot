@@ -96,7 +96,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'service':
-                  convo.say("Quel service souhaites-tu reserver ?");
+                  //convo.say("Quel service souhaites-tu reserver ?");
                   ask_service(response, convo);
                   convo.next();
                     break;
@@ -115,7 +115,7 @@ var bot = controller.spawn({});
 
     //retour au menu
     var annuler = function(response, convo) {
-        convo.say("Ok! tant pis :(\nPeux tu nous dire pourquoi ? cela nous aiderai à nous améliorer");
+        convo.say("Ok! tant pis :(\nPeux tu nous dire pourquoi ? Cela nous aiderai à nous améliorer");
         convo.next();
     };
 
@@ -687,7 +687,7 @@ var bot = controller.spawn({});
       convo.say("Je t'écoute 👀");
       convo.say("Je t'écoute 👀");
       convo.ask({
-                  'text': "Quel service souhaites-tu ?",
+                  'text': "Quand ?",
                   'quick_replies': [
                                                       {
                           'type': 'postback',
