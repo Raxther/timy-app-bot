@@ -640,8 +640,8 @@ var bot = controller.spawn({});
                   'quick_replies': [
                                                       {
                           'type': 'postback',
-                          'title': 'Laverie',
-                          'payload': 'Laverie'
+                          'title': 'Laverie 👕',
+                          'payload': 'Laverie 👕'
                       },
                                                       {
                           'type': 'postback',
@@ -652,7 +652,7 @@ var bot = controller.spawn({});
               
         }, function(response, convo) {
               switch(response.text) {
-                case 'Laverie':
+                case 'Laverie 👕':
                   laverie(response, convo);
                   convo.next();
                     break;
@@ -684,10 +684,10 @@ var bot = controller.spawn({});
     };    
 
     var laverie = function(response, convo) {
-      convo.say("Tarifs *(comprenant, le coût de la machine, le sèche linge, les produits et le prix du service Timy) \n10€ = 1 sac 🎒 \n15€ =  2 sacs 🎒🎒 \n20€ = 3 sacs 🎒🎒🎒\n*1 sac : l’équivalent un sac de course de 3 à 5 kilos ");
-      convo.say("Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration. ");
+      convo.say("Tarifs : \n10€ = 1 sac 🎒 \n15€ =  2 sacs 🎒🎒 \n20€ = 3 sacs 🎒🎒🎒\n*1 sac : l’équivalent un sac de course de 3 à 5 kilos ");
+      //convo.say("Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration. ");
       convo.ask({
-                  'text': "Nous proposons le service de laverie tous les mercredi sur le campus & tous les jeudis en centre ville. Quel jours souhaites tu réserver ? 📅",
+                  'text': "La laverie, c’est tous les mercredis sur le campus & tous les jeudis en centre ville. Quel jour souhaites-tu réserver ? 📅",
                   'quick_replies': [
                                                       {
                           'type': 'postback',
@@ -705,12 +705,12 @@ var bot = controller.spawn({});
               switch(response.text) {
                 case 'Mercredi':
                   //convo.say("Mercredi devant l'IAE à 13h ?");
-                  j_laverie(response, convo, 1);
+                  j_laverie(response, convo, 'Mercredi');
                   convo.next();
                     break;
                 case 'Jeudi':
                   //convo.say("Jeudi devant GEM à 13h ?");
-                  j_laverie(response, convo, 2);
+                  j_laverie(response, convo, 'Jeudi');
                   convo.next();
                     break;
                 case 'cancel':
@@ -736,10 +736,10 @@ var bot = controller.spawn({});
     };
 
     var j_laverie = function(response, convo, day) {
-      if(day==1){
-                texte = "Option 1) Dépose à 9h arrêt Bibliothèque Université (B et C) et récupération à 13h\nOption 2) Dépose à 9h30 les Taillés Université et récupération à 13h30"
+      if(day=='Mercredi'){
+                texte = "☐ Dépose à 9h arrêt Bibliothèque Université (B et C) et récupération à 13h\n☐ Dépose à 9h30 les Taillés Université et récupération à 13h30"
           }else{
-                texte = "Option 1) Dépose à 9h arrêt Saint Bruno ( A et B ) et récupération à 13h\nOption 2) Dépose à 9h30 arrêt Victor Hugo ( A et B ) et récupération à 13h30"
+                texte = "☐ Dépose à 9h arrêt Saint Bruno ( A et B ) et récupération à 13h\n☐ Dépose à 9h30 arrêt Victor Hugo ( A et B ) et récupération à 13h30"
           }
       convo.ask(
       {
@@ -760,11 +760,11 @@ var bot = controller.spawn({});
         }, function(response, convo) {
               switch(response.text) {
                 case '9h':
-                  confirmer_laverie(response, convo , day);
+                  telephone_laverie(response, convo , day , "9h");
                   convo.next();
                     break;
                 case '9h30':
-                  confirmer_laverie(response, convo , day);
+                  telephone_laverie(response, convo , day, "9h30");
                   convo.next();
                     break;
                 case 'cancel':
@@ -789,35 +789,113 @@ var bot = controller.spawn({});
       });
     };
 
-  var confirmer_laverie = function(response, convo, day) {
+  var telephone_laverie = function(response, convo, day, heure) {
+      convo.ask("Peux tu me donner ton numero de téléphone ?", function(response, convo) {
+        switch(response.text) {
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("Redemarrage en cours..");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  tel = response.text;
+                  if(tel.match(/^(\+33|0033|0)(4|6|7)[0-9]{8}$/g)){
+                      phone = response.text;
+                      recap_laverie(response, convo, day, heure);
+                  }else{
+                      convo.say("Je n'ai pas compris");
+                      telephone_laverie(response, convo);
+                  }
+
+        convo.next();
+        }
+      });
+
+    };
+
+    var recap_laverie = function(response, convo, day, heure) {
+      
+      convo.say('Récapitulatif de ta commande : Laverie à' +heure+ 'le '+day);
+      convo.ask({
+                  'text': "C'est bien ça ?",
+                  'quick_replies': [
+                                        {
+                          'type': 'postback',
+                          'title': 'Confirmer',
+                          'payload': 'confirmer'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'Annuler',
+                          'payload': 'annuler'
+                      }
+                  ]
+
+        }, function(response, convo) {
+              switch(response.text) {
+                case 'Annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'Confirmer':
+                  confirmer_laverie(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("Redemarrage en cours..");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("Je n'ai pas compris.. 🤔");
+                  recap_laverie(response, convo);
+                  convo.next();
+            }
+      });
+    };
+
+  var confirmer_laverie = function(response, convo, day, heure) {
+
       graph.get(message.user, function(errr, res) {
          nom = res.first_name + " "+res.last_name; 
-               if (day ==1){
                   botslack.say(
                     {
-                      text: "une laverie a été reservé par "+ nom +" le Mercredi",
+                      text: "une laverie a été reservé par "+ nom +" le " +day+" à "+heure+"\n Telephone :"+phone,
                       channel: 'G4EMNT8U9',
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
 
-               }else{
-                  botslack.say(
-                    {
-                      text: "une laverie a été reservé par "+ nom +" le Jeudi",
-                      channel: 'G4EMNT8U9',
-                       // a valid slack channel, group, mpim, or im ID
-                    }
-                  );                
-               }
-
-       
       });
       
+      convo.say("Votre laverie a été envoyé à nos taskers :)"); 
+      convo.say("Infos complémentaires: Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration. Les tarifs comprennent le coût de la machine, le sèche linge, les produits et le prix du service Timy");    
       convo.next();
-      convo.say("Votre commande a été envoyé à nos taskers :)");     
-      convo.next();
-    };
+
+  }
+
 
 
 
