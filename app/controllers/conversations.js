@@ -115,7 +115,7 @@ var bot = controller.spawn({});
 
     //retour au menu
     var annuler = function(response, convo) {
-        convo.say("Ok! tant pis :(");
+        convo.say("Ok! tant pis :(\nPeux tu nous dire pourquoi ? cela nous aiderai à nous améliorer");
         convo.next();
     };
 
@@ -247,11 +247,7 @@ var bot = controller.spawn({});
                                     'title': 'Continuer',
                                     'payload': 'start_livraison'
                                 }
-                            ]
-                        
-                    
-                
-            
+                            ]     
 
         }, function(response, convo) {
           switch(response.text) {
@@ -637,6 +633,188 @@ var bot = controller.spawn({});
       convo.say("Votre commande a été envoyé à nos taskers :)");     
       convo.next();
     };
+
+    var ask_service = function(response, convo) {
+      convo.ask({
+                  'text': "Quel service souhaites-tu ?",
+                  'quick_replies': [
+                                                      {
+                          'type': 'postback',
+                          'title': 'Laverie',
+                          'payload': 'Laverie'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'Autre',
+                          'payload': 'Autre'
+                      }
+                  ]
+              
+        }, function(response, convo) {
+              switch(response.text) {
+                case 'Laverie':
+                  laverie(response, convo);
+                  convo.next();
+                    break;
+                case 'Autre':
+                  convo.say("Je t'écoute 👀");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("Redemarrage en cours..");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("Je n'ai pas compris.. 🤔");
+                  ask_service(response, convo);
+                  convo.next();
+            }
+      });
+    };    
+
+    var laverie = function(response, convo) {
+      convo.say("Je t'écoute 👀");
+      convo.say("Je t'écoute 👀");
+      convo.ask({
+                  'text': "Quel service souhaites-tu ?",
+                  'quick_replies': [
+                                                      {
+                          'type': 'postback',
+                          'title': 'Mercredi',
+                          'payload': 'Mercredi'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'Jeudi',
+                          'payload': 'Jeudi'
+                      }
+                  ]
+              
+        }, function(response, convo) {
+              switch(response.text) {
+                case 'Mercredi':
+                  convo.say("Mercredi devant l'IAE à 13h ?");
+                  j_laverie(response, convo, 1);
+                  convo.next();
+                    break;
+                case 'Jeudi':
+                  convo.say("Jeudi devant GEM à 13h ?");
+                  j_laverie(response, convo, 2);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("Redemarrage en cours..");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("Je n'ai pas compris.. 🤔");
+                  laverie(response, convo);
+                  convo.next();
+            }
+      });
+    };
+
+    var j_laverie = function(response, convo, day) {
+      
+      convo.ask({
+                  'text': "C'est bien ça ?",
+                  'quick_replies': [
+                                        {
+                          'type': 'postback',
+                          'title': 'Confirmer',
+                          'payload': 'confirmer'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'Annuler',
+                          'payload': 'annuler'
+                      }
+                  ]
+
+        }, function(response, convo) {
+              switch(response.text) {
+                case 'Annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'Confirmer':
+                  confirmer_laverie(response, convo , day);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("Redemarrage en cours..");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("Je n'ai pas compris.. 🤔");
+                  recapitulatif(response, convo);
+                  convo.next();
+            }
+      });
+    };
+
+  var confirmer_laverie = function(response, convo, day) {
+      graph.get(message.user, function(errr, res) {
+         nom = res.first_name + " "+res.last_name; 
+               if (day ==1){
+                  botslack.say(
+                    {
+                      text: "une laverie a été reservé par "+ nom +" le Mercredi",
+                      channel: 'G3ZTJCDA4',
+                       // a valid slack channel, group, mpim, or im ID
+                    }
+                  );
+
+               }else{
+                  botslack.say(
+                    {
+                      text: "une laverie a été reservé par "+ nom +" le Jeudi",
+                      channel: 'G3ZTJCDA4',
+                       // a valid slack channel, group, mpim, or im ID
+                    }
+                  );                
+               }
+
+       
+      });
+      
+      convo.next();
+      convo.say("Votre commande a été envoyé à nos taskers :)");     
+      convo.next();
+    };
+
+
 
     var help = function(response, convo) {
       graph.get(message.user, function(errr, res) {
