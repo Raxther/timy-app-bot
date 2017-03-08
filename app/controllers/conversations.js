@@ -828,7 +828,7 @@ var bot = controller.spawn({});
 
     var recap_laverie = function(response, convo, day, heure) {
       
-      convo.say('Récapitulatif de ta commande : Laverie à' +heure+ 'le '+day);
+      convo.say('Récapitulatif de ta commande : Laverie à ' +heure+ ' le '+day+"\n Telephone :"+phone);
       convo.ask({
                   'text': "C'est bien ça ?",
                   'quick_replies': [
@@ -851,7 +851,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'Confirmer':
-                  confirmer_laverie(response, convo);
+                  confirmer_laverie(response, convo, day , heure);
                   convo.next();
                     break;
                 case 'cancel':
