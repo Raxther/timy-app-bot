@@ -916,7 +916,7 @@ var bot = controller.spawn({});
             switch(day) {
                 case 'Mercredi':
                 resa = moment().day(10).format('dddd Do MMMM')
-                  if(heure='9h'){
+                  if(heure=='9h'){
                       lieu = "Campus - Bibliothèque"
                   }else{
                       lieu = "Campus - Taillés"
@@ -924,7 +924,7 @@ var bot = controller.spawn({});
                     break;
                 case 'Jeudi':
                 resa = moment().day(11).format('dddd Do MMMM')
-                if(heure='9h'){
+                if(heure=='9h'){
                     lieu = "Centre ville - Saint Bruno"
                   }else{
                     lieu = "Centre ville - Victor Hugo"
@@ -932,7 +932,7 @@ var bot = controller.spawn({});
                   }
                    break;
             }
-            controller.storage.channels.save({id : fake_id, name : nom, created_at: date, lieu : lieu, when : resa +"à" +heure, tel:phone})// { id: '4', name: 'Mark Zuckerberg'... }
+            controller.storage.channels.save({id : fake_id, name : nom, created_at: date, lieu : lieu, when : resa +" à " +heure, tel:phone})// { id: '4', name: 'Mark Zuckerberg'... }
     }
 
 
