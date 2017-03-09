@@ -615,7 +615,7 @@ var bot = controller.spawn({});
             var fake_id = mongoose.Types.ObjectId();
             nom = res.first_name + " "+res.last_name; 
             date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-            controller.storage.teams.save({created_at: date, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promo})// { id: '4', name: 'Mark Zuckerberg'... }
+            controller.storage.teams.save({id : fake_id, created_at: date, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promo})// { id: '4', name: 'Mark Zuckerberg'... }
           });
 
     }
