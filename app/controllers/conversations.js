@@ -6,6 +6,7 @@ module.exports = function (controller, controllerslack) {
 
 var Request = require('request');
 var graph = require('fbgraph');
+var moment = require('moment');
 var fb_token = "EAAKN23HlGKYBACnXUQUUATD5i5pzvJRuvxcWUzoQub9IiA7JeYV3HYEKptjd6aRrw3N4t7AtdBhXDmZB7aCjNs2YoDtrhYCkZBt7X7KjrwYitSxX6TCY35nMyWZBezUOAhThdLEmcBIx304ZCgGVcsIoXGQBZCCJZCu5vrFm25dwZDZD"
 graph.setAccessToken(fb_token);
   
@@ -878,17 +879,25 @@ var bot = controller.spawn({});
     };
 
   var confirmer_laverie = function(response, convo, day, heure) {
+      console.log(moment().format('[The time is] h:mm:ss a'));
+      if(day =='mercredi'){
+        resa = moment().day(10).format('dddd Do MMMM');
+      }else{
+        resa = moment().day(10).format('dddd Do MMMM');
 
+      }
+      
       graph.get(message.user, function(err, res) {
          nom = res.first_name + " "+res.last_name; 
          laverie_to_database(nom, day, heure);
                   botslack.say(
                     {
-                      text: "une laverie a été reservé par "+ nom +" le " +day+" à "+heure+"\n Telephone :"+phone,
+                      text: "une laverie a été reservé par "+ nom +" le " +resa+" à "+heure+"\n Telephone :"+phone,
                       channel: 'G4EMNT8U9',
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
+
 
       });
       
@@ -903,8 +912,10 @@ var bot = controller.spawn({});
             var mongoose = require('mongoose');
             var fake_id = mongoose.Types.ObjectId();
             date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+
             switch(day) {
                 case 'Mercredi':
+                resa = moment().day(10).format('dddd Do MMMM')
                   if(heure='9h'){
                       lieu = "Campus - Bibliothèque"
                   }else{
@@ -912,6 +923,7 @@ var bot = controller.spawn({});
                   }
                     break;
                 case 'Jeudi':
+                resa = moment().day(11).format('dddd Do MMMM')
                 if(heure='9h'){
                     lieu = "Centre ville - Saint Bruno"
                   }else{
@@ -920,7 +932,7 @@ var bot = controller.spawn({});
                   }
                    break;
             }
-            controller.storage.channels.save({id : fake_id, name : nom, created_at: date, lieu : lieu, when : day +" - "+heure, tel:phone})// { id: '4', name: 'Mark Zuckerberg'... }
+            controller.storage.channels.save({id : fake_id, name : nom, created_at: date, lieu : lieu, when : resa +"à" +heure, tel:phone})// { id: '4', name: 'Mark Zuckerberg'... }
     }
 
 
