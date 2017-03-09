@@ -115,7 +115,7 @@ var bot = controller.spawn({});
 
     //retour au menu
     var annuler = function(response, convo) {
-        convo.say("Ok! tant pis :(\nPeux tu nous dire pourquoi ? Cela nous aiderai à nous améliorer");
+        convo.say("Ok! Dommage :(\nPeux tu nous dire pourquoi ? Cela nous aiderai à nous améliorer");
         convo.next();
     };
 
@@ -621,7 +621,7 @@ var bot = controller.spawn({});
 
     var confirmer = function(response, convo) {
       
-      //order_to_database(message.user);
+      order_to_database(message.user);
       botslack.say(
                     {
                       text: recap,
