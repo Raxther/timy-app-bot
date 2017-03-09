@@ -25,7 +25,7 @@ var bot = controller.spawn({});
   var user;
 
 //demarrage conversation
-  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt','reboot','hello'], 'message_received', function(bot,message) {
+  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt','reboot','hello','commander'], 'message_received', function(bot,message) {
     var recap = "";
     var adresse = "";
     var heure_livraison ="";
@@ -47,7 +47,7 @@ var bot = controller.spawn({});
                             'buttons': [
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Commander',
+                                    'title': 'Me faire livrer',
                                     'payload': 'commande'
                                 },
                                                                 {
@@ -92,6 +92,7 @@ var bot = controller.spawn({});
                     break;
                 case 'Autre':
                   convo.say("Je t'écoute 👀");
+                  convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
                   help(response, convo);
                   convo.next();
                     break;
@@ -684,7 +685,7 @@ var bot = controller.spawn({});
     };    
 
     var laverie = function(response, convo) {
-      convo.say("Tarifs : \n10€ = 1 sac 🎒 \n15€ =  2 sacs 🎒🎒 \n20€ = 3 sacs 🎒🎒🎒\n*1 sac : l’équivalent un sac de course de 3 à 5 kilos ");
+      convo.say("Tarifs : \n12€ = 1 sac 🎒 \n16€ =  2 sacs 🎒🎒 \n21€ = 3 sacs 🎒🎒🎒\n*1 sac : l’équivalent d'un sac de course de 3 à 5 kilos\n Les tarifs comprennent le coût de la machine, le sèche linge, les produits et le prix du service Timy");
       //convo.say("Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration. ");
       convo.ask({
                   'text': "La laverie, c’est tous les mercredis sur le campus & tous les jeudis en centre ville. Quel jour souhaites-tu réserver ? 📅",
@@ -880,6 +881,7 @@ var bot = controller.spawn({});
 
       graph.get(message.user, function(errr, res) {
          nom = res.first_name + " "+res.last_name; 
+         laverie_to_database(nom, day, heure);
                   botslack.say(
                     {
                       text: "une laverie a été reservé par "+ nom +" le " +day+" à "+heure+"\n Telephone :"+phone,
@@ -891,10 +893,37 @@ var bot = controller.spawn({});
       });
       
       convo.say("Votre laverie a été envoyé à nos taskers :)"); 
-      convo.say("Infos complémentaires: Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration. Les tarifs comprennent le coût de la machine, le sèche linge, les produits et le prix du service Timy");    
+      convo.say("Infos complémentaires: Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration.");    
       convo.next();
 
   }
+
+
+      var laverie_to_database = function (nom, day, heure) {
+            var mongoose = require('mongoose');
+            var fake_id = mongoose.Types.ObjectId();
+            nom = res.first_name + " "+res.last_name; 
+            date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+            switch(day) {
+                case 'Mercredi':
+                  if(heure='9h'){
+                      lieu = "Campus - Bibliothèque"
+                  }else{
+                      lieu = "Campus - Taillés"
+                  }
+                    break;
+                case 'Jeudi':
+                if(heure='9h'){
+                    lieu = "Centre ville - Saint Bruno"
+                  }else{
+                    lieu = "Centre ville - Victor Hugo"
+
+                  }
+                   break;
+            }
+            controller.storage.channels.save({id : fake_id, name : nom, created_at: date, lieu : lieu, when : heure_livraison, tel:phone})// { id: '4', name: 'Mark Zuckerberg'... }
+    }
+
 
 
 
