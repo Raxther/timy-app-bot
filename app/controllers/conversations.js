@@ -685,7 +685,7 @@ var bot = controller.spawn({});
     };    
 
     var laverie = function(response, convo) {
-      convo.say("Tarifs : \n12€ = 1 sac 🎒 \n16€ =  2 sacs 🎒🎒 \n21€ = 3 sacs 🎒🎒🎒\n*1 sac : l’équivalent d'un sac de course de 3 à 5 kilos\n Les tarifs comprennent le coût de la machine, le sèche linge, les produits et le prix du service Timy");
+      convo.say("Tarifs : \n12€ = 1 sac 🎒 \n16€ =  2 sacs 🎒🎒 \n21€ = 3 sacs 🎒🎒🎒\n*1 sac : l’équivalent d'un sac de course de 3 à 5 kilos\nLes tarifs comprennent le coût de la machine, le sèche linge, les produits et le prix du service Timy");
       //convo.say("Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration. ");
       convo.ask({
                   'text': "La laverie, c’est tous les mercredis sur le campus & tous les jeudis en centre ville. Quel jour souhaites-tu réserver ? 📅",
@@ -829,7 +829,7 @@ var bot = controller.spawn({});
 
     var recap_laverie = function(response, convo, day, heure) {
       
-      convo.say('Récapitulatif de ta commande : Laverie à ' +heure+ ' le '+day+"\nTéléphone :"+phone);
+      convo.say('Récapitulatif de ta commande : Laverie à ' +heure+ ' le '+day+"\nTéléphone : "+phone);
       convo.ask({
                   'text': "C'est bien ça ?",
                   'quick_replies': [
@@ -879,7 +879,7 @@ var bot = controller.spawn({});
 
   var confirmer_laverie = function(response, convo, day, heure) {
 
-      graph.get(message.user, function(errr, res) {
+      graph.get(message.user, function(err, res) {
          nom = res.first_name + " "+res.last_name; 
          laverie_to_database(nom, day, heure);
                   botslack.say(
