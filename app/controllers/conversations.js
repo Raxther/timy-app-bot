@@ -7,6 +7,7 @@ module.exports = function (controller, controllerslack) {
 var Request = require('request');
 var graph = require('fbgraph');
 var moment = require('moment');
+moment.locale('fr');
 var fb_token = "EAAKN23HlGKYBACnXUQUUATD5i5pzvJRuvxcWUzoQub9IiA7JeYV3HYEKptjd6aRrw3N4t7AtdBhXDmZB7aCjNs2YoDtrhYCkZBt7X7KjrwYitSxX6TCY35nMyWZBezUOAhThdLEmcBIx304ZCgGVcsIoXGQBZCCJZCu5vrFm25dwZDZD"
 graph.setAccessToken(fb_token);
   
@@ -829,8 +830,13 @@ var bot = controller.spawn({});
     };
 
     var recap_laverie = function(response, convo, day, heure) {
-      
-      convo.say('Récapitulatif de ta commande : Laverie à ' +heure+ ' le '+day+"\nTéléphone : "+phone);
+      if(day =='mercredi'){
+        resa = moment().day(10).format('dddd Do MMMM');
+      }else{
+        resa = moment().day(11).format('dddd Do MMMM');
+
+      }
+      convo.say('Récapitulatif de ta commande : Laverie à ' +heure+ ' le '+resa+"\nTéléphone : "+phone);
       convo.ask({
                   'text': "C'est bien ça ?",
                   'quick_replies': [
@@ -853,7 +859,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 case 'Confirmer':
-                  confirmer_laverie(response, convo, day , heure);
+                  confirmer_laverie(response, convo, day , heure, resa);
                   convo.next();
                     break;
                 case 'cancel':
@@ -878,14 +884,8 @@ var bot = controller.spawn({});
       });
     };
 
-  var confirmer_laverie = function(response, convo, day, heure) {
-      console.log(moment().format('[The time is] h:mm:ss a'));
-      if(day =='mercredi'){
-        resa = moment().day(10).format('dddd Do MMMM');
-      }else{
-        resa = moment().day(10).format('dddd Do MMMM');
+  var confirmer_laverie = function(response, convo, day, heure, resa) {
 
-      }
       
       graph.get(message.user, function(err, res) {
          nom = res.first_name + " "+res.last_name; 
