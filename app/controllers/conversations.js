@@ -881,7 +881,7 @@ var bot = controller.spawn({});
 
       graph.get(message.user, function(err, res) {
          nom = res.first_name + " "+res.last_name; 
-         laverie_to_database(nom, day, heure);
+         //laverie_to_database(nom, day, heure);
                   botslack.say(
                     {
                       text: "une laverie a été reservé par "+ nom +" le " +day+" à "+heure+"\n Telephone :"+phone,
