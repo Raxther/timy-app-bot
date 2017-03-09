@@ -920,7 +920,7 @@ var bot = controller.spawn({});
                   }
                    break;
             }
-            controller.storage.channels.save({id : fake_id, name : nom, created_at: date, lieu : lieu, when : heure_livraison, tel:phone})// { id: '4', name: 'Mark Zuckerberg'... }
+            controller.storage.channels.save({id : fake_id, name : nom, created_at: date, lieu : lieu, when : day +" - "+heure, tel:phone})// { id: '4', name: 'Mark Zuckerberg'... }
     }
 
 
