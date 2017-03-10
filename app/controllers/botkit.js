@@ -32,6 +32,7 @@ require('./conversations')(controller, controllerslack)
 
 // this function processes the POST request to the webhook
 var handler = function (obj) {
+  console.log(obj);
   controller.debug('Message received from FB')
   var message
   if (obj.entry) {
