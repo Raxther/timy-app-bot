@@ -647,7 +647,7 @@ var bot = controller.spawn({});
                                 },
                                 {
                                     "name": "impossible",
-                                    "text": "Inpossible",
+                                    "text": "Impossible",
                                     "style": "danger",
                                     "type": "button",
                                     "value": "impossible : "+recap
