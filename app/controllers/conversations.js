@@ -644,7 +644,7 @@ var bot = controller.spawn({});
                                     "name": "je prend",
                                     "text": "je prend",
                                     "type": "button",
-                                    "value": recap
+                                    "value": "ok recap"
                                 },
                                 {
                                     "name": "impossible",
@@ -999,7 +999,6 @@ controller.on('facebook_postback', function(bot, message) {
   })
 
  controllerslack.on('interactive_message_callback', function(botslack, message) {
-  console.log(ok);
   botslack.say(
           {
             text: 'cool',
