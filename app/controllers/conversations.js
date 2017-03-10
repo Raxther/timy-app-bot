@@ -638,6 +638,7 @@ var bot = controller.spawn({});
                             "callback_id": "wopr_game",
                             "color": "#3AA3E3",
                             "attachment_type": "default",
+                            "replace_original":"false",
                             "actions": [
                                 {
                                     "name": "je prend",
