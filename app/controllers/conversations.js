@@ -230,7 +230,7 @@ var bot = controller.spawn({});
         var date = new Date();
         heure = 1 + date.getHours();
         console.log(heure);
-        if (heure >= 16 && heure < 22){
+        if (heure >= 18 && heure < 22){
             heure_livraison = "Maintenant"
             convo.say('Coooool !');
             start_livraison(response, convo);
@@ -290,7 +290,7 @@ var bot = controller.spawn({});
     //plus tard (à finir)
     var later = function(response, convo) {
       convo.ask({
-                    'text':"Quand souhaites tu être livré ? Nous sommes ouvert du Lundi au Samedi de 16h à 22h et le Dimanche de 10h à 14h. 📅", 
+                    'text':"Quand souhaites tu être livré ? Nous sommes ouvert du Lundi au Samedi de 18h à 22h et le Dimanche de 10h à 14h. 📅", 
                     'quick_replies': [
                                                         {
                             'type': 'postback',
@@ -628,7 +628,39 @@ var bot = controller.spawn({});
       order_to_database(message.user);
       botslack.say(
                     {
-                      text: recap,
+
+                                      
+                    "text": recap,
+                    "attachments": [
+                        {
+                            "text": "Que faire",
+                            "fallback": "trop tard",
+                            "callback_id": "wopr_game",
+                            "color": "#3AA3E3",
+                            "attachment_type": "default",
+                            "actions": [
+                                {
+                                    "name": "je prend",
+                          "text": "je prend",
+                                    "type": "button",
+                                    "value": "ok"
+                                },
+                                {
+                                    "name": "je prend pas",
+                                    "text": "je laisse",
+                                    "type": "button",
+                                    "value": "not_ok"
+                                },
+                                {
+                                    "name": "impossible",
+                                    "text": "Inpossible",
+                                    "style": "danger",
+                                    "type": "button",
+                                    "value": "impossible"
+                                }
+                            ]
+                        }
+                    ],
                       channel: 'G3ZTJCDA4',
                        // a valid slack channel, group, mpim, or im ID
                     }
