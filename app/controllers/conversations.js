@@ -661,7 +661,7 @@ var bot = controller.spawn({});
                             ]
                         }
                     ],
-                      channel: 'G4GEQBJ9Y',
+                      channel: 'C4H5ARUCW',
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
@@ -925,7 +925,7 @@ var bot = controller.spawn({});
                   botslack.say(
                     {
                       text: "une laverie a été reservé par "+ nom +" le " +resa+" à "+heure+"\n Telephone :"+phone,
-                      channel: 'G4GEQBJ9Y',
+                      channel: 'C4H5ARUCW',
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
