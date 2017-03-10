@@ -12,7 +12,7 @@ var fb_token = "EAAKN23HlGKYBACnXUQUUATD5i5pzvJRuvxcWUzoQub9IiA7JeYV3HYEKptjd6aR
 graph.setAccessToken(fb_token);
   
 var botslack = controllerslack.spawn({
-    token: "xoxb-141241591894-P74g6ZUIwgSZyLT2xqY8hL5l"
+    token: "xoxb-153212029911-LpKqJu6PLxYnnwAzG7eXzHWo"
 }).startRTM();
 
 var bot = controller.spawn({});
@@ -661,7 +661,7 @@ var bot = controller.spawn({});
                             ]
                         }
                     ],
-                      channel: 'G3ZTJCDA4',
+                      channel: 'G4GEQBJ9Y',
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
@@ -925,7 +925,7 @@ var bot = controller.spawn({});
                   botslack.say(
                     {
                       text: "une laverie a été reservé par "+ nom +" le " +resa+" à "+heure+"\n Telephone :"+phone,
-                      channel: 'G4EMNT8U9',
+                      channel: 'G4GEQBJ9Y',
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
