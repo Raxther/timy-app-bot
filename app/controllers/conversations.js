@@ -1003,7 +1003,7 @@ controller.on('facebook_postback', function(bot, message) {
 
   })
 
- controllerslack.on('interactive_message_callback', function(botslack, message) {
+ controllerslack.on('interactive_message_callback',['ambient'], function(botslack, message) {
   console.log(ok);
   botslack.say(
           {
