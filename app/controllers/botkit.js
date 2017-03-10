@@ -35,7 +35,7 @@ var handler = function (obj) {
   console.log(obj);
   controller.debug('Message received from FB')
   var message
-  if (obj.entry  || obj.payload) {
+  if (obj.entry) {
     for (var e = 0; e < obj.entry.length; e++) {
       for (var m = 0; m < obj.entry[e].messaging.length; m++) {
         var facebook_message = obj.entry[e].messaging[m]
