@@ -641,12 +641,6 @@ var bot = controller.spawn({});
                             "replace_original":"false",
                             "actions": [
                                 {
-                                    "name": "je prend",
-                                    "text": "je prend",
-                                    "type": "button",
-                                    "value": "ok recap"
-                                },
-                                {
                                     "name": "impossible",
                                     "text": "Impossible",
                                     "style": "danger",
