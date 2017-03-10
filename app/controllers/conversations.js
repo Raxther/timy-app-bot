@@ -641,22 +641,16 @@ var bot = controller.spawn({});
                             "actions": [
                                 {
                                     "name": "je prend",
-                          "text": "je prend",
+                                    "text": "je prend",
                                     "type": "button",
-                                    "value": "ok"
-                                },
-                                {
-                                    "name": "je prend pas",
-                                    "text": "je laisse",
-                                    "type": "button",
-                                    "value": "not_ok"
+                                    "value": recap
                                 },
                                 {
                                     "name": "impossible",
                                     "text": "Inpossible",
                                     "style": "danger",
                                     "type": "button",
-                                    "value": "impossible"
+                                    "value": "impossible : "+recap
                                 }
                             ]
                         }
@@ -1003,7 +997,7 @@ controller.on('facebook_postback', function(bot, message) {
 
   })
 
- controllerslack.on('interactive_message_callback',['ambient'], function(botslack, message) {
+ controllerslack.on('interactive_message_callback', function(botslack, message) {
   console.log(ok);
   botslack.say(
           {
