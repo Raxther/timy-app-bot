@@ -13,7 +13,7 @@ graph.setAccessToken(fb_token);
   
 var botslack = controllerslack.spawn({
     token: "xoxb-153212029911-LpKqJu6PLxYnnwAzG7eXzHWo"
-}).startRTM();
+  }).startRTM();
 
 var bot = controller.spawn({});
 
@@ -998,24 +998,21 @@ controller.on('facebook_postback', function(bot, message) {
 })
 
  controllerslack.hears(['Je prends'], ['ambient'], function (botslack, message) {
-      console.log(message.user);
-      botslack.say(
-          {
-            text: 'vous avez pris la commande',
-            channel: message.user,
-             // a valid slack channel, group, mpim, or im ID
-          }
-        );
 
-      bot.say(
-      {
-          text: 'votre commande à été prise en compte',
-          channel: user // a valid facebook user id or phone number
-      }
-      );
 
 
   })
+
+ controllerslack.on('interactive_message_callback', function(botslack, message) {
+  console.log(ok);
+  botslack.say(
+          {
+            text: 'cool',
+            channel: C4H5ARUCW,
+             // a valid slack channel, group, mpim, or im ID
+          }
+        );
+})
 
 
 
