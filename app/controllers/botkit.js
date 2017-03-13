@@ -120,7 +120,7 @@ var handler = function (obj) {
     }
   }else if(obj.payload){
     for (var e = 0; e < obj.payload.length; e++) {
-        if(obj.payload.action){
+        if(obj.payload[e].action){
           var facebook_message = obj.payload[e].actions;
           controllerslack.trigger('interactive_message_callback', [botslack, facebook_message]);
         }
