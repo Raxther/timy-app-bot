@@ -1016,7 +1016,7 @@ controller.on('facebook_postback', function(bot, message) {
             channel: "G4GEQBJ9Y",
              // a valid slack channel, group, mpim, or im ID
           }
-  bot.say(message, reply);
+  bot.say(reply);
 
 
 
