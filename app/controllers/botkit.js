@@ -120,9 +120,11 @@ var handler = function (obj) {
     }
   }else if(obj.payload){
     for (var e = 0; e < obj.payload.length; e++) {
-        var facebook_message = obj.payload[e].actions;
-        controllerslack.trigger('interactive_message_callback', [botslack, facebook_message]);
-
+        if(obj.payload.action){
+          var facebook_message = obj.payload[e].actions;
+          controllerslack.trigger('interactive_message_callback', [botslack, facebook_message]);
+        }
+        
       }
     }
 
