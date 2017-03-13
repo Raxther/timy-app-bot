@@ -20,6 +20,10 @@ var controllerslack = Botkit.slackbot({
     //debug: true,
 });
 
+var botslack = controllerslack.spawn({
+    token: "xoxb-153212029911-LpKqJu6PLxYnnwAzG7eXzHWo"
+  }).startRTM();
+
 
 // SETUP
 require('./facebook_setup')(controller)
