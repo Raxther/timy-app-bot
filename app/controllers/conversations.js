@@ -227,10 +227,11 @@ var bot = controller.spawn({});
 
     //maintenant
     var now = function(response, convo) {
-        var date = new Date();
+        var n = date.getDay();
         heure = 1 + date.getHours();
-        console.log(heure);
-        if (heure >= 18 && heure < 22){
+        var horraire_semaine = (heure >= 18 && heure < 22) && (n != 0);
+        var horraire_dimanche = (n == 0) && (heure >= 10 && heure < 14);
+        if (horraire_dimanche || horraire_semaine){
             heure_livraison = "Maintenant"
             convo.say('Coooool !');
             start_livraison(response, convo);
@@ -1010,13 +1011,15 @@ controller.on('facebook_postback', function(bot, message) {
   })
 
  controllerslack.on('interactive_message_callback', function(botslack, message) {
-  botslack.say(
-          {
+         var reply =   {
             text: 'cool',
             channel: C4H5ARUCW,
              // a valid slack channel, group, mpim, or im ID
           }
-        );
+  bot.replyInteractive(message, reply);
+
+
+
 })
 
 

@@ -33,11 +33,12 @@ require('./conversations')(controller, controllerslack)
 // this function processes the POST request to the webhook
 var handler = function (obj) {
   console.log(obj);
+
   controller.debug('Message received from FB')
   var message
   if (obj.entry) {
     for (var e = 0; e < obj.entry.length; e++) {
-      for (var m = 0; m < obj.entry[e].messaging.length; m++) {
+      for (var m = 0; m < obj.entry[e].actions.length; m++) {
         var facebook_message = obj.entry[e].messaging[m]
 
         console.log(facebook_message)
@@ -113,7 +114,15 @@ var handler = function (obj) {
         }
       }
     }
-  }
+  }else if(obj.payload){
+    for (var e = 0; e < obj.payload.length; e++) {
+        var facebook_message = obj.payload[e].actions;
+        controllerslack.trigger('interactive_message_callback', [botslack, facebook_message]);
+
+      }
+    }
+
+  
 }
 
 var create_user_if_new = function (id, ts) {
