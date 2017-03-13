@@ -1013,7 +1013,7 @@ controller.on('facebook_postback', function(bot, message) {
  controllerslack.on('interactive_message_callback', function(botslack, message) {
          var reply =   {
             text: 'cool',
-            channel: C4H5ARUCW,
+            channel: G4GEQBJ9Y,
              // a valid slack channel, group, mpim, or im ID
           }
   bot.replyInteractive(message, reply);
