@@ -227,6 +227,7 @@ var bot = controller.spawn({});
 
     //maintenant
     var now = function(response, convo) {
+        var date = new Date();
         var n = date.getDay();
         heure = 1 + date.getHours();
         var horraire_semaine = (heure >= 18 && heure < 22) && (n != 0);
