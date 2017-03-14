@@ -20,7 +20,7 @@ module.exports = function (app) {
   app.post('/webhook', function (req, res) {
     facebook_handler(req.body)
 
-    res.send('ok')
+    res.send("J'ai compris")
   })
 }
 /* eslint-disable brace-style */
