@@ -1009,20 +1009,32 @@ controller.on('facebook_postback', function(bot, message) {
         console.log(message.actions[0].value);
         switch(message.actions[0].value) {
             case 'je prends':
-            var reply =   {
-                text: message.original_message.text,
-                attachments: [
-                    {
-                        text: "La tache a été prise par "+message.user.name
+            var reply =  {               
+                    "text": message.original_message.text,
+                    "attachments": [
+                          {
+                              "text": "La tache a été prise par "+message.user.name,
+                              "fallback": "You are unable to choose a game",
+                              "callback_id": message.callback_id,
+                              "color": "#3AA3E3",
+                              "attachment_type": "default",
+                              "actions": [
+                                  {
+                                      "name": "J'ai récupéré",
+                                      "text": "J'ai récupéré",
+                                      "type": "button",
+                                      "value": "j'ai récupéré"
+                                  }
+                              ]
+                          }
+                      ],
+                      channel: 'C4H5ARUCW',
+                       // a valid slack channel, group, mpim, or im ID
                     }
-                ],
-                channel: "C4H5ARUCW",
-                 // a valid slack channel, group, mpim, or im ID
-              }
 
                bot.say(
                 {
-                    text: "ta commande a été prise en compte par "+message.user.name,
+                    text: "Ta commande a été prise en compte par "+message.user.name,
                     channel: message.callback_id // a valid facebook user id or phone number
                 })
 
@@ -1041,10 +1053,63 @@ controller.on('facebook_postback', function(bot, message) {
 
                 bot.say(
                 {
-                    text: "ta commande a été refusée",
+                    text: "Ta commande a été refusée",
                     channel: message.callback_id // a valid facebook user id or phone number
                 })
                 break;
+                case "j'ai récupéré":
+                var reply =  {               
+                    "text": message.original_message.text,
+                    "attachments": [
+                          {
+                              "text": "La tache est en cours de livraison par "+message.user.name,
+                              "fallback": "You are unable to choose a game",
+                              "callback_id": message.callback_id,
+                              "color": "#3AA3E3",
+                              "attachment_type": "default",
+                              "actions": [
+                                    {
+                                        "name": "J'ai livré",
+                                        "text": "J'ai livré",
+                                        "type": "button",
+                                        "value": "j'ai livré"
+                                    }
+                              ]
+                          }
+                      ],
+                      channel: 'C4H5ARUCW',
+                       // a valid slack channel, group, mpim, or im ID
+                    }
+
+                   bot.say(
+                    {
+                        text: "Ta commande a été récupéré, le coursier est en route 🚴",
+                        channel: message.callback_id // a valid facebook user id or phone number
+                    })
+
+                    break;
+                case "j'ai livré":
+                var reply =   {
+                    text: message.original_message.text,
+                    attachments: [
+                        {
+                            text: "La tache a été livré par "+message.user.name
+                        }
+                        ],
+   
+                    channel: "C4H5ARUCW",
+                     // a valid slack channel, group, mpim, or im ID
+                  }
+
+                   bot.say(
+                    {
+                        text: "Merci de votre confiance. J'espère que vous avez apprécié la livraison et esperons vous revoir très bientôt :)",
+                        channel: message.callback_id // a valid facebook user id or phone number
+                    })
+
+                    break;
+                  default:
+                  console.log(ok);
       }
       botslack.say(reply);
 
