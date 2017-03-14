@@ -119,13 +119,14 @@ var handler = function (obj) {
       }
     }
   }else if(obj.payload){
-    for (var e = 0; e < obj.payload.length; e++) {
-        if(obj.payload[e].actions){
-          var facebook_message = obj.payload[e].actions;
-          controllerslack.trigger('interactive_message_callback', [botslack, facebook_message]);
+    message = JSON.parse(obj.payload)
+    console.log(message);
+    console.log(message.actions);
+        if(message.actions){
+          console.log("action reçue");
+          controllerslack.trigger('interactive_message_callback', [botslack, message]);
         }
         
-      }
     }
 
   

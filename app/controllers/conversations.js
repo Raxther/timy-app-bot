@@ -1012,17 +1012,50 @@ controller.on('facebook_postback', function(bot, message) {
   })
 
  controllerslack.on('interactive_message_callback', function(botslack, message) {
-        console.log(message);
-         var reply =   {
-            text: "recap",
-            channel: "G4GEQBJ9Y",
-             // a valid slack channel, group, mpim, or im ID
-          }
-  botslack.say(reply);
+        console.log(message.actions[0].value);
+        switch(message.actions[0].value) {
+            case 'je prends':
+            var reply =   {
+                text: message.original_message.text,
+                attachments: [
+                    {
+                        text: "La tache a été prise par "+message.user.name
+                    }
+                ],
+                channel: "C4H5ARUCW",
+                 // a valid slack channel, group, mpim, or im ID
+              }
 
+               bot.say(
+                {
+                    text: "ta commande a été prise en compte par "+message.user.name,
+                    channel: message.callback_id // a valid facebook user id or phone number
+                })
 
+                break;
+              case 'impossible':
+                var reply =   {
+                text: message.original_message.text,
+                attachments: [
+                    {
+                        text: "La tache a été refusée par "+message.user.name
+                    }
+                ],
+                channel: "C4H5ARUCW",
+                 // a valid slack channel, group, mpim, or im ID
+                }
+
+                bot.say(
+                {
+                    text: "ta commande a été refusée",
+                    channel: message.callback_id // a valid facebook user id or phone number
+                })
+                break;
+      }
+      botslack.say(reply);
 
 })
+
 
 
 
