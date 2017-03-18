@@ -33,7 +33,7 @@ var bot = controller.spawn({});
     var heure_livraison ="";
     var panier="";
     var phone="";
-    var promo="";
+    var promotion="";
 
     // 1/ bonjour, que voulez vous ?
     var begin = function(err, convo) {
@@ -512,7 +512,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-        promo =  response.text;
+        promotion =  response.text;
         telephone(response, convo);
         convo.next();
       }
@@ -556,7 +556,7 @@ var bot = controller.spawn({});
     };
 
     var recapitulatif = function(response, convo) {
-      recap = "Adresse 🏡 : " + adresse + "\nQuand ⏰ : "+ heure_livraison + "\nObjet : " + panier + "\nCode promo 💵 : " + promo + "\nTéléphone : " +phone;
+      recap = "Adresse 🏡 : " + adresse + "\nQuand ⏰ : "+ heure_livraison + "\nObjet : " + panier + "\nCode promo 💵 : " + promotion + "\nTéléphone : " +phone;
       convo.say('Récapitulatif de ta commande : \n' + recap);
       convo.ask({
                   'text': "C'est bien ça ?",
@@ -620,7 +620,7 @@ var bot = controller.spawn({});
             var fake_id = mongoose.Types.ObjectId();
             nom = res.first_name + " "+res.last_name; 
             date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-            controller.storage.teams.save({id : fake_id, created_at: date, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promo})// { id: '4', name: 'Mark Zuckerberg'... }
+            controller.storage.teams.save({id : fake_id, created_at: date, name : nom, adresse : adresse, when : heure_livraison, panier: panier, promo : promotion})// { id: '4', name: 'Mark Zuckerberg'... }
           });
 
     }
