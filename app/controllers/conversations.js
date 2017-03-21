@@ -466,24 +466,28 @@ var bot = controller.spawn({});
         }, function(response, convo) {
         switch(response.text) {
                 case 'Un décaps 🍺':
-                  fin_eve(response, convo);
+                  convo.say("Ok, j'arrive ! :)");
+                  fin_eve(response, convo, 'Un décaps 🍺');
                   convo.next();
                     break;
                 case 'Un briquet 🔥':
-                  fin_eve(response, convo);
+                  convo.say("Ok, j'arrive !");
+                  fin_eve(response, convo, 'Un briquet 🔥');
                   convo.next();
                     break;
                 case 'Un jeton 🎉':
-                  fin_eve(response, convo);
+                  convo.say("Ok, j'arrive !");
+                  fin_eve(response, convo ,'Un jeton 🎉');
                   convo.next();
                     break;
                 case "Un M&M's 🍫":
-                  fin_eve(response, convo);
+                  convo.say("Ok, j'arrive !");
+                  fin_eve(response, convo, "Un M&M's 🍫");
                   convo.next();
                     break;
                 case 'tout':
-                convo.say("Hep hep hep ! C'est trop facile ! Pose ton like et laisse ton avis sur la page : https://www.facebook.com/pg/TimyGrenoble/reviews/");
-                  fin_eve(response, convo);
+                convo.say("Hep hep hep ! C'est trop facile ! Pour qu'on te livre tout, pose ton like et laisse ton avis sur la page : https://www.facebook.com/pg/TimyGrenoble/reviews/");
+                  fin_eve(response, convo ,'tout');
                   convo.next();
                     break;
                 case 'annuler':
@@ -1157,13 +1161,13 @@ var bot = controller.spawn({});
     }
 
 
-    var fin_eve = function(response, convo) {
+    var fin_eve = function(response, convo, test) {
       graph.get(message.user, function(errr, res) {
          nom = res.first_name + " "+res.last_name; 
 
         bot.say(
         {
-            text: nom+ "a passé une commande sur projexpo (et Rama pense à toi <3 )",
+            text: nom+ " a passé une commande sur projexpo (et Rama pense à toi <3 ) :"+test,
             channel: '1616938198321584' // a valid facebook user id or phone number
         })
       // { id: '4', name: 'Mark Zuckerberg'... }
