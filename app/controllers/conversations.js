@@ -54,8 +54,8 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': 'Réserver un service',
-                                    'payload': 'service'
+                                    'title': "Proj'expo",//projexpo
+                                    'payload': 'projexpo'
                                 },
                                                                 {
                                     'type': 'postback',
@@ -101,6 +101,11 @@ var bot = controller.spawn({});
                 case 'service':
                   //convo.say("Quel service souhaites-tu reserver ?");
                   ask_service(response, convo);
+                  convo.next();
+                    break;
+                case 'projexpo':
+                  //convo.say("Quel service souhaites-tu reserver ?");
+                  livraison_projexpo(response, convo);
                   convo.next();
                     break;
                 case 'humain':
@@ -169,7 +174,7 @@ var bot = controller.spawn({});
     };
 
     var cool = function(response, convo) {
-        convo.say("Bonne chance 🍀 Passe nous voir sur le stand Timy samedi soir, on aura des goodies ! A très vite ✨");
+        convo.say("Bonne chance 🍀 Passe nous voir sur le stand Timy samedi soir, on aura des goodies ! À très vite ✨");
         convo.next();
     };
 
@@ -220,6 +225,51 @@ var bot = controller.spawn({});
                 default:
                   convo.say("Je n'ai pas compris.. 🤔");
                   livraison(response, convo);
+                  convo.next();
+            }
+      });
+    };
+
+        var livraison_projexpo = function(response, convo) {
+      convo.ask({
+ text: 'À quelle heure souhaites tu être livré ? ⏰',
+  quick_replies: [{
+    content_type: 'text',
+    title: 'Maintenant',
+    payload: 'now_projexpo',
+  }, {
+    content_type: 'text',
+    title: 'Dans 1 min',
+    payload: 'now_projexpo',
+  }],
+
+}, function(response, convo) {
+            switch(response.text) {
+                case 'Maintenant':
+                  now_projexpo(response, convo);
+                  convo.next();
+                    break;
+                case 'Dans 1 min':
+                  now_projexpo(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("Redemarrage en cours..");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("Je n'ai pas compris.. 🤔");
+                  livraison_projexpo(response, convo);
                   convo.next();
             }
       });
@@ -289,6 +339,12 @@ var bot = controller.spawn({});
 
     };
 
+    var now_projexpo = function(response, convo) {
+            convo.say('Coooool !');
+            start_livraison_projexpo(response, convo);
+            convo.next();
+    };
+
     //plus tard (à finir)
     var later = function(response, convo) {
       convo.ask({
@@ -324,6 +380,135 @@ var bot = controller.spawn({});
                   start_livraison(response, convo);
                   convo.next();
           }
+      });
+    };
+
+    var start_livraison_projexpo = function(response, convo) {
+      convo.ask({
+                  'text': "Quelle est la zone de livraison ? 📍",
+                  'quick_replies': [
+                                                      {
+                          'type': 'postback',
+                          'title': 'Devant EVE',
+                          'payload': 'in_grenoble'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'Dans EVE',
+                          'payload': 'out_grenoble'
+                      }
+                  ]
+              
+        }, function(response, convo) {
+              switch(response.text) {
+                case 'Devant EVE':
+                  eve(response, convo);
+                  convo.next();
+                    break;
+                case 'Dans EVE':
+                  eve(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("Redemarrage en cours..");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("Je n'ai pas compris.. 🤔");
+                  start_livraison_projexpo(response, convo);
+                  convo.next();
+            }
+      });
+    };
+
+    var eve = function(response, convo) {
+      convo.ask({
+                  'text': "Que souhaites-tu te faire livrer ? 🚴",
+                  'quick_replies': [
+                                     {
+                          'type': 'postback',
+                          'title': 'Un décaps 🍺',
+                          'payload': 'out_grenoble'
+                      },
+                                                      {
+                          'type': 'postback',
+                          'title': 'Un briquet 🔥',
+                          'payload': 'in_grenoble'
+                      },
+                      {
+                          'type': 'postback',
+                          'title': 'Un jeton 🎉',
+                          'payload': 'out_grenoble'
+                      },
+
+                      {
+                          'type': 'postback',
+                          'title': "Un M&M's 🍫",
+                          'payload': 'out_grenoble'
+                      },
+                      {
+                          'type': 'postback',
+                          'title': 'tout',
+                          'payload': 'out_grenoble'
+                      }
+                  ]
+              
+        }, function(response, convo) {
+        switch(response.text) {
+                case 'Un décaps 🍺':
+                  fin_eve(response, convo);
+                  convo.next();
+                    break;
+                case 'Un briquet 🔥':
+                  fin_eve(response, convo);
+                  convo.next();
+                    break;
+                case 'Un jeton 🎉':
+                  fin_eve(response, convo);
+                  convo.next();
+                    break;
+                case "Un M&M's 🍫":
+                  fin_eve(response, convo);
+                  convo.next();
+                    break;
+                case 'tout':
+                convo.say("Hep hep hep ! C'est trop facile ! Pose ton like et laisse ton avis sur la page : https://www.facebook.com/pg/TimyGrenoble/reviews/");
+                  fin_eve(response, convo);
+                  convo.next();
+                    break;
+                case 'annuler':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'cancel':
+                  annuler(response, convo);
+                  convo.next();
+                    break;
+                case 'reboot':
+                convo.say("Redemarrage en cours..");
+                  begin(response, convo);
+                  convo.next();
+                    break;
+                case 'humain':
+                convo.say("J'appelle quelqu'un qui te répondra dans les plus brefs delais :)");
+                  help(response, convo);
+                  convo.next();
+                    break;
+                default:
+                  convo.say("Je n'ai pas compris.. 🤔");
+                  eve(response, convo);
+                  convo.next();
+      }
       });
     };
 
@@ -667,7 +852,7 @@ var bot = controller.spawn({});
                        // a valid slack channel, group, mpim, or im ID
                     }
                   );
-      convo.say("Votre commande a été envoyé à nos taskers :)");     
+      convo.say("Ta commande a été envoyé à nos taskers :)");     
       convo.next();
     };
 
@@ -718,7 +903,9 @@ var bot = controller.spawn({});
                   convo.next();
             }
       });
-    };    
+    };  
+
+
 
     var laverie = function(response, convo) {
       convo.say("Tarifs : \n12€ = 1 sac 🎒 \n16€ =  2 sacs 🎒🎒 \n21€ = 3 sacs 🎒🎒🎒\n*1 sac : l’équivalent d'un sac de course de 3 à 5 kilos\nLes tarifs comprennent le coût de la machine, le sèche linge, les produits et le prix du service Timy");
@@ -935,7 +1122,7 @@ var bot = controller.spawn({});
 
       });
       
-      convo.say("Votre laverie a été envoyé à nos taskers :)"); 
+      convo.say("Ta laverie a été envoyé à nos taskers :)"); 
       convo.say("Infos complémentaires: Nous ne trions pas le linge. Tout est lavé à 40°, avec une lingette anti décoloration.");    
       convo.next();
 
@@ -970,6 +1157,23 @@ var bot = controller.spawn({});
     }
 
 
+    var fin_eve = function(response, convo) {
+      graph.get(message.user, function(errr, res) {
+         nom = res.first_name + " "+res.last_name; 
+
+        bot.say(
+        {
+            text: nom+ "a passé une commande sur projexpo (et Rama pense à toi <3 )",
+            channel: '1616938198321584' // a valid facebook user id or phone number
+        })
+      // { id: '4', name: 'Mark Zuckerberg'... }
+      });
+
+      convo.next();
+    }
+
+
+
 
 
 
@@ -999,13 +1203,8 @@ controller.on('facebook_postback', function(bot, message) {
 
 })
 
- controllerslack.hears(['Je prends'], ['ambient'], function (botslack, message) {
 
-
-
-  })
-
- controllerslack.on('interactive_message_callback', function(botslack, message) {
+controllerslack.on('interactive_message_callback', function(botslack, message) {
         console.log(message.actions[0].value);
         switch(message.actions[0].value) {
             case 'je prends':
@@ -1034,7 +1233,7 @@ controller.on('facebook_postback', function(bot, message) {
 
                bot.say(
                 {
-                    text: "Ta commande a été prise en compte par "+message.user.name,
+                    text: "Ta commande a été prise en charge par "+message.user.name+"!",
                     channel: message.callback_id // a valid facebook user id or phone number
                 })
 
@@ -1053,7 +1252,7 @@ controller.on('facebook_postback', function(bot, message) {
 
                 bot.say(
                 {
-                    text: "Ta commande a été refusée",
+                    text: "Ta commande ne correspond aux conditions de livraison Timy (Hors zone, hors creneau, ou autre).",
                     channel: message.callback_id // a valid facebook user id or phone number
                 })
                 break;
@@ -1103,7 +1302,7 @@ controller.on('facebook_postback', function(bot, message) {
 
                    bot.say(
                     {
-                        text: "Merci de votre confiance. J'espère que vous avez apprécié la livraison et esperons vous revoir très bientôt :)",
+                        text: "Merci d'avoir appelé Timy. À très vite 🔥",
                         channel: message.callback_id // a valid facebook user id or phone number
                     })
 
