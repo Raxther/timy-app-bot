@@ -54,8 +54,8 @@ var bot = controller.spawn({});
                                 },
                                                                 {
                                     'type': 'postback',
-                                    'title': "Proj'expo",//Reserver un service
-                                    'payload': 'projexpo' //projexpo
+                                    'title': "Reserver un service",//Reserver un service
+                                    'payload': 'service' //projexpo
                                 },
                                                                 {
                                     'type': 'postback',
