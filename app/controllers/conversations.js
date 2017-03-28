@@ -280,7 +280,7 @@ var bot = controller.spawn({});
         var date = new Date();
         var n = date.getDay();
         heure = 2 + date.getHours();
-        var horraire_semaine = (heure >= 18 && heure < 22) && (n != 0);
+        var horraire_semaine = (heure >= 16 && heure < 22) && (n != 0);
         var horraire_dimanche = (n == 0) && (heure >= 10 && heure < 14);
         if (horraire_dimanche || horraire_semaine){
             heure_livraison = "Maintenant"
