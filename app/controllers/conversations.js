@@ -20,14 +20,15 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    //bot.reply(message, "Hello, moi c'est Timy !\nJe livre tout Grenoble en moins d'une heure et à partir de 2,50€. Mcdo, cigarettes, bières, colis .. 🍻 🍕 📱 🌂 🚬 🔑 📦. En bref, si t'as pas envie, appelle Timy. Où plutôt écris à Timy !\nNos coursiers te livrent entre 16h et 22h tous les jours et de 10h à 14h le dimanche dans tout Grenoble 38000.");
     bot.reply(message, "Dis moi hello pour commencer !");
   })
 
   var user;
 
 //demarrage conversation
-  controller.hears(['bonjour', 'salut', 'wesh','salu','coucou','yo','bjr','slt','reboot','hello','commander'], 'message_received', function(bot,message) {
+  controller.hears(['bonjour','hello', 'salut','salu','coucou','yo','bjr','slt','reboot','commander'], 'message_received', function(bot,message) {
+    
+
     var recap = "";
     var adresse = "";
     var heure_livraison ="";
@@ -82,12 +83,12 @@ var bot = controller.spawn({});
                   annuler(response, convo);
                   convo.next();
                     break;
-                case 'reboot':
+                case 'reboot': //bouton reboot
                 convo.say("Redemarrage en cours..");
                   begin(response, convo);
                   convo.next();
                     break;
-                 case 'starcafe':
+                 case 'starcafe': 
                   convo.say("Grâce à notre partenariat avec le Star Café, on te livre tous les jours de 12h à 13h30 dans GEM pour 1€ 🍔 🍟");
                   help(response, convo);
                   convo.next();
@@ -1196,7 +1197,8 @@ var bot = controller.spawn({});
       convo.next();
     }
 
-    bot.startConversation(message, begin);
+    //bot.startConversation(message, begin);
+      bot.reply(message, "Désolé, mais timy s'arrete ses services quelques temps :) Merci de votre fidélité !")
 });
 
 // user click on button
