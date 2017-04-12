@@ -26,7 +26,7 @@ var bot = controller.spawn({});
   var user;
 
 //demarrage conversation
-  controller.hears(['*'], 'message_received', function(bot,message) {
+  controller.hears(['bonjour','hello', 'salut','salu','coucou','yo','bjr','slt','reboot','commander'], 'message_received', function(bot,message) {
     
 
     var recap = "";
