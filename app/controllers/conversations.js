@@ -20,13 +20,13 @@ var bot = controller.spawn({});
 
 
   controller.on('facebook_optin', function (bot, message) {
-    bot.reply(message, "Dis moi hello pour commencer !");
+      bot.reply(message, "Désolé, mais Timy arrete ses services quelques temps :) Merci de votre fidélité !")
   })
 
   var user;
 
 //demarrage conversation
-  controller.hears(['bonjour','hello', 'salut','salu','coucou','yo','bjr','slt','reboot','commander'], 'message_received', function(bot,message) {
+  controller.hears(['*'], 'message_received', function(bot,message) {
     
 
     var recap = "";
@@ -1198,7 +1198,7 @@ var bot = controller.spawn({});
     }
 
     //bot.startConversation(message, begin);
-      bot.reply(message, "Désolé, mais timy s'arrete ses services quelques temps :) Merci de votre fidélité !")
+      bot.reply(message, "Désolé, mais Timy arrete ses services quelques temps :) Merci de votre fidélité !")
 });
 
 // user click on button
