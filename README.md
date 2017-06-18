@@ -1,19 +1,7 @@
 # Botkit demo for Messenger, using Express and Mongo
 
-This app is a demo of using [Botkit](https://github.com/howdyai/botkit) to create a Facebook Messenger bot, using the MongoDB [adapter](https://github.com/howdyai/botkit-storage-mongo) for storage and [Express](http://expressjs.com) to serve webpages.
+This app is using [Botkit](https://github.com/howdyai/botkit) to create a Facebook Messenger bot, and a Slack bot using the MongoDB [adapter](https://github.com/howdyai/botkit-storage-mongo) for storage and [Express](http://expressjs.com) to serve webpages.
 
-The same demo for Slack bots can be found [here](https://github.com/mvaragnat/botkit-express-demo)
-
-## Features
-
-* Serves webpages through standard express routes
-``` app/routes/routes.js ```
-
-* Uses Monkii as MongoDB driver
-
-* Stores users ID when a new user clicks on "Send to Messenger"
-
-* Offers a welcome message when user clicks on "Send to Messenger", replies to Hello, and generally just repeats what you just said
 
 ## Configuration
 
@@ -47,12 +35,5 @@ Change the webhook route to match your deployed domain name.
 
 You can use MongoLab add-on to add Mongo storage, they have a free tier.
 
-## Contributions & style
-Contributions are more than welcome!
-In terms of style, I use [standard style](https://github.com/feross/standard) with camelcase and brace-style disabled.
 
-## Author
-[Matthieu Varagnat](https://twitter.com/MVaragnat)
 
-## Licence
-Shared under [MIT licence](http://choosealicense.com/licenses/mit/)

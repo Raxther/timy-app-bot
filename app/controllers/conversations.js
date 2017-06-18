@@ -8,11 +8,11 @@ var Request = require('request');
 var graph = require('fbgraph');
 var moment = require('moment');
 moment.locale('fr');
-var fb_token = "EAAKN23HlGKYBACnXUQUUATD5i5pzvJRuvxcWUzoQub9IiA7JeYV3HYEKptjd6aRrw3N4t7AtdBhXDmZB7aCjNs2YoDtrhYCkZBt7X7KjrwYitSxX6TCY35nMyWZBezUOAhThdLEmcBIx304ZCgGVcsIoXGQBZCCJZCu5vrFm25dwZDZD"
+var fb_token = ""
 graph.setAccessToken(fb_token);
   
 var botslack = controllerslack.spawn({
-    token: "xoxb-153212029911-LpKqJu6PLxYnnwAzG7eXzHWo"
+    token: ""
   }).startRTM();
 
 var bot = controller.spawn({});
@@ -797,7 +797,7 @@ var bot = controller.spawn({});
                   convo.next();
                     break;
                 default:
-                  convo.say("Je n'ai pas compris.. 🤔");
+                  convo.say("Je n'ai pas compris..");
                   recapitulatif(response, convo);
                   convo.next();
             }

@@ -9,8 +9,8 @@ var db = require('../../config/db')({mongoUri: mongoUri})
 
 var controller = Botkit.facebookbot({
   debug: false,
-  access_token: "EAAKN23HlGKYBAIiXff8RDSsGiwAu6SorJGttfqsFcPIwzOGokvaA8srCkMyvM3XjIjHZAWVhdZB5qjXoz3wWc3EDWZBZCsurVsUqpWhdm3RmFsJ5HnZAzTTKyx31HzN4n0At5NZB2SqxOvpt3GXZCM0GSPaeb4ixoourY83OGjn9AZDZD",
-  verify_token: "my_voice_is_my_password_verify_me",
+  access_token: "",
+  verify_token: "",
   storage: db
 })
 
@@ -27,7 +27,7 @@ var botslack = controllerslack.spawn({
 
 // SETUP
 require('./facebook_setup')(controller)
-var fb_token = "EAAKN23HlGKYBACnXUQUUATD5i5pzvJRuvxcWUzoQub9IiA7JeYV3HYEKptjd6aRrw3N4t7AtdBhXDmZB7aCjNs2YoDtrhYCkZBt7X7KjrwYitSxX6TCY35nMyWZBezUOAhThdLEmcBIx304ZCgGVcsIoXGQBZCCJZCu5vrFm25dwZDZD"
+var fb_token = ""
 graph.setAccessToken(fb_token);
 
 
